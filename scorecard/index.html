@@ -45,12 +45,15 @@
 <body>
 <div class="max-w-2xl w-full mx-auto space-y-5 p-4 pb-16">
     <div class="s1 text-center"><span class="font-mono font-bold text-xl tracking-tight text-white">CAMPUS<span class="text-terminal">VELOCITY</span></span></div>
-    <div class="s1 bg-card border border-[#2D3748] rounded-2xl p-4 text-center">
+
+    <!-- STEP 1 INDICATOR — hidden when results display -->
+    <div id="step1-indicator" class="s1 bg-card border border-[#2D3748] rounded-2xl p-4 text-center">
         <div class="flex justify-center items-center gap-3 mb-3"><div class="step-dots"><div class="step-dot active"></div><div class="step-dot"></div><div class="step-dot"></div><div class="step-dot"></div></div></div>
         <div class="w-full bg-[#2D3748] rounded-full mb-3 overflow-hidden" style="height:3px;"><div class="progress-bar" style="width:25%;"></div></div>
         <p class="text-terminal text-xs font-mono uppercase tracking-widest">STEP 1 OF 4 — TAKE THE SCORECARD</p>
         <p class="text-ghost text-[10px] font-mono mt-1">Scorecard → Review → Apply → Schedule</p>
     </div>
+
     <!-- QUIZ -->
     <div id="quiz-section">
         <div class="s1 bg-card border border-[#2D3748] rounded-2xl p-4 text-center">
@@ -59,12 +62,14 @@
         </div>
         <div id="question-container" class="mt-5"></div>
     </div>
+
     <!-- LOADING -->
     <div id="loading-section" class="hidden-section text-center py-20">
         <div class="spinner mx-auto mb-6"></div>
         <p class="font-mono text-terminal text-sm uppercase tracking-widest">Calculating your Campus Intelligence Score…</p>
         <p class="font-mono text-ghost text-xs mt-2">Scoring 6 domains across 12 data points</p>
     </div>
+
     <!-- EMAIL CAPTURE -->
     <div id="email-section" class="hidden-section">
         <div class="s1 bg-card border-2 border-terminal/30 rounded-2xl overflow-hidden p-8 md:p-10 text-center">
@@ -90,6 +95,7 @@
             </form>
         </div>
     </div>
+
     <!-- RESULTS -->
     <div id="results-section" class="hidden-section space-y-5">
         <div class="s1 bg-card border border-[#2D3748] rounded-2xl p-4 text-center">
@@ -120,7 +126,6 @@
             <h3 class="text-center text-white font-bold mb-6 uppercase tracking-wide font-mono text-xs border-b border-[#2D3748] pb-4">[ DOMAIN-BY-DOMAIN BREAKDOWN ]</h3>
             <div id="domain-breakdown" class="space-y-3"></div>
         </div>
-        <!-- RESULTS CTA — UPDATED: price anchor removed, new CTA text, zero-disruption reframe -->
         <div id="results-cta" class="s4 bg-card border-2 border-terminal/30 rounded-2xl p-8 text-center">
             <p id="results-cta-copy" class="text-white text-base leading-relaxed max-w-lg mx-auto mb-4"></p>
             <p class="text-ghost text-sm max-w-lg mx-auto mb-6">The 14-Day Diagnostic Audit runs completely in the background — zero disruption to your teaching staff. We plug into your existing logs and dashboards and deliver your board-ready Executive Brief in 14 days. <span class="text-white font-semibold">The audit is free.</span></p>
@@ -213,6 +218,7 @@ function selectAnswer(optionIndex) {
 }
 function finishQuiz() {
     hide('quiz-section');
+    hide('step1-indicator');
     show('loading-section');
     setTimeout(() => { hide('loading-section'); show('email-section'); window.scrollTo({top:0, behavior:'smooth'}); }, 1600);
 }
@@ -221,14 +227,12 @@ function submitEmail(e) {
     leadInfo.name = document.getElementById('lead-name').value;
     leadInfo.email = document.getElementById('lead-email').value;
     leadInfo.school = document.getElementById('lead-school').value;
-    // ---------------------------------------------------------------
-   fetch('https://api.kit.com/v4/subscribers', {
-  method: 'POST',
-  headers: { 'X-Kit-Api-Key': 'kit_a372aaef2b80ac3f64988994ebd1a060', 'Content-Type': 'application/json' },
-  body: JSON.stringify({ email_address: leadInfo.email, first_name: leadInfo.name,
-    fields: { school: leadInfo.school } })
-});
-    // ---------------------------------------------------------------
+    fetch('https://api.kit.com/v4/subscribers', {
+        method: 'POST',
+        headers: { 'X-Kit-Api-Key': 'kit_a372aaef2b80ac3f64988994ebd1a060', 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email_address: leadInfo.email, first_name: leadInfo.name,
+            fields: { school: leadInfo.school } })
+    });
     hide('email-section');
     renderResults();
     show('results-section');
@@ -286,6 +290,7 @@ function retakeQuiz() {
     answers = new Array(QUESTIONS.length).fill(null);
     currentQuestion = 0;
     hide('results-section');
+    show('step1-indicator');
     show('quiz-section');
     renderQuestion();
     window.scrollTo({top:0, behavior:'smooth'});
