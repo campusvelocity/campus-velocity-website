@@ -8,8 +8,9 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
     :root { --void: #0D1117; --card: #1E2329; --border: #2D3748; --ghost: #8892A4; --terminal: #00B4A6; --signal: #F59E0B; --error: #EF4444; }
-    * { box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; background-color: var(--void); color: #fff; }
+    * { box-sizing: border-box; max-width: 100%; }
+    html { overflow-x: hidden; }
+    body { font-family: 'Inter', sans-serif; background-color: var(--void); color: #fff; overflow-x: hidden; }
     .font-mono { font-family: 'IBM Plex Mono', monospace; }
     .bg-void { background-color: var(--void); } .bg-card { background-color: var(--card); }
     .text-ghost { color: var(--ghost); } .text-terminal { color: var(--terminal); }
@@ -119,12 +120,12 @@
             <h3 class="text-center text-white font-bold mb-6 uppercase tracking-wide font-mono text-xs border-b border-[#2D3748] pb-4">[ DOMAIN-BY-DOMAIN BREAKDOWN ]</h3>
             <div id="domain-breakdown" class="space-y-3"></div>
         </div>
-        <!-- RESULTS CTA — UPDATED with price anchor -->
+        <!-- RESULTS CTA — UPDATED: price anchor removed, new CTA text, zero-disruption reframe -->
         <div id="results-cta" class="s4 bg-card border-2 border-terminal/30 rounded-2xl p-8 text-center">
             <p id="results-cta-copy" class="text-white text-base leading-relaxed max-w-lg mx-auto mb-4"></p>
-            <p class="text-ghost text-sm max-w-lg mx-auto mb-6">Schools that complete the audit and qualify for the 90-Day Transition Protocol invest between $12,000 and $20,000 in a fully documented operational transformation — with a conditional guarantee tied to results.</p>
-            <a href="https://campusvelocity.com/audit" class="cta-glow inline-block bg-terminal hover:bg-[#00968A] text-black font-bold font-mono text-lg px-10 py-4 rounded-xl transition-all uppercase">Book the 14-Day Diagnostic Audit →</a>
-            <p class="mt-4 text-[10px] font-mono text-ghost uppercase tracking-widest">Free. No obligation. No card required.</p>
+            <p class="text-ghost text-sm max-w-lg mx-auto mb-6">The 14-Day Diagnostic Audit runs completely in the background — zero disruption to your teaching staff. We plug into your existing logs and dashboards and deliver your board-ready Executive Brief in 14 days. <span class="text-white font-semibold">The audit is free.</span></p>
+            <a href="https://campusvelocity.com/audit" class="cta-glow inline-block bg-terminal hover:bg-[#00968A] text-black font-bold font-mono text-base px-10 py-4 rounded-xl transition-all uppercase">Claim Your Free 14-Day Audit &amp; Executive Dashboard →</a>
+            <p class="mt-4 text-[10px] font-mono text-ghost uppercase tracking-widest">Takes 60 seconds to schedule. No card required. Zero obligation.</p>
         </div>
         <div class="s5 text-center">
             <button onclick="retakeQuiz()" class="font-mono text-ghost text-xs hover:text-terminal transition-colors border-b border-[#2D3748] hover:border-terminal pb-1">&gt; Retake the Scorecard</button>
@@ -280,7 +281,7 @@ function renderResults() {
         `;
     }).join('');
     const ctaCopy = document.getElementById('results-cta-copy');
-    ctaCopy.innerHTML = `Your campus has <span class="text-error font-bold">${redFlags} red flag${redFlags === 1 ? '' : 's'}</span>. The Campus Intelligence Scorecard shows you where the problems are — the 14-Day Diagnostic Audit gives you the full quantified picture with real data from your systems, a board-ready visual dashboard, and a 90-day roadmap to fix them. <span class="text-white font-bold">The audit is free.</span>`;
+    ctaCopy.innerHTML = `Your campus has <span class="text-error font-bold">${redFlags} red flag${redFlags === 1 ? '' : 's'}</span>. The Campus Intelligence Scorecard shows you where the problems are — the 14-Day Diagnostic Audit gives you the full quantified picture with real data from your systems, a board-ready Executive Dashboard, and a 90-day roadmap to fix them.`;
 }
 function retakeQuiz() {
     answers = new Array(QUESTIONS.length).fill(null);
