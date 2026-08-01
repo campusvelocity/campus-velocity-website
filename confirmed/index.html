@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAMPUS VELOCITY | You're All Set — Diagnostic Audit Confirmed</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+    :root { --void: #0D1117; --card: #1E2329; --border: #2D3748; --ghost: #8892A4; --terminal: #00B4A6; --signal: #F59E0B; --error: #EF4444; }
+    body { font-family: 'Inter', sans-serif; background-color: var(--void); color: #fff; }
+    .font-mono { font-family: 'IBM Plex Mono', monospace; }
+    .bg-void { background-color: var(--void); } .bg-card { background-color: var(--card); }
+    .text-ghost { color: var(--ghost); } .text-terminal { color: var(--terminal); }
+    .text-error { color: var(--error); } .bg-terminal { background-color: var(--terminal); }
+    .step-dots { display: flex; gap: 8px; align-items: center; }
+    .step-dot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--border); transition: all 0.3s; }
+    .step-dot.complete { background: var(--terminal); border-color: var(--terminal); box-shadow: 0 0 10px rgba(0,180,166,0.5); }
+    @keyframes celebrate { 0%,100% { transform: scale(1); } 50% { transform: scale(1.04); } }
+    .celebrate { animation: celebrate 0.8s ease-in-out; }
+    @keyframes slideUp { from { opacity:0; transform: translateY(16px); } to { opacity:1; transform: translateY(0); } }
+    .s1 { animation: slideUp 0.5s ease both; } .s2 { animation: slideUp 0.5s 0.1s ease both; }
+    .s3 { animation: slideUp 0.5s 0.2s ease both; } .s4 { animation: slideUp 0.5s 0.3s ease both; }
+    .s5 { animation: slideUp 0.5s 0.4s ease both; } .s6 { animation: slideUp 0.5s 0.5s ease both; }
+    .copy-btn { transition: border-color 0.2s, color 0.2s; }
+    .copy-btn:hover { border-color: var(--terminal); color: var(--terminal); }
+    .preflight-num { flex-shrink: 0; background: var(--terminal); color: #000; font-weight: 700; height: 24px; width: 24px; display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 11px; border-radius: 3px; }
+</style>
+</head>
+<body>
+<div class="w-full max-w-2xl mx-auto space-y-10 p-4 pb-20">
+    <div class="s1 text-center"><span class="font-mono font-bold text-xl tracking-tight text-white">CAMPUS<span class="text-terminal">VELOCITY</span></span></div>
+    <div class="s1 celebrate bg-card rounded-2xl border-2 border-terminal overflow-hidden p-6 text-center shadow-[0_0_40px_rgba(0,180,166,0.35)]">
+        <div class="flex justify-center items-center gap-3 mb-3"><div class="step-dots scale-125"><div class="step-dot complete"></div><div class="step-dot complete"></div><div class="step-dot complete"></div><div class="step-dot complete"></div></div></div>
+        <div class="inline-block bg-terminal text-black px-6 py-2 rounded-lg mb-2"><p class="font-extrabold text-lg font-mono tracking-wider">✓ ALL STEPS COMPLETE</p></div>
+        <p class="text-terminal text-xs font-mono uppercase tracking-widest mt-2">Diagnostic Audit Confirmed → Check Email For Next Steps</p>
+    </div>
+    <div class="s2 bg-card rounded-2xl border border-[#2D3748] overflow-hidden p-8 text-center">
+        <div class="inline-block px-3 py-1 bg-[#0a1a17] border border-terminal/50 text-xs font-bold tracking-widest mb-6 font-mono rounded-lg"><span class="text-terminal uppercase">[ STATUS: CONFIRMED ]</span></div>
+        <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-3 uppercase tracking-tighter leading-none"><span class="text-terminal text-sm font-mono block mb-2">✓ DIAGNOSTIC AUDIT CONFIRMED</span>We are locked in.</h1>
+    </div>
+    <div class="s3 bg-card border-2 border-terminal/30 rounded-xl p-6 text-center">
+        <h3 class="text-white font-bold text-lg mb-5 uppercase font-mono">Your Journey</h3>
+        <div class="space-y-3 text-left max-w-md mx-auto">
+            <div class="flex items-center gap-3 text-sm"><span class="text-terminal font-bold text-lg">✓</span><span class="text-ghost"><strong class="text-white">Step 1:</strong> Completed the Campus Intelligence Scorecard</span></div>
+            <div class="flex items-center gap-3 text-sm"><span class="text-terminal font-bold text-lg">✓</span><span class="text-ghost"><strong class="text-white">Step 2:</strong> Reviewed your campus operational health results</span></div>
+            <div class="flex items-center gap-3 text-sm"><span class="text-terminal font-bold text-lg">✓</span><span class="text-ghost"><strong class="text-white">Step 3:</strong> Submitted your Diagnostic Audit application</span></div>
+            <div class="flex items-center gap-3 text-sm"><span class="text-terminal font-bold text-lg">✓</span><span class="text-ghost"><strong class="text-white">Step 4:</strong> Locked in your kickoff call</span></div>
+        </div>
+        <div class="mt-6 pt-5 border-t border-[#2D3748]"><p class="text-terminal font-mono text-sm font-bold">→ NEXT: Prepare for the 14-Day Audit (instructions below)</p></div>
+    </div>
+    <div class="s3 bg-card rounded-2xl border border-[#2D3748] overflow-hidden p-8 text-left">
+        <h2 class="text-xl font-extrabold text-white mb-4 uppercase border-b border-[#2D3748] pb-2 font-mono">&gt; STEP 1: Verify Calendar</h2>
+        <p class="text-base text-ghost mb-2">The invite has been dispatched to your inbox.</p>
+        <p class="text-ghost mb-6 text-sm"><strong class="text-white">Action:</strong> Open your calendar. If you do not see the invite, check your spam folder.</p>
+        <div class="bg-[#1a0f0f] p-4 border-l-4 border-error text-xs md:text-sm rounded-r-lg"><p class="text-error font-bold font-mono uppercase text-[10px] mb-2">&gt;&gt; Warning:</p><p class="text-white leading-relaxed">Hard stop at the 45-minute mark. Please arrive on time so we can complete the full data collection setup.</p></div>
+    </div>
+    <div class="s4 bg-card rounded-2xl border border-[#2D3748] overflow-hidden p-8 text-left">
+        <h2 class="text-xl font-extrabold text-white mb-4 uppercase border-b border-[#2D3748] pb-2 font-mono">&gt; STEP 2: Pre-Flight Data Prep</h2>
+        <p class="text-base text-ghost mb-6">We don't waste time on the call locating data. <strong class="text-white">Have everything ready before we connect.</strong></p>
+        <div class="bg-void border border-[#2D3748] p-6 rounded-xl">
+            <h3 class="font-bold text-terminal uppercase tracking-wider text-[10px] mb-6 font-mono">&gt; REQUIRED_PRE_FLIGHT_CHECKS:</h3>
+            <div class="space-y-6 text-left">
+                <div class="flex items-start"><span class="preflight-num mt-0.5">01</span><div class="ml-4"><h4 class="text-sm font-bold text-white mb-1">Identify Your Data Collection Contacts</h4><p class="text-ghost text-xs">Name a primary AND backup admin contact before the call. Both should attend the kickoff.</p></div></div>
+                <div class="flex items-start"><span class="preflight-num mt-0.5">02</span><div class="ml-4"><h4 class="text-sm font-bold text-white mb-1">Locate Your Six Data Sources</h4><p class="text-ghost text-xs">Google Admin Console, SIS, work order system, parent communication platform, HR records, compliance logs. Know where each one is before we connect.</p></div></div>
+                <div class="flex items-start"><span class="preflight-num mt-0.5">03</span><div class="ml-4"><h4 class="text-sm font-bold text-white mb-1">Block 30 Minutes Daily for Your Admin Team</h4><p class="text-ghost text-xs mt-1">The data collection window is 14 days. Your admin team needs approximately 30 minutes per day to complete the template accurately.</p><p class="text-terminal font-mono text-[10px] mt-2 border-l border-[#2D3748] pl-2">Block this time in their calendar before our call.</p></div></div>
+            </div>
+        </div>
+    </div>
+    <div class="s4 bg-card rounded-2xl border border-[#2D3748] overflow-hidden p-8 text-left">
+        <h2 class="text-xl font-extrabold text-white mb-4 uppercase border-b border-[#2D3748] pb-2 font-mono">&gt; STEP 3: Staff Briefing</h2>
+        <p class="text-ghost text-sm mb-4 leading-relaxed">Let your team know an operational review is coming. This prevents defensive resistance and ensures data accuracy.</p>
+        <p class="font-bold text-white mb-4 text-xs font-mono uppercase">&gt;&gt; Action: Copy and paste this to your team:</p>
+        <div class="border border-[#2D3748] overflow-hidden rounded-lg">
+            <div class="bg-[#2D3748] border-b border-[#3a4a5c] px-4 py-2 flex items-center justify-between">
+                <div class="flex items-center gap-3"><div class="flex gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-error"></div><div class="w-2.5 h-2.5 rounded-full bg-signal"></div><div class="w-2.5 h-2.5 rounded-full bg-terminal"></div></div><span class="text-ghost font-bold uppercase tracking-wide text-[10px] font-mono">Subject: Campus Operations Data Collection — Next Two Weeks</span></div>
+                <button onclick="copyEmail()" id="copyBtn" class="copy-btn flex items-center gap-2 px-3 py-1 bg-void border border-[#3a4a5c] rounded text-ghost font-mono text-[10px] font-bold uppercase tracking-wider"><span id="btnText">[ COPY_TEXT ]</span></button>
+            </div>
+            <div class="bg-void p-6 select-all">
+                <div id="email-content" class="text-ghost font-mono text-xs leading-relaxed whitespace-pre-wrap">Team,
+
+Over the next two weeks, we're working with a Campus Velocity consultant on an operational health review of our campus.
+
+We are auditing our systems and processes, not evaluating individual performance. The goal is to get a clear, quantified picture of how our campus operates across six domains — safety, technology, parent communication, facilities, staff, and data.
+
+[Primary contact] will be reaching out with a structured data collection template. Please ensure your relevant logs, records, and system access are current and available.
+
+Your accuracy and timeliness in returning the data is critical — it determines what we can improve.
+
+Help is on the way.
+
+— [Your Name]</div>
+            </div>
+        </div>
+    </div>
+    <div class="s6 bg-card border-2 border-terminal rounded-xl p-8 text-center shadow-[0_0_30px_rgba(0,180,166,0.2)]">
+        <div class="inline-block bg-terminal text-black px-6 py-3 rounded-lg mb-4"><p class="font-extrabold text-xl font-mono">✓ YOU'RE ALL SET</p></div>
+        <p class="text-white font-bold mb-2">All 4 steps complete. Your calendar invite has been sent.</p>
+        <p class="text-ghost text-sm">Check your email and complete the pre-flight checklist above before the kickoff call.</p>
+    </div>
+</div>
+<script>
+function copyEmail() {
+    const emailContent = document.getElementById('email-content').innerText;
+    navigator.clipboard.writeText(emailContent).then(() => {
+        const btn = document.getElementById('btnText');
+        btn.innerText = '[ COPIED! ]';
+        btn.classList.add('text-terminal');
+        setTimeout(() => { btn.innerText = '[ COPY_TEXT ]'; btn.classList.remove('text-terminal'); }, 2000);
+    }).catch(() => { alert('Copy failed — please select and copy manually.'); });
+}
+</script>
+</body>
+</html>
