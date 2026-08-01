@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAMPUS VELOCITY | Take the Campus Intelligence Scorecard</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+    :root { --void: #0D1117; --card: #1E2329; --border: #2D3748; --ghost: #8892A4; --terminal: #00B4A6; --signal: #F59E0B; --error: #EF4444; }
+    * { box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background-color: var(--void); color: #fff; }
+    .font-mono { font-family: 'IBM Plex Mono', monospace; }
+    .bg-void { background-color: var(--void); } .bg-card { background-color: var(--card); }
+    .text-ghost { color: var(--ghost); } .text-terminal { color: var(--terminal); }
+    .text-signal { color: var(--signal); } .text-error { color: var(--error); }
+    .bg-terminal { background-color: var(--terminal); }
+    ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: var(--void); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    .step-dots { display: flex; gap: 8px; align-items: center; }
+    .step-dot { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--border); transition: all 0.3s; }
+    .step-dot.active { background: var(--terminal); border-color: var(--terminal); animation: dotPulse 2s ease-in-out infinite; }
+    @keyframes dotPulse { 0%,100% { box-shadow: 0 0 8px rgba(0,180,166,0.5); } 50% { box-shadow: 0 0 16px rgba(0,180,166,0.9); } }
+    @keyframes slideUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+    .s1 { animation: slideUp 0.55s ease both; } .s2 { animation: slideUp 0.55s 0.1s ease both; }
+    .cta-glow { box-shadow: 0 0 24px rgba(0,180,166,0.3); transition: box-shadow 0.2s, background 0.2s, transform 0.2s; }
+    .cta-glow:hover { box-shadow: 0 0 40px rgba(0,180,166,0.5); transform: translateY(-2px); }
+    .progress-bar { height: 3px; background: var(--terminal); border-radius: 2px; transition: width 0.4s ease; }
+    .option-card { transition: border-color 0.15s, background 0.15s, transform 0.1s; cursor: pointer; }
+    .option-card:hover { border-color: var(--terminal); background: rgba(0,180,166,0.05); }
+    .option-card.selected { border-color: var(--terminal); background: rgba(0,180,166,0.1); transform: scale(0.99); }
+    .fade-q { animation: slideUp 0.4s ease both; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spinner { border: 3px solid var(--border); border-top-color: var(--terminal); border-radius: 50%; width: 40px; height: 40px; animation: spin 0.8s linear infinite; }
+    .domain-score-card { border: 1px solid var(--border); }
+    .status-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+    .status-green { background: var(--terminal); }
+    .status-amber { background: var(--signal); }
+    .status-red { background: var(--error); }
+    .hidden-section { display: none; }
+    .scanline-top::before { content: ''; display: block; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--terminal), transparent); opacity: 0.3; }
+</style>
+</head>
+<body>
+<div class="max-w-2xl w-full mx-auto space-y-5 p-4 pb-16">
+    <div class="s1 text-center"><span class="font-mono font-bold text-xl tracking-tight text-white">CAMPUS<span class="text-terminal">VELOCITY</span></span></div>
+    <div class="s1 bg-card border border-[#2D3748] rounded-2xl p-4 text-center">
+        <div class="flex justify-center items-center gap-3 mb-3"><div class="step-dots"><div class="step-dot active"></div><div class="step-dot"></div><div class="step-dot"></div><div class="step-dot"></div></div></div>
+        <div class="w-full bg-[#2D3748] rounded-full mb-3 overflow-hidden" style="height:3px;"><div class="progress-bar" style="width:25%;"></div></div>
+        <p class="text-terminal text-xs font-mono uppercase tracking-widest">STEP 1 OF 4 — TAKE THE SCORECARD</p>
+        <p class="text-ghost text-[10px] font-mono mt-1">Scorecard → Review → Apply → Schedule</p>
+    </div>
+    <!-- QUIZ -->
+    <div id="quiz-section">
+        <div class="s1 bg-card border border-[#2D3748] rounded-2xl p-4 text-center">
+            <p id="quiz-progress-label" class="text-terminal text-xs font-mono uppercase tracking-widest mb-2">QUESTION 1 OF 12</p>
+            <div class="w-full bg-[#2D3748] rounded-full overflow-hidden" style="height:4px;"><div id="quiz-progress-bar" class="progress-bar" style="width:8.3%;"></div></div>
+        </div>
+        <div id="question-container" class="mt-5"></div>
+    </div>
+    <!-- LOADING -->
+    <div id="loading-section" class="hidden-section text-center py-20">
+        <div class="spinner mx-auto mb-6"></div>
+        <p class="font-mono text-terminal text-sm uppercase tracking-widest">Calculating your Campus Intelligence Score…</p>
+        <p class="font-mono text-ghost text-xs mt-2">Scoring 6 domains across 12 data points</p>
+    </div>
+    <!-- EMAIL CAPTURE -->
+    <div id="email-section" class="hidden-section">
+        <div class="s1 bg-card border-2 border-terminal/30 rounded-2xl overflow-hidden p-8 md:p-10 text-center">
+            <div class="scanline-top"></div>
+            <div class="inline-block px-2 py-1 bg-terminal/10 text-terminal text-[10px] font-bold tracking-widest font-mono uppercase mb-4 border border-terminal/20">[ SCORE READY ]</div>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-white mb-3">Your Campus Intelligence Score is ready.</h2>
+            <p class="text-ghost text-sm max-w-md mx-auto mb-8">Enter your email to see your score, your domain-by-domain breakdown, and where your campus stands.</p>
+            <form id="email-form" onsubmit="return submitEmail(event)" class="max-w-sm mx-auto space-y-3 text-left">
+                <div>
+                    <label class="text-[10px] font-mono text-ghost uppercase tracking-widest block mb-1">Name</label>
+                    <input id="lead-name" type="text" required class="w-full bg-void border border-[#2D3748] rounded-lg px-4 py-3 text-white text-sm focus:border-terminal outline-none" placeholder="Your name">
+                </div>
+                <div>
+                    <label class="text-[10px] font-mono text-ghost uppercase tracking-widest block mb-1">Email</label>
+                    <input id="lead-email" type="email" required class="w-full bg-void border border-[#2D3748] rounded-lg px-4 py-3 text-white text-sm focus:border-terminal outline-none" placeholder="you@school.edu">
+                </div>
+                <div>
+                    <label class="text-[10px] font-mono text-ghost uppercase tracking-widest block mb-1">School / Campus</label>
+                    <input id="lead-school" type="text" class="w-full bg-void border border-[#2D3748] rounded-lg px-4 py-3 text-white text-sm focus:border-terminal outline-none" placeholder="Optional">
+                </div>
+                <button type="submit" class="cta-glow w-full bg-terminal hover:bg-[#00968A] text-black font-bold font-mono text-base py-4 rounded-xl uppercase transition-all mt-2">See My Score →</button>
+                <p class="text-[10px] font-mono text-ghost text-center uppercase tracking-widest pt-2">🔒 We'll also send you Campus Velocity, our weekly campus operations newsletter. Unsubscribe anytime.</p>
+            </form>
+        </div>
+    </div>
+    <!-- RESULTS -->
+    <div id="results-section" class="hidden-section space-y-5">
+        <div class="s1 bg-card border border-[#2D3748] rounded-2xl p-4 text-center">
+            <div class="flex justify-center items-center gap-3 mb-2"><div class="step-dots"><div class="step-dot active"></div><div class="step-dot active"></div><div class="step-dot"></div><div class="step-dot"></div></div></div>
+            <p class="text-terminal text-xs font-mono uppercase tracking-widest">STEP 2 OF 4 — YOUR RESULTS</p>
+        </div>
+        <div class="s2 bg-card border-2 border-terminal/40 rounded-2xl overflow-hidden p-8 md:p-10 text-center">
+            <div class="scanline-top"></div>
+            <p class="font-mono text-ghost text-xs uppercase tracking-widest mb-3 mt-2">Campus_Intelligence_Score</p>
+            <div id="score-number" class="text-7xl md:text-8xl font-extrabold font-mono text-terminal mb-2">--</div>
+            <p id="score-status" class="text-lg font-bold text-white mb-6">—</p>
+            <div class="grid grid-cols-3 gap-3 max-w-md mx-auto text-center">
+                <div class="bg-void border border-[#2D3748] rounded-xl p-4">
+                    <div id="red-flag-count" class="text-2xl font-extrabold font-mono text-error">-</div>
+                    <div class="text-[9px] font-mono text-ghost uppercase tracking-widest mt-1">Red Flags</div>
+                </div>
+                <div class="bg-void border border-[#2D3748] rounded-xl p-4">
+                    <div id="gap-count" class="text-2xl font-extrabold font-mono text-signal">-</div>
+                    <div class="text-[9px] font-mono text-ghost uppercase tracking-widest mt-1">Below 50%</div>
+                </div>
+                <div class="bg-void border border-[#2D3748] rounded-xl p-4">
+                    <div id="trust-risk" class="text-2xl font-extrabold font-mono">-</div>
+                    <div class="text-[9px] font-mono text-ghost uppercase tracking-widest mt-1">Trust Risk</div>
+                </div>
+            </div>
+        </div>
+        <div class="s3 bg-card border border-[#2D3748] rounded-2xl p-6 md:p-8">
+            <h3 class="text-center text-white font-bold mb-6 uppercase tracking-wide font-mono text-xs border-b border-[#2D3748] pb-4">[ DOMAIN-BY-DOMAIN BREAKDOWN ]</h3>
+            <div id="domain-breakdown" class="space-y-3"></div>
+        </div>
+        <!-- RESULTS CTA — UPDATED with price anchor -->
+        <div id="results-cta" class="s4 bg-card border-2 border-terminal/30 rounded-2xl p-8 text-center">
+            <p id="results-cta-copy" class="text-white text-base leading-relaxed max-w-lg mx-auto mb-4"></p>
+            <p class="text-ghost text-sm max-w-lg mx-auto mb-6">Schools that complete the audit and qualify for the 90-Day Transition Protocol invest between $12,000 and $20,000 in a fully documented operational transformation — with a conditional guarantee tied to results.</p>
+            <a href="https://campusvelocity.com/audit" class="cta-glow inline-block bg-terminal hover:bg-[#00968A] text-black font-bold font-mono text-lg px-10 py-4 rounded-xl transition-all uppercase">Book the 14-Day Diagnostic Audit →</a>
+            <p class="mt-4 text-[10px] font-mono text-ghost uppercase tracking-widest">Free. No obligation. No card required.</p>
+        </div>
+        <div class="s5 text-center">
+            <button onclick="retakeQuiz()" class="font-mono text-ghost text-xs hover:text-terminal transition-colors border-b border-[#2D3748] hover:border-terminal pb-1">&gt; Retake the Scorecard</button>
+        </div>
+    </div>
+</div>
+<script>
+const QUESTIONS = [
+    { domain: "Bulletproof Safety & Zero-Liability Protocol", icon: "🔒", text: "How often do safety-related issues go unresolved for more than 24 hours at your campus?",
+      options: [{label:"Never",pts:3},{label:"Occasionally",pts:2},{label:"Regularly",pts:1},{label:"We don't track this",pts:0}] },
+    { domain: "Bulletproof Safety & Zero-Liability Protocol", icon: "🔒", text: "When did your campus last complete a full safety documentation audit?",
+      options: [{label:"This month",pts:3},{label:"This term",pts:2},{label:"Over a year ago",pts:1},{label:"Never / Not sure",pts:0}] },
+    { domain: "Invisible Tech System", icon: "💻", text: "What percentage of student devices are operational and fully charged at the start of each school day?",
+      options: [{label:"95%+",pts:3},{label:"80-94%",pts:2},{label:"Below 80%",pts:1},{label:"We don't track this",pts:0}] },
+    { domain: "Invisible Tech System", icon: "💻", text: "How long does it typically take to resolve a tech issue that's disrupting an active class?",
+      options: [{label:"Under 30 minutes",pts:3},{label:"30 min–2 hours",pts:2},{label:"Half a day or more",pts:1},{label:"Varies wildly",pts:0}] },
+    { domain: "Fortress Parent Trust System", icon: "👨‍👩‍👧", text: "How quickly does your campus respond to parent inquiries on average?",
+      options: [{label:"Same day",pts:3},{label:"Within 48 hours",pts:2},{label:"3+ days",pts:1},{label:"Inconsistently",pts:0}] },
+    { domain: "Fortress Parent Trust System", icon: "👨‍👩‍👧", text: "How often do parent concerns escalate to your Head of School?",
+      options: [{label:"Rarely",pts:3},{label:"A few times per month",pts:2},{label:"Weekly",pts:1},{label:"Too often",pts:0}] },
+    { domain: "Operational Cost Control Engine", icon: "🏢", text: "Do you know the exact expiration date of each of your vendor contracts right now?",
+      options: [{label:"Yes, all of them",pts:3},{label:"Most of them",pts:2},{label:"Some of them",pts:1},{label:"No",pts:0}] },
+    { domain: "Operational Cost Control Engine", icon: "🏢", text: "When did your campus last renegotiate a vendor contract on favorable terms?",
+      options: [{label:"This year",pts:3},{label:"2-3 years ago",pts:2},{label:"Never",pts:1},{label:"Don't know",pts:0}] },
+    { domain: "Staff Confidence & Retention Framework", icon: "👥", text: "How long does it take a new staff member to feel fully operational at your campus?",
+      options: [{label:"Under 2 weeks",pts:3},{label:"2-4 weeks",pts:2},{label:"Over a month",pts:1},{label:"No formal onboarding process",pts:0}] },
+    { domain: "Staff Confidence & Retention Framework", icon: "👥", text: "How confident is your staff that operational systems support their ability to do their job?",
+      options: [{label:"Very confident",pts:3},{label:"Somewhat confident",pts:2},{label:"Not very confident",pts:1},{label:"Don't know",pts:0}] },
+    { domain: "Campus Intelligence Dashboard", icon: "📊", text: "Does your campus have a real-time operational health dashboard your Head of School reviews regularly?",
+      options: [{label:"Yes",pts:3},{label:"Something partial",pts:2},{label:"No",pts:1},{label:"What does that mean?",pts:0}] },
+    { domain: "Campus Intelligence Dashboard", icon: "📊", text: "When something goes wrong operationally, how do you typically find out?",
+      options: [{label:"Systems alert us proactively",pts:3},{label:"Staff tell us quickly",pts:2},{label:"Parents complain",pts:1},{label:"After the fact",pts:0}] },
+];
+const DOMAIN_ORDER = [
+    "Bulletproof Safety & Zero-Liability Protocol",
+    "Invisible Tech System",
+    "Fortress Parent Trust System",
+    "Operational Cost Control Engine",
+    "Staff Confidence & Retention Framework",
+    "Campus Intelligence Dashboard"
+];
+const DOMAIN_ICON = {
+    "Bulletproof Safety & Zero-Liability Protocol": "🔒",
+    "Invisible Tech System": "💻",
+    "Fortress Parent Trust System": "👨‍👩‍👧",
+    "Operational Cost Control Engine": "🏢",
+    "Staff Confidence & Retention Framework": "👥",
+    "Campus Intelligence Dashboard": "📊"
+};
+let currentQuestion = 0;
+let answers = new Array(QUESTIONS.length).fill(null);
+let leadInfo = { name: "", email: "", school: "" };
+function show(id) { document.getElementById(id).classList.remove('hidden-section'); }
+function hide(id) { document.getElementById(id).classList.add('hidden-section'); }
+function startQuiz() { currentQuestion = 0; renderQuestion(); }
+document.addEventListener('DOMContentLoaded', startQuiz);
+function renderQuestion() {
+    const q = QUESTIONS[currentQuestion];
+    document.getElementById('quiz-progress-label').textContent = `QUESTION ${currentQuestion + 1} OF ${QUESTIONS.length}`;
+    document.getElementById('quiz-progress-bar').style.width = `${((currentQuestion + 1) / QUESTIONS.length) * 100}%`;
+    const container = document.getElementById('question-container');
+    let optionsHtml = q.options.map((opt, i) => `
+        <div class="option-card bg-void border border-[#2D3748] rounded-xl p-4 flex items-center gap-4" onclick="selectAnswer(${i})">
+            <span class="font-mono text-terminal text-xs border border-terminal/40 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0">${String.fromCharCode(65+i)}</span>
+            <span class="text-white text-sm">${opt.label}</span>
+        </div>
+    `).join('');
+    container.innerHTML = `
+        <div class="fade-q bg-card border border-[#2D3748] rounded-2xl p-6 md:p-8">
+            <span class="font-mono text-[10px] uppercase tracking-widest text-ghost border border-[#2D3748] rounded-full px-3 py-1">${q.icon} ${q.domain}</span>
+            <h2 class="text-xl md:text-2xl font-bold text-white mt-4 mb-6 leading-snug">${q.text}</h2>
+            <div class="space-y-3">${optionsHtml}</div>
+        </div>
+    `;
+}
+function selectAnswer(optionIndex) {
+    const q = QUESTIONS[currentQuestion];
+    answers[currentQuestion] = q.options[optionIndex].pts;
+    const cards = document.querySelectorAll('#question-container .option-card');
+    cards.forEach((c, i) => c.classList.toggle('selected', i === optionIndex));
+    setTimeout(() => {
+        if (currentQuestion < QUESTIONS.length - 1) { currentQuestion++; renderQuestion(); }
+        else { finishQuiz(); }
+    }, 350);
+}
+function finishQuiz() {
+    hide('quiz-section');
+    show('loading-section');
+    setTimeout(() => { hide('loading-section'); show('email-section'); window.scrollTo({top:0, behavior:'smooth'}); }, 1600);
+}
+function submitEmail(e) {
+    e.preventDefault();
+    leadInfo.name = document.getElementById('lead-name').value;
+    leadInfo.email = document.getElementById('lead-email').value;
+    leadInfo.school = document.getElementById('lead-school').value;
+    // ---------------------------------------------------------------
+    // KIT API INTEGRATION POINT:
+    // fetch('https://api.kit.com/v4/subscribers', {
+    //   method: 'POST',
+    //   headers: { 'X-Kit-Api-Key': 'YOUR_KEY_HERE', 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({ email_address: leadInfo.email, first_name: leadInfo.name,
+    //     fields: { school: leadInfo.school } })
+    // });
+    // ---------------------------------------------------------------
+    hide('email-section');
+    renderResults();
+    show('results-section');
+    window.scrollTo({top:0, behavior:'smooth'});
+    return false;
+}
+function renderResults() {
+    let domainScores = {};
+    DOMAIN_ORDER.forEach(d => domainScores[d] = 0);
+    QUESTIONS.forEach((q, i) => { domainScores[q.domain] += answers[i]; });
+    const total = Object.values(domainScores).reduce((a,b) => a+b, 0);
+    const overall = Math.round((total / 36) * 100);
+    let redFlags = 0, gapCount = 0;
+    DOMAIN_ORDER.forEach(d => { if (domainScores[d] <= 2) redFlags++; if (domainScores[d] < 3) gapCount++; });
+    const trustAtRisk = domainScores["Fortress Parent Trust System"] <= 4;
+    let statusLabel, statusColor;
+    if (overall >= 80) { statusLabel = "Strong Operational Foundation"; statusColor = "text-terminal"; }
+    else if (overall >= 50) { statusLabel = "Significant Gaps Present"; statusColor = "text-signal"; }
+    else { statusLabel = "Operational Health At Risk"; statusColor = "text-error"; }
+    document.getElementById('score-number').textContent = overall;
+    const statusEl = document.getElementById('score-status');
+    statusEl.textContent = statusLabel;
+    statusEl.className = "text-lg font-bold mb-6 " + statusColor;
+    document.getElementById('red-flag-count').textContent = redFlags;
+    document.getElementById('gap-count').textContent = gapCount;
+    const trustEl = document.getElementById('trust-risk');
+    trustEl.textContent = trustAtRisk ? "YES" : "NO";
+    trustEl.className = "text-2xl font-extrabold font-mono " + (trustAtRisk ? "text-error" : "text-terminal");
+    const breakdown = document.getElementById('domain-breakdown');
+    breakdown.innerHTML = DOMAIN_ORDER.map(d => {
+        const score = domainScores[d];
+        let status, dotClass;
+        if (score >= 5) { status = "GREEN"; dotClass = "status-green"; }
+        else if (score >= 3) { status = "AMBER"; dotClass = "status-amber"; }
+        else { status = "RED"; dotClass = "status-red"; }
+        return `
+            <div class="domain-score-card bg-void rounded-xl p-4 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <span class="status-dot ${dotClass}"></span>
+                    <div>
+                        <p class="text-white font-bold text-sm">${DOMAIN_ICON[d]} ${d}</p>
+                        <p class="text-ghost text-[10px] font-mono uppercase tracking-widest">${status}</p>
+                    </div>
+                </div>
+                <div class="text-right font-mono">
+                    <span class="text-white font-extrabold text-lg">${score}</span><span class="text-ghost text-xs">/6</span>
+                </div>
+            </div>
+        `;
+    }).join('');
+    const ctaCopy = document.getElementById('results-cta-copy');
+    ctaCopy.innerHTML = `Your campus has <span class="text-error font-bold">${redFlags} red flag${redFlags === 1 ? '' : 's'}</span>. The Campus Intelligence Scorecard shows you where the problems are — the 14-Day Diagnostic Audit gives you the full quantified picture with real data from your systems, a board-ready visual dashboard, and a 90-day roadmap to fix them. <span class="text-white font-bold">The audit is free.</span>`;
+}
+function retakeQuiz() {
+    answers = new Array(QUESTIONS.length).fill(null);
+    currentQuestion = 0;
+    hide('results-section');
+    show('quiz-section');
+    renderQuestion();
+    window.scrollTo({top:0, behavior:'smooth'});
+}
+</script>
+</body>
+</html>
