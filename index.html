@@ -17,9 +17,10 @@
         --error:     #EF4444;
         --border:    #2D3748;
     }
-  * { box-sizing: border-box; max-width: 100%; }
-html { overflow-x: hidden; }
-body { font-family: 'Inter', sans-serif; background-color: var(--void); color: #ffffff; overflow-x: hidden; }
+    * { box-sizing: border-box; max-width: 100%; }
+    html { overflow-x: hidden; }
+    body { font-family: 'Inter', sans-serif; background-color: var(--void); color: #ffffff; overflow-x: hidden; }
+    .font-mono  { font-family: 'IBM Plex Mono', monospace; }
     .bg-void        { background-color: var(--void); }
     .bg-card        { background-color: var(--card); }
     .border-charcoal{ border-color: var(--border); }
@@ -65,6 +66,8 @@ body { font-family: 'Inter', sans-serif; background-color: var(--void); color: #
     .domain-card:hover { border-color: var(--terminal); transform: translateY(-2px); }
     @keyframes badgeBlink { 0%,100% { opacity:1; } 50% { opacity:0.6; } }
     .badge-blink { animation: badgeBlink 2s ease-in-out infinite; }
+    .asset-card { transition: border-color 0.2s; }
+    .asset-card:hover { border-color: var(--terminal); }
 </style>
 </head>
 <body>
@@ -83,12 +86,13 @@ body { font-family: 'Inter', sans-serif; background-color: var(--void); color: #
             <div class="slide-up delay-2 flex justify-center mb-4">
                 <div class="inline-flex items-center gap-2 bg-card border border-terminal/30 rounded-full px-4 py-2">
                     <span class="w-2 h-2 rounded-full bg-terminal flex-shrink-0"></span>
-                    <span class="font-mono text-[10px] text-ghost uppercase tracking-widest">Methodology built from live campus operations — not a textbook</span>
+                    <span class="font-mono text-[10px] text-ghost uppercase tracking-widest">Built in the trenches of real daily campus operations at Alpha School Miami — not a textbook</span>
                 </div>
             </div>
             <p class="slide-up delay-3 mt-2 max-w-xl mx-auto text-base md:text-lg text-ghost leading-relaxed">Take the free 5-minute Campus Intelligence Scorecard to see exactly where your campus is losing parent trust, staff confidence, and operational efficiency — <span class="text-white font-semibold">before a complaint surfaces it for you.</span></p>
             <div class="slide-up delay-4 mt-8 flex justify-center">
-<a href="https://campusvelocity.com/scorecard" class="cta-pulse w-full sm:w-auto px-6 sm:px-12 py-4 bg-terminal hover:bg-[#00968A] text-black font-bold text-sm sm:text-xl md:text-2xl rounded-xl transition-all transform hover:-translate-y-1 uppercase font-mono text-center glow-teal">Take the Campus Intelligence Scorecard →</a>            </div>
+                <a href="https://campusvelocity.com/scorecard" class="cta-pulse w-full sm:w-auto px-6 sm:px-12 py-4 bg-terminal hover:bg-[#00968A] text-black font-bold text-sm sm:text-xl md:text-2xl rounded-xl transition-all transform hover:-translate-y-1 uppercase font-mono text-center glow-teal">Take the Campus Intelligence Scorecard →</a>
+            </div>
         </div>
         <div class="mt-8 pt-4 border-t border-dashed divider">
             <p class="font-mono text-[10px] text-ghost uppercase tracking-widest">Scored across 6 operational domains, benchmarked against campus operations best practice</p>
@@ -229,63 +233,71 @@ body { font-family: 'Inter', sans-serif; background-color: var(--void); color: #
         </div>
     </div>
 
-    <!-- VALUE STACK — UPDATED with Grand Slam Offer deliverables and $29,000 total -->
-    <div class="bg-card border border-[#2D3748] rounded-3xl p-8 md:p-12 mb-0">
+    <!-- VALUE STACK — UPDATED: outcome-anchored, no arbitrary dollar amounts -->
+    <div class="bg-card border border-[#2D3748] rounded-3xl p-8 md:p-12">
         <div class="text-center mb-8">
             <h2 class="text-2xl md:text-3xl font-extrabold text-white mb-3 uppercase font-mono">What You Get — Free</h2>
-            <p class="text-ghost text-sm max-w-2xl mx-auto">When your campus qualifies for the 14-Day Diagnostic Audit, you receive the complete Campus Intelligence Package — at no cost.</p>
+            <p class="text-ghost text-sm max-w-2xl mx-auto">When your campus qualifies for the 14-Day Diagnostic Audit, you receive four operational assets built to protect the revenue your campus is already at risk of losing.</p>
         </div>
         <div class="space-y-4 max-w-2xl mx-auto mb-8">
-            <div class="flex items-center justify-between p-4 bg-void border border-[#2D3748] rounded-xl">
-                <span class="text-white font-bold text-sm">The $15k Vendor Cost Recovery Engine</span>
-                <span class="text-ghost font-mono text-xs line-through">$7,500</span>
-            </div>
-            <div class="flex items-center justify-between p-4 bg-void border border-[#2D3748] rounded-xl">
-                <span class="text-white font-bold text-sm">The Fortress Parent Retention Radar</span>
-                <span class="text-ghost font-mono text-xs line-through">$10,000</span>
-            </div>
-            <div class="flex items-center justify-between p-4 bg-void border border-[#2D3748] rounded-xl">
-                <span class="text-white font-bold text-sm">The Board-Ready Executive Intelligence Brief</span>
-                <span class="text-ghost font-mono text-xs line-through">$5,000</span>
-            </div>
-            <div class="flex items-center justify-between p-4 bg-void border border-[#2D3748] rounded-xl">
-                <span class="text-white font-bold text-sm">The Zero-Gap Safety &amp; Compliance Log</span>
-                <span class="text-ghost font-mono text-xs line-through">$3,500</span>
-            </div>
-            <div class="flex items-center justify-between p-4 bg-void border border-[#2D3748] rounded-xl">
-                <span class="text-white font-bold text-sm">The Staff Retention Early Warning System</span>
-                <span class="text-ghost font-mono text-xs line-through">$3,000</span>
-            </div>
-            <div class="flex items-center justify-between p-4 bg-terminal/10 border-2 border-terminal rounded-xl">
-                <span class="text-white font-extrabold text-base">Total Stacked Value</span>
-                <div class="text-right">
-                    <span class="text-ghost font-mono text-xs line-through block">$29,000</span>
-                    <span class="text-terminal font-extrabold font-mono text-lg">Yours Free When You Qualify</span>
+            <div class="asset-card flex items-start gap-4 p-5 bg-void border border-[#2D3748] rounded-xl">
+                <span class="text-terminal font-mono font-bold text-lg flex-shrink-0">01</span>
+                <div>
+                    <p class="text-white font-bold text-sm mb-1">The Board-Ready Executive Intelligence Brief</p>
+                    <p class="text-ghost text-xs leading-relaxed">A one-page red/amber/green operational dashboard across all six domains — ready for your next board meeting. Replaces hours of manual report compilation with a 60-second weekly review.</p>
                 </div>
+            </div>
+            <div class="asset-card flex items-start gap-4 p-5 bg-void border border-[#2D3748] rounded-xl">
+                <span class="text-terminal font-mono font-bold text-lg flex-shrink-0">02</span>
+                <div>
+                    <p class="text-white font-bold text-sm mb-1">The Vendor Contract Expiration & Leakage Tracker</p>
+                    <p class="text-ghost text-xs leading-relaxed">Catches auto-renewing contracts before the invoice lands. The average campus identifies $15,000–$40,000 in recoverable vendor spend in the first audit cycle alone.</p>
+                </div>
+            </div>
+            <div class="asset-card flex items-start gap-4 p-5 bg-void border border-[#2D3748] rounded-xl">
+                <span class="text-terminal font-mono font-bold text-lg flex-shrink-0">03</span>
+                <div>
+                    <p class="text-white font-bold text-sm mb-1">The Parent Retention Early Warning System</p>
+                    <p class="text-ghost text-xs leading-relaxed">Tracks parent trust weekly — giving you 6–8 weeks of lead time before dissatisfaction becomes a withdrawal. Designed to protect a single $25,000 annual re-enrollment.</p>
+                </div>
+            </div>
+            <div class="asset-card flex items-start gap-4 p-5 bg-void border border-[#2D3748] rounded-xl">
+                <span class="text-terminal font-mono font-bold text-lg flex-shrink-0">04</span>
+                <div>
+                    <p class="text-white font-bold text-sm mb-1">The Zero-Gap Safety &amp; Compliance Audit Protocol</p>
+                    <p class="text-ghost text-xs leading-relaxed">Regulatory drill tracking, incident documentation, and certification compliance — mapped against your requirements and self-updating. No compliance gap goes unnoticed.</p>
+                </div>
+            </div>
+            <div class="flex items-center justify-between p-5 bg-terminal/10 border-2 border-terminal rounded-xl">
+                <div>
+                    <p class="text-white font-extrabold text-base">All four assets</p>
+                    <p class="text-ghost text-xs mt-1">Installed, configured, and handed off during the 14-day engagement</p>
+                </div>
+                <span class="text-terminal font-extrabold font-mono text-lg">Free When You Qualify</span>
             </div>
         </div>
     </div>
 
-    <!-- GUARANTEE -->
+    <!-- GUARANTEE — UPDATED: removed "Transition Protocol" jargon -->
     <div class="bg-void border border-[#2D3748] rounded-3xl p-8 text-center">
         <div class="inline-block px-2 py-1 bg-terminal/10 text-terminal text-[10px] font-bold tracking-widest font-mono uppercase mb-4 border border-terminal/20">The 90-Day Outcome Guarantee</div>
-        <p class="text-white text-lg font-bold mb-3 max-w-xl mx-auto">Your campus clears its baseline operational audit within 90 days of the Transition Protocol — or I continue working with your team remotely at no additional charge until it does.</p>
+        <p class="text-white text-lg font-bold mb-3 max-w-xl mx-auto">Your campus clears its baseline operational audit within 90 days of our engagement — or I continue working with your team remotely at no additional charge until it does.</p>
         <p class="text-ghost text-sm max-w-lg mx-auto">No card required to take the scorecard. No risk to see where your campus stands.</p>
         <div class="mt-6 text-center text-ghost font-mono text-lg italic opacity-80">— Justin Peterson</div>
     </div>
 
-    <!-- ABOUT -->
+    <!-- ABOUT — UPDATED: stronger bio anchor -->
     <div class="bg-void border border-[#2D3748] rounded-3xl p-8 md:p-16 flex flex-col md:flex-row items-center gap-12 justify-center">
         <div class="flex flex-col items-center gap-4 flex-shrink-0">
-            <div class="w-32 h-32 md:w-48 md:h-48 bg-card border-2 border-[#2D3748] rounded-full overflow-hidden grayscale hover:grayscale-0 transition-all duration-500 flex items-center justify-center">
-                <!-- REPLACE WITH: <img src="/assets/justin-peterson.jpg" alt="Justin Peterson" class="w-full h-full object-cover"> -->
+            <div class="w-32 h-32 md:w-48 md:h-48 bg-card border-2 border-[#2D3748] rounded-full overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
                 <img src="/justin-peterson.png" alt="Justin Peterson" class="w-full h-full object-cover">
             </div>
         </div>
         <div class="text-center md:text-left max-w-lg">
             <div class="inline-block px-2 py-1 bg-terminal/10 text-terminal text-[10px] font-bold tracking-widest font-mono uppercase mb-4 border border-terminal/20">&gt;&gt; CAMPUS_OPERATOR</div>
             <h3 class="text-3xl font-extrabold text-white mb-4">I am Justin Peterson.</h3>
-            <p class="text-ghost text-lg mb-5 leading-relaxed">I run daily operations at Alpha School's Miami campus — one of the most data-driven private school environments in the United States. Before this role, I spent four years managing operations and technology for a large public school district. I hold an MBA, PSM I certification, and have lived and worked across the US and Europe.</p>
+            <p class="text-ghost text-lg mb-5 leading-relaxed">Built in the trenches of real daily campus operations at Alpha School Miami — one of the most data-driven private school environments in the United States. Not derived from a management textbook.</p>
+            <p class="text-ghost text-lg mb-5 leading-relaxed">Before Alpha, I spent four years managing operations and technology for a large public school district. I hold an MBA, PSM I certification, and have lived and worked across the US and Europe.</p>
             <p class="text-ghost text-lg mb-5 leading-relaxed">Every framework, every metric, every system in the offer stack comes from real campus operations — <span class="text-white font-bold">not from a textbook.</span></p>
         </div>
     </div>
@@ -294,7 +306,8 @@ body { font-family: 'Inter', sans-serif; background-color: var(--void); color: #
     <div class="bg-card border border-[#2D3748] rounded-3xl p-12 md:p-20 text-center">
         <h2 class="text-4xl md:text-6xl font-extrabold text-white mb-8 tracking-tighter">Find The <span class="text-error">Gaps.</span></h2>
         <p class="text-xl text-ghost mb-12 max-w-2xl mx-auto">You have two choices: keep discovering operational gaps through parent complaints, or spend 5 minutes to see the whole picture.</p>
-<a href="https://campusvelocity.com/scorecard" class="inline-block w-full sm:w-auto px-6 sm:px-14 py-5 sm:py-6 bg-terminal hover:bg-[#00968A] text-black font-bold text-sm sm:text-xl md:text-2xl rounded-xl transition-all transform hover:-translate-y-1 uppercase font-mono text-center glow-teal">[ Take the Campus Intelligence Scorecard ]</a>        <p class="mt-8 text-xs text-[#555] font-mono uppercase tracking-widest">
+        <a href="https://campusvelocity.com/scorecard" class="inline-block w-full sm:w-auto px-6 sm:px-14 py-5 sm:py-6 bg-terminal hover:bg-[#00968A] text-black font-bold text-sm sm:text-xl md:text-2xl rounded-xl transition-all transform hover:-translate-y-1 uppercase font-mono text-center glow-teal">[ Take the Campus Intelligence Scorecard ]</a>
+        <p class="mt-8 text-xs text-[#555] font-mono uppercase tracking-widest">
             <span class="badge-blink inline-block w-2 h-2 rounded-full bg-terminal mr-1"></span>
             System Status: <span class="text-terminal">ONLINE</span> // 5-Minute Scorecard Available Now — Results Instant
         </p>
