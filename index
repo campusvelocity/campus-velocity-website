@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAMPUS VELOCITY | Your Campus Has Operational Gaps. Parents Can Feel Them.</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --void:      #0D1117;
+        --card:      #1E2329;
+        --near-black:#1A1A1A;
+        --ghost:     #8892A4;
+        --terminal:  #00B4A6;
+        --signal:    #F59E0B;
+        --error:     #EF4444;
+        --border:    #2D3748;
+    }
+    * { box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background-color: var(--void); color: #ffffff; }
+    .font-mono  { font-family: 'IBM Plex Mono', monospace; }
+    .bg-void        { background-color: var(--void); }
+    .bg-card        { background-color: var(--card); }
+    .border-charcoal{ border-color: var(--border); }
+    .text-ghost     { color: var(--ghost); }
+    .text-terminal  { color: var(--terminal); }
+    .text-signal    { color: var(--signal); }
+    .text-error     { color: var(--error); }
+    .bg-terminal    { background-color: var(--terminal); }
+    .hero-pattern {
+        background-color: var(--void);
+        background-image: radial-gradient(var(--border) 1px, transparent 1px);
+        background-size: 30px 30px;
+    }
+    ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: var(--void); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--terminal); }
+    .step-dots { display: flex; gap: 5px; align-items: center; }
+    .step-dot { width: 7px; height: 7px; border-radius: 50%; border: 2px solid var(--border); transition: all 0.3s; }
+    .step-dot.active { background: var(--terminal); border-color: var(--terminal); }
+    .glow-teal { box-shadow: 0 0 28px rgba(0,180,166,0.25); }
+    @keyframes flicker { 0%,100% { opacity:1; } 92% { opacity:1; } 93% { opacity:0.85; } 94% { opacity:1; } }
+    .flicker { animation: flicker 6s infinite; }
+    @keyframes slideUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
+    .slide-up { animation: slideUp 0.7s ease both; }
+    .delay-1  { animation-delay: 0.1s; } .delay-2  { animation-delay: 0.25s; }
+    .delay-3  { animation-delay: 0.4s; } .delay-4  { animation-delay: 0.55s; }
+    @keyframes borderPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(0,180,166,0.4); } 50% { box-shadow: 0 0 0 6px rgba(0,180,166,0); } }
+    .cta-pulse:hover { animation: borderPulse 1.2s ease infinite; }
+    .tag { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid var(--border); padding: 3px 10px; border-radius: 999px; color: var(--ghost); background: var(--card); }
+    .divider { border-color: var(--border); }
+    .step-card { transition: border-color 0.2s; }
+    .step-card:hover { border-color: var(--terminal); }
+    .domain-card { transition: border-color 0.2s, transform 0.2s; }
+    .domain-card:hover { border-color: var(--terminal); transform: translateY(-2px); }
+    @keyframes badgeBlink { 0%,100% { opacity:1; } 50% { opacity:0.6; } }
+    .badge-blink { animation: badgeBlink 2s ease-in-out infinite; }
+</style>
+</head>
+<body>
+<div class="w-full max-w-6xl mx-auto space-y-12 p-4">
+
+    <!-- HERO -->
+    <div class="hero-pattern border border-[#2D3748] rounded-3xl overflow-hidden px-8 pt-6 pb-8 md:px-10 md:pt-8 md:pb-10 text-center relative">
+        <div class="relative z-10">
+            <div class="slide-up mb-3">
+                <span class="font-mono font-bold text-2xl tracking-tight text-white">CAMPUS<span class="text-terminal">VELOCITY</span></span>
+            </div>
+            <div class="slide-up delay-1 flex justify-center mb-3">
+                <span class="tag">&gt;&gt; For Heads of School, Board Members, and Campus Decision-Makers at Private and International Schools</span>
+            </div>
+            <h1 class="slide-up delay-2 flicker text-4xl md:text-6xl font-extrabold tracking-tight leading-none mb-6 max-w-2xl mx-auto">Your Campus Has <span class="text-error">Operational Gaps.</span><br>Parents Can Feel Them.</h1>
+            <div class="slide-up delay-2 flex justify-center mb-4">
+                <div class="inline-flex items-center gap-2 bg-card border border-terminal/30 rounded-full px-4 py-2">
+                    <span class="w-2 h-2 rounded-full bg-terminal flex-shrink-0"></span>
+                    <span class="font-mono text-[10px] text-ghost uppercase tracking-widest">Methodology built from live campus operations — not a textbook</span>
+                </div>
+            </div>
+            <p class="slide-up delay-3 mt-2 max-w-xl mx-auto text-base md:text-lg text-ghost leading-relaxed">Take the free 5-minute Campus Intelligence Scorecard to see exactly where your campus is losing parent trust, staff confidence, and operational efficiency — <span class="text-white font-semibold">before a complaint surfaces it for you.</span></p>
+            <div class="slide-up delay-4 mt-8 flex justify-center">
+                <a href="https://campusvelocity.com/scorecard" class="cta-pulse w-full sm:w-auto px-8 sm:px-12 py-4 bg-terminal hover:bg-[#00968A] text-black font-bold text-base sm:text-xl md:text-2xl rounded-xl transition-all transform hover:-translate-y-1 uppercase font-mono text-center whitespace-nowrap glow-teal">Take the Campus Intelligence Scorecard →</a>
+            </div>
+        </div>
+        <div class="mt-8 pt-4 border-t border-dashed divider">
+            <p class="font-mono text-[10px] text-ghost uppercase tracking-widest">Scored across 6 operational domains, benchmarked against campus operations best practice</p>
+        </div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div class="bg-card border-2 border-terminal/30 rounded-3xl p-8 md:p-12">
+        <div class="text-center mb-8">
+            <h2 class="text-2xl md:text-3xl font-extrabold text-white mb-3 uppercase font-mono">How This Works</h2>
+            <p class="text-ghost text-sm max-w-2xl mx-auto">Answer 12 questions across 6 domains. See exactly where your campus stands — instantly.</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div class="step-card bg-void p-6 rounded-xl border border-[#2D3748] text-center">
+                <div class="flex justify-center mb-3"><div class="step-dots scale-150"><div class="step-dot active"></div><div class="step-dot"></div><div class="step-dot"></div></div></div>
+                <div class="inline-block bg-terminal text-black px-3 py-1 rounded text-xs font-bold font-mono mb-3">STEP 1</div>
+                <h3 class="text-white font-bold mb-2 text-sm uppercase font-mono">Take the Scorecard</h3>
+                <p class="text-ghost text-xs leading-relaxed">12 questions across 6 domains. No prep needed.</p>
+                <p class="text-terminal text-[10px] font-mono mt-2">~5 minutes</p>
+            </div>
+            <div class="step-card bg-void p-6 rounded-xl border border-[#2D3748] text-center">
+                <div class="flex justify-center mb-3"><div class="step-dots scale-150"><div class="step-dot active"></div><div class="step-dot active"></div><div class="step-dot"></div></div></div>
+                <div class="inline-block bg-[#2D3748] text-white px-3 py-1 rounded text-xs font-bold font-mono mb-3 border border-terminal/50">STEP 2</div>
+                <h3 class="text-white font-bold mb-2 text-sm uppercase font-mono">See Your Score</h3>
+                <p class="text-ghost text-xs leading-relaxed">Your Campus Intelligence Score and a red/amber/green breakdown across all six domains.</p>
+                <p class="text-ghost text-[10px] font-mono mt-2">Instant</p>
+            </div>
+            <div class="step-card bg-void p-6 rounded-xl border border-[#2D3748] text-center">
+                <div class="flex justify-center mb-3"><div class="step-dots scale-150"><div class="step-dot active"></div><div class="step-dot active"></div><div class="step-dot active"></div></div></div>
+                <div class="inline-block bg-[#2D3748] text-white px-3 py-1 rounded text-xs font-bold font-mono mb-3 border border-terminal/50">STEP 3</div>
+                <h3 class="text-white font-bold mb-2 text-sm uppercase font-mono">Stay Sharp</h3>
+                <p class="text-ghost text-xs leading-relaxed">Get Campus Velocity, a weekly read for people who keep schools running.</p>
+                <p class="text-ghost text-[10px] font-mono mt-2">Every week</p>
+            </div>
+        </div>
+        <div class="mt-8 text-center">
+            <p class="text-terminal font-mono text-sm font-bold mb-4">Total Time Commitment: Under 5 Minutes</p>
+            <a href="https://campusvelocity.com/scorecard" class="inline-block px-8 py-3 bg-terminal hover:bg-[#00968A] text-black font-bold text-base rounded-lg transition-all uppercase font-mono">Start the Scorecard →</a>
+        </div>
+    </div>
+
+    <!-- SIX DOMAINS -->
+    <div class="bg-card border border-[#2D3748] rounded-3xl p-8 md:p-16">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-extrabold text-white mb-4">Six Domains. One Score.</h2>
+            <p class="text-lg text-ghost max-w-2xl mx-auto">The Campus Intelligence Scorecard measures what actually determines whether your campus runs invisibly — or loudly.</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="domain-card bg-void p-6 rounded-2xl border border-[#2D3748]">
+                <span class="text-2xl">🔒</span>
+                <h3 class="font-bold text-white mt-3 mb-2 font-mono text-sm uppercase">Bulletproof Safety &amp; Zero-Liability Protocol</h3>
+                <p class="text-ghost text-xs leading-relaxed">Drills, incidents, documentation, and compliance — mapped against your regulatory requirements.</p>
+            </div>
+            <div class="domain-card bg-void p-6 rounded-2xl border border-[#2D3748]">
+                <span class="text-2xl">💻</span>
+                <h3 class="font-bold text-white mt-3 mb-2 font-mono text-sm uppercase">Invisible Tech System</h3>
+                <p class="text-ghost text-xs leading-relaxed">Device uptime, ticket resolution, and connectivity — so devices work before students arrive.</p>
+            </div>
+            <div class="domain-card bg-void p-6 rounded-2xl border border-[#2D3748]">
+                <span class="text-2xl">👨‍👩‍👧</span>
+                <h3 class="font-bold text-white mt-3 mb-2 font-mono text-sm uppercase">Fortress Parent Trust System</h3>
+                <p class="text-ghost text-xs leading-relaxed">Response times, escalation rates, and satisfaction — before dissatisfaction becomes attrition.</p>
+            </div>
+            <div class="domain-card bg-void p-6 rounded-2xl border border-[#2D3748]">
+                <span class="text-2xl">🏢</span>
+                <h3 class="font-bold text-white mt-3 mb-2 font-mono text-sm uppercase">Operational Cost Control Engine</h3>
+                <p class="text-ghost text-xs leading-relaxed">Vendor performance, maintenance, and budget — every contract and renewal date, visible.</p>
+            </div>
+            <div class="domain-card bg-void p-6 rounded-2xl border border-[#2D3748]">
+                <span class="text-2xl">👥</span>
+                <h3 class="font-bold text-white mt-3 mb-2 font-mono text-sm uppercase">Staff Confidence &amp; Retention Framework</h3>
+                <p class="text-ghost text-xs leading-relaxed">Time-to-operational, protocol compliance, and retention — staff who stay and perform at full capacity.</p>
+            </div>
+            <div class="domain-card bg-void p-6 rounded-2xl border border-[#2D3748]">
+                <span class="text-2xl">📊</span>
+                <h3 class="font-bold text-white mt-3 mb-2 font-mono text-sm uppercase">Campus Intelligence Dashboard</h3>
+                <p class="text-ghost text-xs leading-relaxed">Data completeness, reporting, and action rates — a board-ready picture, reviewed in 60 seconds.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="bg-void border border-[#2D3748] rounded-3xl p-8 md:p-16 flex flex-col md:flex-row items-center gap-12 justify-center">
+        <div class="flex flex-col items-center gap-4 flex-shrink-0">
+            <div class="w-32 h-32 md:w-48 md:h-48 bg-card border-2 border-[#2D3748] rounded-full overflow-hidden grayscale hover:grayscale-0 transition-all duration-500 flex items-center justify-center">
+                <span class="font-mono text-ghost text-xs text-center px-4">[ PHOTO PLACEHOLDER ]</span>
+            </div>
+        </div>
+        <div class="text-center md:text-left max-w-lg">
+            <div class="inline-block px-2 py-1 bg-terminal/10 text-terminal text-[10px] font-bold tracking-widest font-mono uppercase mb-4 border border-terminal/20">&gt;&gt; CAMPUS_OPERATOR</div>
+            <h3 class="text-3xl font-extrabold text-white mb-4">I am Justin Peterson.</h3>
+            <p class="text-ghost text-lg mb-5 leading-relaxed">I run daily operations at Alpha School's Miami campus — one of the most data-driven private school environments in the United States. Before this role, I spent four years managing operations and technology for a large public school district. I hold an MBA, PSM I certification, and have lived and worked across the US and Europe.</p>
+            <p class="text-ghost text-lg mb-5 leading-relaxed">Every framework, every metric, every system behind the scorecard comes from real campus operations — <span class="text-white font-bold">not from a textbook.</span></p>
+        </div>
+    </div>
+
+    <!-- FINAL CTA -->
+    <div class="bg-card border border-[#2D3748] rounded-3xl p-12 md:p-20 text-center">
+        <h2 class="text-4xl md:text-6xl font-extrabold text-white mb-8 tracking-tighter">Find The <span class="text-error">Gaps.</span></h2>
+        <p class="text-xl text-ghost mb-12 max-w-2xl mx-auto">You have two choices: keep discovering operational gaps through parent complaints, or spend 5 minutes to see the whole picture.</p>
+        <a href="https://campusvelocity.com/scorecard" class="inline-block w-full sm:w-auto px-8 sm:px-14 py-5 sm:py-6 bg-terminal hover:bg-[#00968A] text-black font-bold text-base sm:text-xl md:text-2xl rounded-xl transition-all transform hover:-translate-y-1 uppercase font-mono text-center whitespace-nowrap glow-teal">[ Take the Campus Intelligence Scorecard ]</a>
+        <p class="mt-8 text-xs text-[#555] font-mono uppercase tracking-widest">
+            <span class="badge-blink inline-block w-2 h-2 rounded-full bg-terminal mr-1"></span>
+            System Status: <span class="text-terminal">ONLINE</span> // 5-Minute Scorecard Available Now — Results Instant
+        </p>
+    </div>
+
+</div>
+</body>
+</html>
