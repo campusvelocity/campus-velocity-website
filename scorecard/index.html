@@ -96,10 +96,6 @@
                     <label class="text-[10px] font-mono text-ghost uppercase tracking-widest block mb-1">Email</label>
                     <input id="lead-email" type="email" required class="w-full bg-void border border-[#2D3748] rounded-lg px-4 py-3 text-white text-sm focus:border-terminal outline-none" placeholder="you@school.edu">
                 </div>
-                <div>
-                    <label class="text-[10px] font-mono text-ghost uppercase tracking-widest block mb-1">School / Campus</label>
-                    <input id="lead-school" type="text" class="w-full bg-void border border-[#2D3748] rounded-lg px-4 py-3 text-white text-sm focus:border-terminal outline-none" placeholder="Optional">
-                </div>
                 <button type="submit" class="cta-glow w-full bg-terminal hover:bg-[#00968A] text-black font-bold font-mono text-base py-4 rounded-xl uppercase transition-all mt-2">See My Score →</button>
                 <p class="text-[10px] font-mono text-ghost text-center uppercase tracking-widest pt-2">🔒 We'll also send you Campus Velocity, our weekly campus operations newsletter. Unsubscribe anytime.</p>
             </form>
@@ -197,7 +193,7 @@ const DOMAIN_ICON = {
 
 let currentQuestion = 0;
 let answers = new Array(QUESTIONS.length).fill(null);
-let leadInfo = { name: "", email: "", school: "" };
+let leadInfo = { name: "", email: "" };
 
 function show(id) {
     document.getElementById(id).classList.remove('hidden-section');
@@ -268,21 +264,18 @@ function submitEmail(e) {
     e.preventDefault();
     leadInfo.name = document.getElementById('lead-name').value;
     leadInfo.email = document.getElementById('lead-email').value;
-    leadInfo.school = document.getElementById('lead-school').value;
 
     // ---------------------------------------------------------------
-    // KIT API INTEGRATION POINT:
-    // Replace this block with a call to Kit's subscriber API to add
-    // leadInfo.email (and name/school as custom fields) to the
-    // Campus Velocity newsletter list. Insert API key when the Kit
-    // account is configured. Example:
-    //
-    // fetch('https://api.kit.com/v4/subscribers', {
-    //   method: 'POST',
-    //   headers: { 'X-Kit-Api-Key': 'YOUR_KEY', 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({ email_address: leadInfo.email, first_name: leadInfo.name })
-    // });
+    // KIT SUBSCRIBE — calls our own /api/subscribe serverless function,
+    // which holds the real Kit API key server-side (see /api/subscribe.js).
+    // Fired without awaiting the response so a slow/unavailable Kit API
+    // never delays or blocks the person from seeing their results.
     // ---------------------------------------------------------------
+    fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: leadInfo.email, name: leadInfo.name })
+    }).catch(err => console.error('Newsletter subscribe failed:', err));
 
     hide('email-section');
     renderResults();
