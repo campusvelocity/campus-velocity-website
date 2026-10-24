@@ -156,17 +156,17 @@
 // 5-6 = Green | 3-4 = Amber | 0-2 = Red. Overall score = total/36 * 100.
 
 const QUESTIONS = [
-    { domain: "Bulletproof Safety & Zero-Liability Protocol", icon: "🔒", text: "How often do safety-related issues go unresolved for more than 24 hours at your campus?",
+    { domain: "Proven Safety Protocol", icon: "🔒", text: "How often do safety-related issues go unresolved for more than 24 hours at your campus?",
       options: [{label:"Never",pts:3},{label:"Occasionally",pts:2},{label:"Regularly",pts:1},{label:"We don't track this",pts:0}] },
-    { domain: "Bulletproof Safety & Zero-Liability Protocol", icon: "🔒", text: "When did your campus last complete a full safety documentation audit?",
+    { domain: "Proven Safety Protocol", icon: "🔒", text: "When did your campus last complete a full safety documentation audit?",
       options: [{label:"This month",pts:3},{label:"This term",pts:2},{label:"Over a year ago",pts:1},{label:"Never / Not sure",pts:0}] },
     { domain: "Invisible Tech System", icon: "💻", text: "What percentage of student devices are operational and fully charged at the start of each school day?",
       options: [{label:"95%+",pts:3},{label:"80-94%",pts:2},{label:"Below 80%",pts:1},{label:"We don't track this",pts:0}] },
     { domain: "Invisible Tech System", icon: "💻", text: "How long does it typically take to resolve a tech issue that's disrupting an active class?",
       options: [{label:"Under 30 minutes",pts:3},{label:"30 min–2 hours",pts:2},{label:"Half a day or more",pts:1},{label:"Varies wildly",pts:0}] },
-    { domain: "Fortress Parent Trust System", icon: "👨‍👩‍👧", text: "How quickly does your campus respond to parent inquiries on average?",
+    { domain: "Parent Trust System", icon: "👨‍👩‍👧", text: "How quickly does your campus respond to parent inquiries on average?",
       options: [{label:"Same day",pts:3},{label:"Within 48 hours",pts:2},{label:"3+ days",pts:1},{label:"Inconsistently",pts:0}] },
-    { domain: "Fortress Parent Trust System", icon: "👨‍👩‍👧", text: "How often do parent concerns escalate to your Head of School?",
+    { domain: "Parent Trust System", icon: "👨‍👩‍👧", text: "How often do parent concerns escalate to your Head of School?",
       options: [{label:"Rarely",pts:3},{label:"A few times per month",pts:2},{label:"Weekly",pts:1},{label:"Too often",pts:0}] },
     { domain: "Operational Cost Control Engine", icon: "🏢", text: "Do you know the exact expiration date of each of your vendor contracts right now?",
       options: [{label:"Yes, all of them",pts:3},{label:"Most of them",pts:2},{label:"Some of them",pts:1},{label:"No",pts:0}] },
@@ -183,17 +183,17 @@ const QUESTIONS = [
 ];
 
 const DOMAIN_ORDER = [
-    "Bulletproof Safety & Zero-Liability Protocol",
+    "Proven Safety Protocol",
     "Invisible Tech System",
-    "Fortress Parent Trust System",
+    "Parent Trust System",
     "Operational Cost Control Engine",
     "Staff Confidence & Retention Framework",
     "Campus Intelligence Dashboard"
 ];
 const DOMAIN_ICON = {
-    "Bulletproof Safety & Zero-Liability Protocol": "🔒",
+    "Proven Safety Protocol": "🔒",
     "Invisible Tech System": "💻",
-    "Fortress Parent Trust System": "👨‍👩‍👧",
+    "Parent Trust System": "👨‍👩‍👧",
     "Operational Cost Control Engine": "🏢",
     "Staff Confidence & Retention Framework": "👥",
     "Campus Intelligence Dashboard": "📊"
@@ -308,7 +308,7 @@ function renderResults() {
         if (domainScores[d] <= 2) redFlags++;
         if (domainScores[d] < 3) gapCount++;
     });
-    const trustDomainScore = domainScores["Fortress Parent Trust System"];
+    const trustDomainScore = domainScores["Parent Trust System"];
     const trustAtRisk = trustDomainScore <= 4;
 
     // overall status
