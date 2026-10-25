@@ -3,108 +3,113 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CAMPUS VELOCITY | Step 3: Apply for the 14-Day Diagnostic Audit</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
-    :root { --void: #0D1117; --card: #1E2329; --border: #2D3748; --ghost: #8892A4; --terminal: #00B4A6; --signal: #F59E0B; --error: #EF4444; }
-    * { box-sizing: border-box; max-width: 100%; }
-    html { overflow-x: hidden; }
-    body { font-family: 'Inter', sans-serif; background-color: var(--void); color: #fff; overflow-x: hidden; }
-    .font-mono { font-family: 'IBM Plex Mono', monospace; }
-    .bg-void { background-color: var(--void); } .bg-card { background-color: var(--card); }
-    .text-ghost { color: var(--ghost); } .text-terminal { color: var(--terminal); }
-    .text-error { color: var(--error); } .bg-terminal { background-color: var(--terminal); }
-    .blink-animation { animation: blinker 2s linear infinite; }
-    @keyframes blinker { 50% { opacity: 0.4; } }
-    .pulse-glow { animation: pulseGlow 2s ease-in-out infinite; }
-    @keyframes pulseGlow { 0%,100% { box-shadow: 0 0 20px rgba(0,180,166,0.5); } 50% { box-shadow: 0 0 40px rgba(0,180,166,0.85); } }
-    .step-dots { display: flex; gap: 8px; align-items: center; }
-    .step-dot { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--border); transition: all 0.3s; }
-    .step-dot.active { background: var(--terminal); border-color: var(--terminal); animation: dotPulse 2s ease-in-out infinite; }
-    .step-dot.complete { background: var(--terminal); border-color: var(--terminal); }
-    @keyframes dotPulse { 0%,100% { box-shadow: 0 0 8px rgba(0,180,166,0.5); } 50% { box-shadow: 0 0 16px rgba(0,180,166,0.9); } }
-    @keyframes slideUp { from { opacity:0; transform: translateY(16px); } to { opacity:1; transform: translateY(0); } }
-    .s1 { animation: slideUp 0.55s ease both; } .s2 { animation: slideUp 0.55s 0.1s ease both; }
-    .s3 { animation: slideUp 0.55s 0.2s ease both; } .s4 { animation: slideUp 0.55s 0.3s ease both; }
-    .cta-btn { transition: background 0.2s, transform 0.2s, box-shadow 0.2s; }
-    .cta-btn:hover { background: #00968A; transform: translateY(-2px); box-shadow: 0 0 32px rgba(0,180,166,0.5); }
-    .cta-outline { transition: background 0.2s, border-color 0.2s, box-shadow 0.2s; }
-    .cta-outline:hover { background: rgba(0,180,166,0.05); border-color: #00968A; box-shadow: 0 0 20px rgba(0,180,166,0.3); }
-</style>
+<title>Campus Velocity | The Campus Diagnostic</title>
+<meta name="description" content="Your campus operations checked against real evidence across six domains, with a 90-day roadmap. The fee is credited in full if you continue with Campus Velocity.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
 </head>
 <body>
-<div class="w-full max-w-2xl mx-auto space-y-8 pb-20 p-4">
 
-    <div class="s1 text-center pt-2"><span class="font-mono font-bold text-xl tracking-tight text-white">CAMPUS<span class="text-terminal">VELOCITY</span></span></div>
+<header class="topbar">
+  <div class="wrap">
+    <a class="mark" href="/">CAMPUS<span>VELOCITY</span></a>
+    <nav class="topnav" aria-label="Main">
+      <a href="/#how">How it works</a>
+      <a href="/#domains">Six domains</a>
+      <a href="/#about">About</a>
+    </nav>
+    <a class="btn btn-on-dark" href="/scorecard">Take the check</a>
+  </div>
+</header>
 
-    <div class="s1 bg-card rounded-2xl border border-[#2D3748] overflow-hidden p-4 text-center">
-        <div class="flex justify-center items-center gap-3 mb-2"><div class="step-dots"><div class="step-dot complete"></div><div class="step-dot complete"></div><div class="step-dot active"></div><div class="step-dot"></div></div></div>
-        <p class="text-terminal text-xs font-mono uppercase tracking-widest">STEP 3 OF 4: APPLY FOR THE AUDIT</p>
-        <p class="text-ghost text-[10px] font-mono mt-1">✓ Scorecard Complete → Claim Your Free Diagnostic Audit</p>
+<main>
+
+  <section class="hero" aria-labelledby="h1">
+    <div class="narrow stack-lg">
+      <p class="eyebrow">Step 4 · about two weeks</p>
+      <h1 id="h1" class="display">The Campus Diagnostic</h1>
+      <p class="lead">The free check shows what you assume about your campus. The Diagnostic checks it against evidence, finds the gaps nobody has written down, and turns them into a 90-day plan.</p>
+      <div class="price-box">
+        <p class="eyebrow">Price</p>
+        <p class="h3">[DIAGNOSTIC PRICE]</p>
+        <p class="small muted">Credited in full toward consulting or Campus Velocity Ops setup if you continue within [60] days.</p>
+      </div>
     </div>
+  </section>
 
-    <div class="s2 bg-card rounded-2xl border border-[#2D3748] overflow-hidden p-8">
-        <div class="text-center mb-8 border-b border-[#2D3748] pb-8">
-            <div class="inline-block px-4 py-2 bg-[#0a1a17] border border-terminal/30 text-[10px] md:text-xs font-bold tracking-widest mb-4 font-mono rounded-lg"><span class="text-terminal blink-animation">● APPLICATIONS OPEN</span><span class="text-[#444] mx-2">|</span><span class="text-white uppercase">BATCH STATUS: <span class="text-terminal">ACCEPTING</span></span></div>
-            <div class="inline-block px-4 py-2 bg-[#1a0f0f] border border-error/30 text-[10px] md:text-xs font-bold tracking-widest mb-6 font-mono rounded-lg text-ghost">⚠ I personally review every campus and run a maximum of <span class="text-white">3 Diagnostic Audits per month.</span> Once slots fill, applications move to the waitlist for the following month.</div>
-            <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-4 uppercase tracking-tighter leading-none"><span class="text-terminal text-sm font-mono block mb-2">STEP 3 OF 4:</span>The 14-Day<br>Diagnostic Audit</h1>
-            <p class="text-xs font-bold text-ghost font-mono uppercase tracking-widest inline-block mb-6">&gt;&gt; 75% COMPLETE → ALMOST THERE</p>
-            <div class="block"><button onclick="scrollToApplication()" class="cta-btn pulse-glow bg-terminal text-black font-extrabold text-sm md:text-base uppercase tracking-wider px-8 py-4 rounded-lg border-2 border-terminal shadow-xl font-mono">[ CLAIM MY FREE AUDIT ]</button></div>
-        </div>
-        <div>
-            <div class="flex justify-center mb-6"><h2 class="text-xl font-bold text-error uppercase flex items-center gap-2 font-mono">&gt; The Agreement:</h2></div>
-            <p class="mb-6 text-white text-base leading-relaxed text-center">You are applying for a seat in the <strong>14-Day Diagnostic Audit</strong> — a free engagement in exchange for a documented case study.</p>
-            <div class="mb-6 p-4 bg-[#0A0A0A] border border-dashed border-[#2D3748] rounded font-mono">
-                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-center gap-4 text-center"><span class="text-ghost text-xs uppercase tracking-widest">// AUDIT_VALUATION_</span><div class="flex items-center justify-center gap-3"><span class="text-error line-through decoration-2 decoration-error/50 text-sm opacity-60">$6,000</span><span class="text-[#555] text-xs">&gt;&gt;</span><span class="bg-terminal text-black font-extrabold px-3 py-1 text-sm uppercase tracking-wider rounded">WAIVED ($0)</span></div></div>
-            </div>
-            <p class="text-ghost text-xs text-center max-w-md mx-auto leading-relaxed">No card required. No obligation to proceed. Complete the 14-day data collection protocol, and you get the full board-ready dashboard and roadmap — free.</p>
-        </div>
+  <section class="section" style="background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line)" aria-labelledby="how-h">
+    <div class="narrow">
+      <h2 id="how-h" class="h2" style="margin-bottom: 24px">How it works</h2>
+      <ol class="stack-lg" style="margin: 0; padding-left: 20px">
+        <li><strong>Your team answers by role.</strong> <span class="muted">Short question sets across all six domains, each answered by the person who actually knows: operations, front office, IT, leadership.</span></li>
+        <li><strong>You share the evidence.</strong> <span class="muted">Logs, contracts, procedures and reports that back up the answers. Everything goes through the Campus Velocity app, stored in the EU.</span></li>
+        <li><strong>I review it personally.</strong> <span class="muted">Every answer is checked against its evidence. Where they don't match, that's a finding.</span></li>
+        <li><strong>You get the results and a readout call.</strong> <span class="muted">Scores, findings and your 90-day roadmap, walked through with your leadership team.</span></li>
+      </ol>
     </div>
+  </section>
 
-    <div class="s3 bg-card rounded-2xl border border-[#2D3748] overflow-hidden p-8">
-        <div class="bg-void p-6 border border-[#2D3748] rounded-lg text-left mb-8">
-            <h3 class="font-bold text-white mb-4 uppercase text-[10px] tracking-wider font-mono border-b border-[#2D3748] pb-2 text-center">Automatic Disqualification If:</h3>
-            <ul class="space-y-4 text-ghost text-sm">
-                <li class="flex items-start"><span class="mr-3 text-error font-bold font-mono text-base leading-none">[x]</span><span><strong class="text-white">Too Small:</strong> The 14-Day Diagnostic Audit is designed for schools with 50+ students and dedicated administrative staff. Solo operators without admin support cannot execute the data collection protocol.</span></li>
-                <li class="flex items-start"><span class="mr-3 text-error font-bold font-mono text-base leading-none">[x]</span><span><strong class="text-white">No Transparency:</strong> The audit requires real operational data across all six domains. Schools that won't share actual metrics from their systems cannot receive a real diagnosis.</span></li>
-                <li class="flex items-start"><span class="mr-3 text-error font-bold font-mono text-base leading-none">[x]</span><span><strong class="text-white">Won't Go on Record:</strong> Campus Velocity Consultancy is built on documented case studies. If the audit succeeds and the school won't document the result, this is not the right fit.</span></li>
-            </ul>
-        </div>
-        <div class="pt-2 flex justify-center"><button onclick="scrollToApplication()" class="cta-outline bg-void text-terminal border-2 border-terminal font-extrabold text-xs md:text-sm uppercase tracking-wider px-6 py-3 rounded-lg font-mono">I MEET THE CRITERIA — APPLY FOR THE AUDIT</button></div>
+  <section class="section" aria-labelledby="get-h">
+    <div class="narrow">
+      <h2 id="get-h" class="h2" style="margin-bottom: 24px">What you get</h2>
+      <div class="card card-lg">
+        <ul class="offer-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 8"/></svg><span><strong>Six-domain risk matrix.</strong> <span class="muted">Every domain scored on evidence.</span></span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 8"/></svg><span><strong>Three gap scores.</strong> <span class="muted">What you assume versus what you can show, open loops that never get closed, and single points of failure: the things only one person knows how to do.</span></span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 8"/></svg><span><strong>A data privacy score</strong> <span class="muted">across all six domains.</span></span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 8"/></svg><span><strong>Vendor contract and auto-renew review.</strong> <span class="muted">Every contract, owner and renewal date in one place.</span></span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 8"/></svg><span><strong>Parent trust and escalation protocol.</strong> <span class="muted">Who handles what, in what order, and how fast.</span></span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 8"/></svg><span><strong>Your 90-day roadmap.</strong> <span class="muted">The fixes in order, each with an owner and a date, tracked in the Campus Velocity app.</span></span></li>
+        </ul>
+      </div>
     </div>
+  </section>
 
-    <div class="s3 bg-void p-8 md:p-10 border-l-4 border-terminal border-y border-r border-[#2D3748] rounded-2xl text-left">
-        <p class="text-white leading-relaxed text-base"><strong class="text-terminal uppercase font-mono text-xs block mb-2 tracking-widest">&gt;&gt; The Promise:</strong>If you qualify, we schedule your kickoff call within 48 hours. No fluff. No slide decks. We review your scorecard results live, walk through the data collection template together, and start the 14-day clock the same week.</p>
+  <section class="section" style="padding-top: 0" aria-labelledby="fit-h">
+    <div class="narrow grid grid-2">
+      <div class="card stack">
+        <h2 id="fit-h" class="h3">A good fit if</h2>
+        <ul class="stack muted" style="margin: 0; padding-left: 20px">
+          <li>You're a private or international school with dedicated administrative staff.</li>
+          <li>You're willing to share real operational data, not just impressions.</li>
+          <li>You want a plan, not a report that sits in a drawer.</li>
+        </ul>
+      </div>
+      <div class="card stack">
+        <h2 class="h3">Probably not yet if</h2>
+        <ul class="stack muted" style="margin: 0; padding-left: 20px">
+          <li>There's no one besides the head of school to gather information.</li>
+          <li>You need advice on a specific safety incident. That needs your safety adviser.</li>
+        </ul>
+      </div>
     </div>
+  </section>
 
-    <!-- GUARANTEE — UPDATED: Guarantee #2 removed, simplified to single zero-waste guarantee -->
-    <div class="s4 bg-card rounded-2xl border border-[#2D3748] overflow-hidden p-8 md:p-12">
-        <div class="relative mx-auto max-w-md">
-            <div class="border-2 border-dashed border-terminal/60 bg-terminal/5 rounded-xl p-8 text-left relative">
-                <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-void border-2 border-terminal p-2 rounded-full text-terminal shadow-[0_0_15px_rgba(0,180,166,0.4)]"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg></div>
-                <h4 class="font-extrabold text-terminal text-2xl uppercase mt-4 mb-2 tracking-wide font-mono text-center leading-tight">THE ZERO-WASTE<br>GUARANTEE</h4>
-                <p class="text-white text-xs text-center mb-8 font-mono opacity-70">Because parents trust you with their children. We make sure you deserve it.</p>
-                <p class="text-ghost text-sm leading-relaxed">The 14-Day Diagnostic Audit is completely free. No card required. No obligation to proceed. If at the end of 14 days the Executive Dashboard doesn't clearly reveal exactly where your campus is leaking trust or operational efficiency — you walk away with the data and we never bother you again.</p>
-                <div class="mt-8 text-center text-ghost font-mono text-lg italic opacity-80">— Justin Peterson</div>
-            </div>
-        </div>
-        <!-- CTA BUTTON — UPDATED: "CLAIM MY FREE AUDIT" replaces "ACCEPT GUARANTEE → FILL APPLICATION" -->
-        <div class="mt-8 flex justify-center"><button onclick="scrollToApplication()" class="cta-btn pulse-glow bg-terminal text-black font-extrabold text-sm md:text-base uppercase tracking-wider px-8 py-4 rounded-lg border-2 border-terminal shadow-xl font-mono">CLAIM MY FREE AUDIT →</button></div>
+  <section class="band section" aria-labelledby="cta-h">
+    <div class="narrow stack-lg" style="text-align: center; align-items: center">
+      <h2 id="cta-h" class="h2">It starts with the free check.</h2>
+      <p class="muted" style="max-width: 520px">Take the 5-minute check, then book a free results call. If the Diagnostic is the right next step, we'll agree it there.</p>
+      <div class="row" style="justify-content: center">
+        <a class="btn btn-on-dark btn-lg" href="/scorecard">Take the check</a>
+        <a href="/schedule" style="color: var(--brand)">Already done it? Book your results call</a>
+      </div>
     </div>
+  </section>
 
-    <!-- APPLICATION FORM — Tally.so embed (single instance, correctly placed) -->
-    <div id="application-form" class="bg-card rounded-2xl border border-[#2D3748] overflow-hidden p-4 md:p-6">
-        <iframe data-tally-src="https://tally.so/embed/gDXlJJ?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="1011" frameborder="0" marginheight="0" marginwidth="0" title="Apply for the 14-Day Diagnostic Audit"></iframe>
-    </div>
+</main>
 
-</div>
-<script>
-function scrollToApplication() {
-    const el = document.getElementById('application-form');
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
-</script>
+<footer class="footer">
+  <div class="wrap">
+    <p class="footer-line">Campus Velocity · When operations are invisible, students thrive.</p>
+    <nav aria-label="Footer">
+      <a href="/scorecard">Risk &amp; Trust Check</a>
+      <a href="/">Home</a>
+      <a href="https://app.campusvelocity.com">Client sign-in</a>
+    </nav>
+  </div>
+</footer>
+
 </body>
 </html>

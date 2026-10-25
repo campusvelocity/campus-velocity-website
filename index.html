@@ -3,191 +3,235 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CAMPUS VELOCITY | Your Campus Has Operational Gaps. Parents Can Feel Them.</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
-    :root {
-        --void:      #0D1117;
-        --card:      #1E2329;
-        --near-black:#1A1A1A;
-        --ghost:     #8892A4;
-        --terminal:  #00B4A6;
-        --signal:    #F59E0B;
-        --error:     #EF4444;
-        --border:    #2D3748;
-    }
-    * { box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; background-color: var(--void); color: #ffffff; }
-    .font-mono  { font-family: 'IBM Plex Mono', monospace; }
-    .bg-void        { background-color: var(--void); }
-    .bg-card        { background-color: var(--card); }
-    .border-charcoal{ border-color: var(--border); }
-    .text-ghost     { color: var(--ghost); }
-    .text-terminal  { color: var(--terminal); }
-    .text-signal    { color: var(--signal); }
-    .text-error     { color: var(--error); }
-    .bg-terminal    { background-color: var(--terminal); }
-    .hero-pattern {
-        background-color: var(--void);
-        background-image: radial-gradient(var(--border) 1px, transparent 1px);
-        background-size: 30px 30px;
-    }
-    ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: var(--void); }
-    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--terminal); }
-    .step-dots { display: flex; gap: 5px; align-items: center; }
-    .step-dot { width: 7px; height: 7px; border-radius: 50%; border: 2px solid var(--border); transition: all 0.3s; }
-    .step-dot.active { background: var(--terminal); border-color: var(--terminal); }
-    .glow-teal { box-shadow: 0 0 28px rgba(0,180,166,0.25); }
-    @keyframes flicker { 0%,100% { opacity:1; } 92% { opacity:1; } 93% { opacity:0.85; } 94% { opacity:1; } }
-    .flicker { animation: flicker 6s infinite; }
-    @keyframes slideUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
-    .slide-up { animation: slideUp 0.7s ease both; }
-    .delay-1  { animation-delay: 0.1s; } .delay-2  { animation-delay: 0.25s; }
-    .delay-3  { animation-delay: 0.4s; } .delay-4  { animation-delay: 0.55s; }
-    @keyframes borderPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(0,180,166,0.4); } 50% { box-shadow: 0 0 0 6px rgba(0,180,166,0); } }
-    .cta-pulse:hover { animation: borderPulse 1.2s ease infinite; }
-    .tag { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid var(--border); padding: 3px 10px; border-radius: 999px; color: var(--ghost); background: var(--card); }
-    .divider { border-color: var(--border); }
-    .step-card { transition: border-color 0.2s; }
-    .step-card:hover { border-color: var(--terminal); }
-    .domain-card { transition: border-color 0.2s, transform 0.2s; }
-    .domain-card:hover { border-color: var(--terminal); transform: translateY(-2px); }
-    @keyframes badgeBlink { 0%,100% { opacity:1; } 50% { opacity:0.6; } }
-    .badge-blink { animation: badgeBlink 2s ease-in-out infinite; }
-</style>
+<title>Campus Velocity | Your campus has operational gaps. Parents can feel them.</title>
+<meta name="description" content="A free 5-minute Campus Risk &amp; Trust Check for private and international schools. See where your campus is losing parent trust, staff confidence and efficiency across six operational domains.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
 </head>
 <body>
-<div class="w-full max-w-6xl mx-auto space-y-12 p-4">
 
-    <!-- HERO -->
-    <div class="hero-pattern border border-[#2D3748] rounded-3xl overflow-hidden px-8 pt-6 pb-8 md:px-10 md:pt-8 md:pb-10 text-center relative">
-        <div class="relative z-10">
-            <div class="slide-up mb-3">
-                <span class="font-mono font-bold text-2xl tracking-tight text-white">CAMPUS<span class="text-terminal">VELOCITY</span></span>
-            </div>
-            <div class="slide-up delay-1 flex justify-center mb-3">
-                <span class="tag">&gt;&gt; For Heads of School, Board Members, and Campus Decision-Makers at Private and International Schools</span>
-            </div>
-            <h1 class="slide-up delay-2 flicker text-4xl md:text-6xl font-extrabold tracking-tight leading-none mb-6 max-w-2xl mx-auto">Your Campus Has <span class="text-error">Operational Gaps.</span><br>Parents Can Feel Them.</h1>
-            <div class="slide-up delay-2 flex justify-center mb-4">
-                <div class="inline-flex items-center gap-2 bg-card border border-terminal/30 rounded-full px-4 py-2">
-                    <span class="w-2 h-2 rounded-full bg-terminal flex-shrink-0"></span>
-                    <span class="font-mono text-[10px] text-ghost uppercase tracking-widest">Methodology built from live campus operations — not a textbook</span>
-                </div>
-            </div>
-            <p class="slide-up delay-3 mt-2 max-w-xl mx-auto text-base md:text-lg text-ghost leading-relaxed">Take the free 5-Minute Campus Risk &amp; Trust Check to see exactly where your campus is losing parent trust, staff confidence, and operational efficiency — <span class="text-white font-semibold">before a complaint surfaces it for you.</span></p>
-            <div class="slide-up delay-4 mt-8 flex justify-center">
-                <a href="https://campusvelocity.com/scorecard" class="cta-pulse w-full sm:w-auto px-8 sm:px-12 py-4 bg-terminal hover:bg-[#00968A] text-black font-bold text-base sm:text-xl md:text-2xl rounded-xl transition-all transform hover:-translate-y-1 uppercase font-mono text-center sm:whitespace-nowrap glow-teal">Take the Risk &amp; Trust Check →</a>
-            </div>
+<header class="topbar">
+  <div class="wrap">
+    <a class="mark" href="/">CAMPUS<span>VELOCITY</span></a>
+    <nav class="topnav" aria-label="Main">
+      <a href="#how">How it works</a>
+      <a href="#domains">Six domains</a>
+      <a href="/audit">The Diagnostic</a>
+      <a href="#about">About</a>
+    </nav>
+    <a class="btn btn-on-dark" href="/scorecard">Take the check</a>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">For heads of school and campus operations leads at private and international schools</p>
+        <h1 id="hero-h" class="display">Your campus has operational gaps. Parents can feel them.</h1>
+        <p class="lead">Take the free 5-minute Campus Risk &amp; Trust Check. See where your campus is losing parent trust, staff confidence and efficiency, before a complaint surfaces it for you.</p>
+        <div class="row">
+          <a class="btn btn-primary btn-lg" href="/scorecard">Take the Risk &amp; Trust Check</a>
+          <a class="btn btn-secondary btn-lg" href="#how">How it works</a>
         </div>
-        <div class="mt-8 pt-4 border-t border-dashed divider">
-            <p class="font-mono text-[10px] text-ghost uppercase tracking-widest">Scored across 6 operational domains, benchmarked against campus operations best practice</p>
+        <p class="facts"><span>12 questions</span><span>6 domains</span><span>Results instantly</span><span>Free</span></p>
+      </div>
+
+      <div class="hero-visual">
+        <div class="card" role="img" aria-label="Example scorecard result: overall score 58, significant gaps present. Two domains strong, two need work, two at risk.">
+          <div class="result-head">
+            <p class="eyebrow">Example result</p>
+            <span class="chip chip-warn">Significant gaps</span>
+          </div>
+          <p class="score" style="margin: 12px 0 4px">58</p>
+          <p class="small muted" style="margin-bottom: 16px">Campus Intelligence Score, out of 100</p>
+          <div class="domain-row"><span class="domain-name">Proven Safety Protocol</span><span class="row"><span class="domain-score">5/6</span><span class="chip chip-ok">Strong</span></span></div>
+          <div class="domain-row"><span class="domain-name">Invisible Tech System</span><span class="row"><span class="domain-score">4/6</span><span class="chip chip-warn">Needs work</span></span></div>
+          <div class="domain-row"><span class="domain-name">Parent Trust System</span><span class="row"><span class="domain-score">2/6</span><span class="chip chip-risk">At risk</span></span></div>
+          <div class="domain-row"><span class="domain-name">Operational Cost Control Engine</span><span class="row"><span class="domain-score">2/6</span><span class="chip chip-risk">At risk</span></span></div>
+          <div class="domain-row"><span class="domain-name">Staff Confidence &amp; Retention</span><span class="row"><span class="domain-score">3/6</span><span class="chip chip-warn">Needs work</span></span></div>
+          <div class="domain-row"><span class="domain-name">Campus Intelligence Dashboard</span><span class="row"><span class="domain-score">5/6</span><span class="chip chip-ok">Strong</span></span></div>
         </div>
+      </div>
     </div>
+  </section>
 
-    <!-- HOW IT WORKS -->
-    <div class="bg-card border-2 border-terminal/30 rounded-3xl p-8 md:p-12">
-        <div class="text-center mb-8">
-            <h2 class="text-2xl md:text-3xl font-extrabold text-white mb-3 uppercase font-mono">How This Works</h2>
-            <p class="text-ghost text-sm max-w-2xl mx-auto">Answer 12 questions across 6 domains. See exactly where your campus stands — instantly.</p>
-        </div>
-        <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <div class="step-card bg-void p-6 rounded-xl border border-[#2D3748] text-center">
-                <div class="flex justify-center mb-3"><div class="step-dots scale-150"><div class="step-dot active"></div><div class="step-dot"></div><div class="step-dot"></div></div></div>
-                <div class="inline-block bg-terminal text-black px-3 py-1 rounded text-xs font-bold font-mono mb-3">STEP 1</div>
-                <h3 class="text-white font-bold mb-2 text-sm uppercase font-mono">Take the Check</h3>
-                <p class="text-ghost text-xs leading-relaxed">12 questions across 6 domains. No prep needed.</p>
-                <p class="text-terminal text-[10px] font-mono mt-2">~5 minutes</p>
-            </div>
-            <div class="step-card bg-void p-6 rounded-xl border border-[#2D3748] text-center">
-                <div class="flex justify-center mb-3"><div class="step-dots scale-150"><div class="step-dot active"></div><div class="step-dot active"></div><div class="step-dot"></div></div></div>
-                <div class="inline-block bg-[#2D3748] text-white px-3 py-1 rounded text-xs font-bold font-mono mb-3 border border-terminal/50">STEP 2</div>
-                <h3 class="text-white font-bold mb-2 text-sm uppercase font-mono">See Your Score</h3>
-                <p class="text-ghost text-xs leading-relaxed">Your Campus Intelligence Score and a red/amber/green breakdown across all six domains.</p>
-                <p class="text-ghost text-[10px] font-mono mt-2">Instant</p>
-            </div>
-            <div class="step-card bg-void p-6 rounded-xl border border-[#2D3748] text-center">
-                <div class="flex justify-center mb-3"><div class="step-dots scale-150"><div class="step-dot active"></div><div class="step-dot active"></div><div class="step-dot active"></div></div></div>
-                <div class="inline-block bg-[#2D3748] text-white px-3 py-1 rounded text-xs font-bold font-mono mb-3 border border-terminal/50">STEP 3</div>
-                <h3 class="text-white font-bold mb-2 text-sm uppercase font-mono">Stay Sharp</h3>
-                <p class="text-ghost text-xs leading-relaxed">Get Campus Velocity, a weekly read for people who keep schools running.</p>
-                <p class="text-ghost text-[10px] font-mono mt-2">Every week</p>
-            </div>
-        </div>
-        <div class="mt-8 text-center">
-            <p class="text-terminal font-mono text-sm font-bold mb-4">Total Time Commitment: Under 5 Minutes</p>
-            <a href="https://campusvelocity.com/scorecard" class="inline-block px-8 py-3 bg-terminal hover:bg-[#00968A] text-black font-bold text-base rounded-lg transition-all uppercase font-mono">Start the Check →</a>
-        </div>
+  <section id="how" class="section" style="background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line)" aria-labelledby="how-h">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">How it works</p>
+        <h2 id="how-h" class="h2">See the gaps in five minutes. Talk them through in thirty.</h2>
+        <p class="lead">The first three steps are free. You only pay if you decide the full Diagnostic is worth it.</p>
+      </div>
+      <ol class="grid grid-4" style="list-style: none; padding: 0; margin: 0">
+        <li class="card step">
+          <span class="step-num">STEP 1</span>
+          <h3 class="h3">Take the check</h3>
+          <p class="muted">Answer 12 questions across six operational domains.</p>
+          <div class="step-meta"><span class="chip chip-ok">Free</span><span class="small muted">About 5 minutes</span></div>
+        </li>
+        <li class="card step">
+          <span class="step-num">STEP 2</span>
+          <h3 class="h3">See your results</h3>
+          <p class="muted">Your score and a domain-by-domain breakdown, straight away.</p>
+          <div class="step-meta"><span class="chip chip-ok">Free</span><span class="small muted">Instant</span></div>
+        </li>
+        <li class="card step">
+          <span class="step-num">STEP 3</span>
+          <h3 class="h3">Results call</h3>
+          <p class="muted">Walk through your results with me. You leave with one fix you can make this month, whatever you decide next.</p>
+          <div class="step-meta"><span class="chip chip-ok">Free</span><span class="small muted">30 minutes</span></div>
+        </li>
+        <li class="card step">
+          <span class="step-num">STEP 4</span>
+          <h3 class="h3">The Campus Diagnostic</h3>
+          <p class="muted">Your scores checked against real evidence, and a 90-day roadmap. The fee is credited in full if you continue with Campus Velocity.</p>
+          <div class="step-meta"><span class="chip chip-quiet">[DIAGNOSTIC PRICE]</span><span class="small muted">About 2 weeks</span></div>
+        </li>
+      </ol>
+      <div class="row" style="margin-top: 28px">
+        <a class="btn btn-primary" href="/scorecard">Start step 1</a>
+        <a href="/audit">What's in the Diagnostic</a>
+      </div>
     </div>
+  </section>
 
-    <!-- SIX DOMAINS -->
-    <div class="bg-card border border-[#2D3748] rounded-3xl p-8 md:p-16">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl font-extrabold text-white mb-4">Six Domains. One Score.</h2>
-            <p class="text-lg text-ghost max-w-2xl mx-auto">The 5-Minute Campus Risk &amp; Trust Check measures what actually determines whether your campus runs invisibly — or loudly.</p>
+  <section class="section" aria-labelledby="pain-h">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">The real cost</p>
+        <h2 id="pain-h" class="h2">You aren't just losing efficiency. You're losing trust.</h2>
+        <p class="lead">Most school leaders think they need better staff. Usually they need operations that run invisibly.</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="card stack">
+          <h3 class="h3">Silent trust erosion</h3>
+          <p class="muted">Parent dissatisfaction that never reaches your desk as a complaint. It shows up later as a re-enrolment that doesn't happen.</p>
         </div>
-        <div class="grid md:grid-cols-3 gap-6">
-            <div class="domain-card bg-void p-6 rounded-2xl border border-[#2D3748]">
-                <span class="text-2xl">🔒</span>
-                <h3 class="font-bold text-white mt-3 mb-2 font-mono text-sm uppercase">Proven Safety Protocol</h3>
-                <p class="text-ghost text-xs leading-relaxed">Drills, incidents, documentation, and compliance — mapped against your regulatory requirements.</p>
-            </div>
-            <div class="domain-card bg-void p-6 rounded-2xl border border-[#2D3748]">
-                <span class="text-2xl">💻</span>
-                <h3 class="font-bold text-white mt-3 mb-2 font-mono text-sm uppercase">Invisible Tech System</h3>
-                <p class="text-ghost text-xs leading-relaxed">Device uptime, ticket resolution, and connectivity — so devices work before students arrive.</p>
-            </div>
-            <div class="domain-card bg-void p-6 rounded-2xl border border-[#2D3748]">
-                <span class="text-2xl">👨‍👩‍👧</span>
-                <h3 class="font-bold text-white mt-3 mb-2 font-mono text-sm uppercase">Parent Trust System</h3>
-                <p class="text-ghost text-xs leading-relaxed">Response times, escalation rates, and satisfaction — before dissatisfaction becomes attrition.</p>
-            </div>
-            <div class="domain-card bg-void p-6 rounded-2xl border border-[#2D3748]">
-                <span class="text-2xl">🏢</span>
-                <h3 class="font-bold text-white mt-3 mb-2 font-mono text-sm uppercase">Operational Cost Control Engine</h3>
-                <p class="text-ghost text-xs leading-relaxed">Vendor performance, maintenance, and budget — every contract and renewal date, visible.</p>
-            </div>
-            <div class="domain-card bg-void p-6 rounded-2xl border border-[#2D3748]">
-                <span class="text-2xl">👥</span>
-                <h3 class="font-bold text-white mt-3 mb-2 font-mono text-sm uppercase">Staff Confidence &amp; Retention Framework</h3>
-                <p class="text-ghost text-xs leading-relaxed">Time-to-operational, protocol compliance, and retention — staff who stay and perform at full capacity.</p>
-            </div>
-            <div class="domain-card bg-void p-6 rounded-2xl border border-[#2D3748]">
-                <span class="text-2xl">📊</span>
-                <h3 class="font-bold text-white mt-3 mb-2 font-mono text-sm uppercase">Campus Intelligence Dashboard</h3>
-                <p class="text-ghost text-xs leading-relaxed">Data completeness, reporting, and action rates — a board-ready picture, reviewed in 60 seconds.</p>
-            </div>
+        <div class="card stack">
+          <h3 class="h3">The vendor blind spot</h3>
+          <p class="muted">Contracts that auto-renew without scrutiny because no one owns the expiry date, until the invoice lands wrong.</p>
         </div>
+        <div class="card stack">
+          <h3 class="h3">Operational gaps</h3>
+          <p class="muted">The space between what your reports show and what's actually happening on campus, where safety, tech and staff confidence quietly slip.</p>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <!-- ABOUT -->
-    <div class="bg-void border border-[#2D3748] rounded-3xl p-8 md:p-16 flex flex-col md:flex-row items-center gap-12 justify-center">
-        <div class="flex flex-col items-center gap-4 flex-shrink-0">
-            <div class="w-32 h-32 md:w-48 md:h-48 bg-card border-2 border-[#2D3748] rounded-full overflow-hidden grayscale hover:grayscale-0 transition-all duration-500 flex items-center justify-center">
-                <img src="/justin-peterson.png" alt="Justin Peterson" class="w-full h-full object-cover">
-            </div>
+  <section class="section" style="padding-top: 0" aria-labelledby="compare-h">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="compare-h" class="h2">Stop firefighting. Start leading.</h2>
+      </div>
+      <div class="grid grid-2">
+        <div class="card card-lg">
+          <p class="eyebrow">Without a system</p>
+          <h3 class="h3" style="margin-top: 6px">Reactive administrator</h3>
+          <ul class="compare-list">
+            <li><svg class="ic-bad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>You find out something's wrong when a parent complains.</li>
+            <li><svg class="ic-bad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>Every escalation lands on your desk personally.</li>
+            <li><svg class="ic-bad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>No one can say what "good" looks like across the six domains.</li>
+            <li><svg class="ic-bad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>You work for the fire alarm.</li>
+          </ul>
         </div>
-        <div class="text-center md:text-left max-w-lg">
-            <div class="inline-block px-2 py-1 bg-terminal/10 text-terminal text-[10px] font-bold tracking-widest font-mono uppercase mb-4 border border-terminal/20">&gt;&gt; CAMPUS_OPERATOR</div>
-            <h3 class="text-3xl font-extrabold text-white mb-4">I am Justin Peterson.</h3>
-            <p class="text-ghost text-lg mb-5 leading-relaxed">I run daily operations at Alpha School's Miami campus — one of the most data-driven private school environments in the United States. Before this role, I spent four years managing operations and technology for a large public school district. I hold an MBA, PSM I certification, and have lived and worked across the US and Europe.</p>
-            <p class="text-ghost text-lg mb-5 leading-relaxed">Every framework, every metric, every system behind the scorecard comes from real campus operations — <span class="text-white font-bold">not from a textbook.</span></p>
+        <div class="card card-lg" style="border-color: var(--action)">
+          <p class="eyebrow" style="color: var(--confirmed-ink)">With Campus Velocity</p>
+          <h3 class="h3" style="margin-top: 6px">Strategic operator</h3>
+          <ul class="compare-list">
+            <li><svg class="ic-good" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 8"/></svg>Problems surface before parents notice.</li>
+            <li><svg class="ic-good" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 8"/></svg>Escalations follow a documented path, not your inbox.</li>
+            <li><svg class="ic-good" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 8"/></svg>A clear score across all six domains, reviewed in a minute.</li>
+            <li><svg class="ic-good" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 8"/></svg>The system works for you.</li>
+          </ul>
         </div>
+      </div>
     </div>
+  </section>
 
-    <!-- FINAL CTA -->
-    <div class="bg-card border border-[#2D3748] rounded-3xl p-12 md:p-20 text-center">
-        <h2 class="text-4xl md:text-6xl font-extrabold text-white mb-8 tracking-tighter">Find The <span class="text-error">Gaps.</span></h2>
-        <p class="text-xl text-ghost mb-12 max-w-2xl mx-auto">You have two choices: keep discovering operational gaps through parent complaints, or spend 5 minutes to see the whole picture.</p>
-        <a href="https://campusvelocity.com/scorecard" class="inline-block w-full sm:w-auto px-8 sm:px-14 py-5 sm:py-6 bg-terminal hover:bg-[#00968A] text-black font-bold text-base sm:text-xl md:text-2xl rounded-xl transition-all transform hover:-translate-y-1 uppercase font-mono text-center sm:whitespace-nowrap glow-teal">[ Take the Risk &amp; Trust Check ]</a>
-        <p class="mt-8 text-xs text-[#555] font-mono uppercase tracking-widest">
-            <span class="badge-blink inline-block w-2 h-2 rounded-full bg-terminal mr-1"></span>
-            System Status: <span class="text-terminal">ONLINE</span> // 5-Minute Risk &amp; Trust Check Available Now — Results Instant
-        </p>
+  <section id="domains" class="section" style="background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line)" aria-labelledby="dom-h">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">What we measure</p>
+        <h2 id="dom-h" class="h2">Six domains. One score.</h2>
+        <p class="lead">The check measures what decides whether your campus runs invisibly, or loudly.</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="card domain-card"><span class="num">01</span><h3 class="h3">Proven Safety Protocol</h3><p class="muted">Drills, incidents, documentation and compliance, mapped against your regulatory requirements.</p></div>
+        <div class="card domain-card"><span class="num">02</span><h3 class="h3">Invisible Tech System</h3><p class="muted">Device uptime, ticket resolution and connectivity, so devices work before students arrive.</p></div>
+        <div class="card domain-card"><span class="num">03</span><h3 class="h3">Parent Trust System</h3><p class="muted">Response times, escalation rates and satisfaction, before dissatisfaction becomes attrition.</p></div>
+        <div class="card domain-card"><span class="num">04</span><h3 class="h3">Operational Cost Control Engine</h3><p class="muted">Vendor performance, maintenance and budget, with every contract and renewal date visible.</p></div>
+        <div class="card domain-card"><span class="num">05</span><h3 class="h3">Staff Confidence &amp; Retention Framework</h3><p class="muted">Time to get up to speed, procedures that are followed, and retention: staff who stay and do their best work.</p></div>
+        <div class="card domain-card"><span class="num">06</span><h3 class="h3">Campus Intelligence Dashboard</h3><p class="muted">Data completeness, reporting and follow-through: a board-ready picture, reviewed in a minute.</p></div>
+      </div>
     </div>
+  </section>
 
-</div>
+  <section class="section" aria-labelledby="diag-h">
+    <div class="wrap grid grid-2" style="gap: 32px; align-items: start">
+      <div class="stack-lg">
+        <div class="section-head" style="margin-bottom: 0">
+          <p class="eyebrow">Step 4</p>
+          <h2 id="diag-h" class="h2">The Campus Diagnostic</h2>
+          <p class="lead">The check shows what you assume. The Diagnostic checks it against evidence, and turns the gaps into a plan.</p>
+        </div>
+        <div class="price-box">
+          <p class="eyebrow">Price</p>
+          <p class="h3">[DIAGNOSTIC PRICE]</p>
+          <p class="small muted">Credited in full toward consulting or Campus Velocity Ops setup if you continue within [60] days.</p>
+        </div>
+        <p class="muted">The Diagnostic is offered after your results call, if we both think it's the right next step.</p>
+      </div>
+      <div class="card card-lg">
+        <h3 class="h3" style="margin-bottom: 8px">What you get</h3>
+        <ul class="offer-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 8"/></svg><span><strong>Six-domain risk matrix.</strong> <span class="muted">Every domain scored on evidence, with what you assume set against what you can show.</span></span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 8"/></svg><span><strong>Vendor contract and auto-renew review.</strong> <span class="muted">Every contract, owner and renewal date in one place.</span></span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 8"/></svg><span><strong>Parent trust and escalation protocol.</strong> <span class="muted">Who handles what, in what order, and how fast.</span></span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 8"/></svg><span><strong>Your 90-day roadmap.</strong> <span class="muted">The fixes in order, each with an owner and a date, tracked in the Campus Velocity app.</span></span></li>
+        </ul>
+        <div style="margin-top: 16px"><a href="/audit">Read more about the Diagnostic</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section" style="background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line)" aria-labelledby="about-h">
+    <div class="narrow about">
+      <img src="/justin-peterson.png" alt="Justin Peterson" width="160" height="160">
+      <div class="about-copy">
+        <p class="eyebrow">Who you'll work with</p>
+        <h2 id="about-h" class="h2">I'm Justin Peterson.</h2>
+        <p>I work in campus operations at a tech-forward private school in Miami. Before that, I spent four years managing operations and technology for a large public school district. I hold an MBA and PSM I certification, and have lived and worked across the US and Europe.</p>
+        <p class="muted">Every framework, metric and system here comes from running real campus operations, not from a textbook. There are no sales reps: the results call is with me.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band section" aria-labelledby="cta-h">
+    <div class="narrow stack-lg" style="text-align: center; align-items: center">
+      <h2 id="cta-h" class="display">Find the gaps.</h2>
+      <p class="lead muted" style="max-width: 560px">Keep discovering operational gaps through parent complaints, or spend five minutes seeing the whole picture.</p>
+      <a class="btn btn-on-dark btn-lg" href="/scorecard">Take the Risk &amp; Trust Check</a>
+      <p class="small muted">Free · 12 questions · results instantly · answers stored securely in the EU</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p class="footer-line">Campus Velocity · When operations are invisible, students thrive.</p>
+    <nav aria-label="Footer">
+      <a href="/scorecard">Risk &amp; Trust Check</a>
+      <a href="/audit">The Diagnostic</a>
+      <a href="https://app.campusvelocity.com">Client sign-in</a>
+    </nav>
+  </div>
+</footer>
+
 </body>
 </html>
