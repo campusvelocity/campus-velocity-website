@@ -143,6 +143,7 @@ h1, h2, h3, h4, p { margin: 0; }
 
 /* Domain cards */
 .domain-card { display: flex; flex-direction: column; gap: 8px; }
+.domain-card .official { font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-muted); margin-top: -4px; }
 .domain-card .num { font-family: var(--font-mono); font-size: 13px; font-weight: 600; color: var(--action); }
 
 /* Offer */
@@ -170,7 +171,7 @@ h1, h2, h3, h4, p { margin: 0; }
 .footer nav { display: flex; flex-wrap: wrap; gap: 16px; font-size: 14px; }
 
 /* Funnel progress (scorecard, schedule, confirmed) */
-.progress-steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.progress-steps { list-style: none; padding: 0; margin: 0; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 8px; }
 .progress-steps li { display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: var(--ink-muted); }
 .progress-steps li::before { content: ""; height: 4px; border-radius: var(--radius-pill); background: var(--sunken); }
 .progress-steps li.done::before { background: var(--action); }

@@ -23,8 +23,8 @@
   <ol class="progress-steps" aria-label="Your progress">
     <li id="p1" class="current" aria-current="step">Take the check</li>
     <li id="p2">Your results</li>
-    <li>Results call</li>
-    <li>Diagnostic</li>
+    <li id="p3" class="hidden">Results call</li>
+    <li id="p4" class="hidden">Diagnostic</li>
   </ol>
 
   <!-- QUIZ -->
@@ -151,6 +151,17 @@ const QUESTIONS = [
       options: [{label:"Systems alert us proactively",pts:3},{label:"Staff tell us quickly",pts:2},{label:"Parents complain",pts:1},{label:"After the fact",pts:0}] },
 ];
 
+// Plain-language labels shown to visitors; the official domain names stay as the keys.
+const PLAIN = {
+    "Proven Safety Protocol": "Safety & compliance",
+    "Invisible Tech System": "Technology & devices",
+    "Parent Trust System": "Parent communication",
+    "Operational Cost Control Engine": "Vendors & costs",
+    "Staff Confidence & Retention Framework": "Staff onboarding & retention",
+    "Campus Intelligence Dashboard": "Reporting & visibility"
+};
+const esc = s => s.replace(/&/g, '&amp;');
+
 const DOMAIN_ORDER = [
     "Proven Safety Protocol",
     "Invisible Tech System",
@@ -191,7 +202,7 @@ function renderQuestion() {
     document.getElementById('question-container').innerHTML = `
         <div class="card card-lg stack-lg">
             <div class="stack">
-                <p class="eyebrow">${q.domain}</p>
+                <p class="eyebrow">${esc(PLAIN[q.domain])}</p>
                 <h2 class="h2" style="font-size: clamp(22px, 3vw, 26px)">${q.text}</h2>
             </div>
             <div class="options" role="group" aria-label="Answers">${optionsHtml}</div>
@@ -260,6 +271,8 @@ function submitEmail(e) {
     document.getElementById('p1').removeAttribute('aria-current');
     document.getElementById('p2').className = 'current';
     document.getElementById('p2').setAttribute('aria-current', 'step');
+    document.getElementById('p3').classList.remove('hidden');
+    document.getElementById('p4').classList.remove('hidden');
     window.scrollTo({ top: 0, behavior: 'smooth' });
     return false;
 }
@@ -301,7 +314,7 @@ function renderResults() {
         else { status = "At risk"; c = "chip-risk"; }
         return `
             <div class="domain-row">
-                <span class="domain-name">${d.replace('&', '&amp;')}</span>
+                <span class="domain-name">${esc(PLAIN[d])}</span>
                 <span class="row"><span class="domain-score">${score}/6</span><span class="chip ${c}">${status}</span></span>
             </div>
         `;
@@ -317,6 +330,8 @@ function retakeQuiz() {
     document.getElementById('p1').setAttribute('aria-current', 'step');
     document.getElementById('p2').className = '';
     document.getElementById('p2').removeAttribute('aria-current');
+    document.getElementById('p3').classList.add('hidden');
+    document.getElementById('p4').classList.add('hidden');
     renderQuestion();
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
