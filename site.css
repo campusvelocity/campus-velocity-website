@@ -37,33 +37,6 @@
   --content-max: 1200px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-    --page: #0D1117;
-    --card: #161B22;
-    --sunken: #1E2329;
-    --ink: #E6EAF0;
-    --ink-muted: #8B95A7;
-    --line: #2D3748;
-    --line-strong: #6B7587;
-    --chrome: #010409;
-    --chrome-raised: #161B22;
-    --action: #00B4A6;
-    --action-hover: #2CCFC1;
-    --on-action: #0D1117;
-    --link: #2CCFC1;
-    --focus: #2CCFC1;
-    --confirmed-bg: #0E2B29;
-    --confirmed-ink: #5FD4C9;
-    --attention-bg: #33260C;
-    --attention-ink: #FBBF4A;
-    --overdue: #F0705F;
-    --overdue-bg: #3A1715;
-    --overdue-ink: #F59B93;
-  }
-}
-
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
 body { margin: 0; background: var(--page); color: var(--ink); font-family: var(--font-sans); font-size: 15px; line-height: 1.5; }
