@@ -311,6 +311,7 @@ function renderResults() {
 
     document.getElementById('domain-breakdown').innerHTML = DOMAIN_ORDER.map(d => {
         const score = domainScores[d];
+        // Shown out of 100, the same scale the app uses for this school's Day 0.
         let status, c;
         if (score >= 5) { status = "Strong"; c = "chip-ok"; }
         else if (score >= 3) { status = "Needs work"; c = "chip-warn"; }
@@ -318,7 +319,7 @@ function renderResults() {
         return `
             <div class="domain-row">
                 <span class="domain-name">${esc(PLAIN[d])}</span>
-                <span class="row"><span class="domain-score">${score}/6</span><span class="chip ${c}">${status}</span></span>
+                <span class="row"><span class="domain-score">${Math.round((score / 6) * 100)}</span><span class="chip ${c}">${status}</span></span>
             </div>
         `;
     }).join('');
