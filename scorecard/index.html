@@ -73,7 +73,7 @@
         <span>Send me Campus Velocity, the weekly campus operations newsletter. I can unsubscribe at any time.</span>
       </label>
       <button type="submit" class="btn btn-primary btn-lg btn-block">See my score</button>
-      <p class="small muted" style="text-align: center">Your answers are stored securely in the EU and never shared.</p>
+      <p class="small muted" style="text-align: center">Your answers are stored securely in the EU and never shared. <a href="/privacy">Privacy</a></p>
     </form>
   </section>
 
@@ -116,6 +116,9 @@
 <footer class="footer">
   <div class="wrap">
     <p class="footer-line">Campus Velocity · When operations are invisible, students thrive.</p>
+    <nav aria-label="Footer">
+      <a href="/privacy">Privacy</a>
+    </nav>
   </div>
 </footer>
 
@@ -308,6 +311,7 @@ function renderResults() {
 
     document.getElementById('domain-breakdown').innerHTML = DOMAIN_ORDER.map(d => {
         const score = domainScores[d];
+        // Shown out of 100, the same scale the app uses for this school's Day 0.
         let status, c;
         if (score >= 5) { status = "Strong"; c = "chip-ok"; }
         else if (score >= 3) { status = "Needs work"; c = "chip-warn"; }
@@ -315,7 +319,7 @@ function renderResults() {
         return `
             <div class="domain-row">
                 <span class="domain-name">${esc(PLAIN[d])}</span>
-                <span class="row"><span class="domain-score">${score}/6</span><span class="chip ${c}">${status}</span></span>
+                <span class="row"><span class="domain-score">${Math.round((score / 6) * 100)}</span><span class="chip ${c}">${status}</span></span>
             </div>
         `;
     }).join('');
