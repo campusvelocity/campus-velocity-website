@@ -16,8 +16,8 @@
   <div class="wrap">
     <a class="mark" href="/">CAMPUS<span>VELOCITY</span></a>
     <nav class="topnav" aria-label="Main">
+      <a href="#system">The system</a>
       <a href="#how">How it works</a>
-      <a href="#domains">Six domains</a>
       <a href="/audit">The Diagnostic</a>
       <a href="#about">About</a>
     </nav>
@@ -27,21 +27,21 @@
 
 <main>
 
+  <!-- 1. Hero -->
   <section class="hero" aria-labelledby="hero-h">
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow">For heads of school and campus operations leads at private and international schools</p>
+        <p class="eyebrow">For private and international schools</p>
         <h1 id="hero-h" class="display">Your campus has operational gaps. Parents can feel them.</h1>
-        <p class="lead">Take the free 5-minute Campus Risk &amp; Trust Check. See where your campus is losing parent trust, staff confidence and efficiency, before a complaint surfaces it for you.</p>
+        <p class="lead">A free 5-minute check shows where parents, staff and budgets are slipping.</p>
         <div class="row">
           <a class="btn btn-primary btn-lg" href="/scorecard">Take the Risk &amp; Trust Check</a>
-          <a class="btn btn-secondary btn-lg" href="#how">How it works</a>
         </div>
-        <p class="facts"><span>12 questions</span><span>6 domains</span><span>Results instantly</span><span>Free</span></p>
+        <p class="facts"><span>12 questions</span><span>Results instantly</span><span>Free</span></p>
       </div>
 
       <div class="hero-visual">
-        <div class="card" role="img" aria-label="Example scorecard result: overall score 58, significant gaps present. Two domains strong, two need work, two at risk.">
+        <div class="card" role="img" aria-label="Example result: Campus Intelligence Score 58, significant gaps. Two domains strong, two need work, two at risk.">
           <div class="result-head">
             <p class="eyebrow">Example result</p>
             <span class="chip chip-warn">Significant gaps</span>
@@ -59,173 +59,115 @@
     </div>
   </section>
 
-  <section id="how" class="section" style="background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line)" aria-labelledby="how-h">
+  <!-- 2. The product. Media fills in automatically once the files are in /media (see media/README.md). -->
+  <section id="system" class="section" style="background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line)" aria-labelledby="sys-h">
+    <div class="wrap">
+      <div class="section-head center">
+        <p class="eyebrow">The Campus Velocity app</p>
+        <h2 id="sys-h" class="h2">You don't get a report. You get a system.</h2>
+      </div>
+
+      <figure class="media media-lg" data-media>
+        <video autoplay muted loop playsinline preload="metadata" poster="/media/dashboard.png" aria-label="The Campus Velocity dashboard: score, roadmap and Ops">
+          <source src="/media/dashboard-loop.mp4" type="video/mp4">
+        </video>
+        <div class="media-ph" aria-hidden="true"><span class="media-ph-kind">Video loop</span><span>Dashboard → roadmap → Ops, 10–15 s</span><code>media/dashboard-loop.mp4</code></div>
+        <figcaption>Your score, live.</figcaption>
+      </figure>
+
+      <div class="media-pair">
+        <figure class="media" data-media>
+          <img src="/media/roadmap.png" alt="The roadmap: every fix with an owner, a date and a status" loading="lazy">
+          <div class="media-ph" aria-hidden="true"><span class="media-ph-kind">Screenshot</span><span>Roadmap</span><code>media/roadmap.png</code></div>
+          <figcaption>Every fix, owned and dated.</figcaption>
+        </figure>
+        <figure class="media" data-media>
+          <img src="/media/ops.png" alt="Ops: the school's procedures, confirmed and current" loading="lazy">
+          <div class="media-ph" aria-hidden="true"><span class="media-ph-kind">Screenshot</span><span>Ops home</span><code>media/ops.png</code></div>
+          <figcaption>How your campus runs, written down.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. How it works -->
+  <section id="how" class="section" aria-labelledby="how-h">
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">How it works</p>
-        <h2 id="how-h" class="h2">See the gaps in five minutes. Talk them through in thirty.</h2>
-        <p class="lead">The first three steps are free. You only pay if you decide the full Diagnostic is worth it.</p>
+        <h2 id="how-h" class="h2">The first three steps are free.</h2>
       </div>
-      <ol class="grid grid-4" style="list-style: none; padding: 0; margin: 0">
-        <li class="card step">
-          <span class="step-num">STEP 1</span>
-          <h3 class="h3">Take the check</h3>
-          <p class="muted">Answer 12 questions across six operational domains.</p>
-          <div class="step-meta"><span class="chip chip-ok">Free</span><span class="small muted">About 5 minutes</span></div>
-        </li>
-        <li class="card step">
-          <span class="step-num">STEP 2</span>
-          <h3 class="h3">See your results</h3>
-          <p class="muted">Your score and a domain-by-domain breakdown, straight away.</p>
-          <div class="step-meta"><span class="chip chip-ok">Free</span><span class="small muted">Instant</span></div>
-        </li>
-        <li class="card step">
-          <span class="step-num">STEP 3</span>
-          <h3 class="h3">Results call</h3>
-          <p class="muted">Walk through your results with me. You leave with one fix you can make this month, whatever you decide next.</p>
-          <div class="step-meta"><span class="chip chip-ok">Free</span><span class="small muted">30 minutes</span></div>
-        </li>
-        <li class="card step">
-          <span class="step-num">STEP 4</span>
-          <h3 class="h3">The Campus Diagnostic</h3>
-          <p class="muted">Your scores checked against real evidence, and a 90-day roadmap. The fee is credited in full if you continue with Campus Velocity.</p>
-          <div class="step-meta"><span class="chip chip-quiet">$xx.xx</span><span class="small muted">About 2 weeks</span></div>
-        </li>
+      <ol class="steps-line">
+        <li><span class="step-num">01</span><b>Take the check</b><span class="small muted">5 min</span><span class="chip chip-ok">Free</span></li>
+        <li><span class="step-num">02</span><b>See your results</b><span class="small muted">Instant</span><span class="chip chip-ok">Free</span></li>
+        <li><span class="step-num">03</span><b>Results call</b><span class="small muted">30 min</span><span class="chip chip-ok">Free</span></li>
+        <li><span class="step-num">04</span><b>The Diagnostic</b><span class="small muted">2 weeks</span><span class="chip chip-quiet">$xx.xx</span></li>
       </ol>
-      <div class="row" style="margin-top: 28px">
-        <a class="btn btn-primary" href="/scorecard">Start step 1</a>
-        <a href="/audit">What's in the Diagnostic</a>
-      </div>
     </div>
   </section>
 
-  <section class="section" aria-labelledby="pain-h">
-    <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow">The real cost</p>
-        <h2 id="pain-h" class="h2">You aren't just losing efficiency. You're losing trust.</h2>
-        <p class="lead">Most school leaders think they need better staff. Usually they need operations that run invisibly.</p>
-      </div>
-      <div class="grid grid-3">
-        <div class="card stack">
-          <h3 class="h3">Silent trust erosion</h3>
-          <p class="muted">Parent dissatisfaction that never reaches your desk as a complaint. It shows up later as a re-enrolment that doesn't happen.</p>
-        </div>
-        <div class="card stack">
-          <h3 class="h3">The vendor blind spot</h3>
-          <p class="muted">Contracts that auto-renew without scrutiny because no one owns the expiry date, until the invoice lands wrong.</p>
-        </div>
-        <div class="card stack">
-          <h3 class="h3">Operational gaps</h3>
-          <p class="muted">The space between what your reports show and what's actually happening on campus, where safety, tech and staff confidence quietly slip.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" style="padding-top: 0" aria-labelledby="compare-h">
-    <div class="wrap">
-      <div class="section-head">
-        <h2 id="compare-h" class="h2">Stop firefighting. Start leading.</h2>
-      </div>
-      <div class="grid grid-2">
-        <div class="card card-lg">
-          <p class="eyebrow">Without a system</p>
-          <h3 class="h3" style="margin-top: 6px">Reactive administrator</h3>
-          <ul class="compare-list">
-            <li><svg class="ic-bad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>You find out something's wrong when a parent complains.</li>
-            <li><svg class="ic-bad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>Every escalation lands on your desk personally.</li>
-            <li><svg class="ic-bad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>No one can say what "good" looks like across the six domains.</li>
-            <li><svg class="ic-bad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>You work for the fire alarm.</li>
-          </ul>
-        </div>
-        <div class="card card-lg" style="border-color: var(--action)">
-          <p class="eyebrow" style="color: var(--confirmed-ink)">With Campus Velocity</p>
-          <h3 class="h3" style="margin-top: 6px">Strategic operator</h3>
-          <ul class="compare-list">
-            <li><svg class="ic-good" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 8"/></svg>Problems surface before parents notice.</li>
-            <li><svg class="ic-good" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 8"/></svg>Escalations follow a documented path, not your inbox.</li>
-            <li><svg class="ic-good" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 8"/></svg>A clear score across all six domains, reviewed in a minute.</li>
-            <li><svg class="ic-good" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 8"/></svg>The system works for you.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="domains" class="section" style="background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line)" aria-labelledby="dom-h">
+  <!-- 4. Six domains -->
+  <section id="domains" class="section" style="padding-top: 0" aria-labelledby="dom-h">
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">What we measure</p>
         <h2 id="dom-h" class="h2">Six domains. One score.</h2>
-        <p class="lead">The check measures what decides whether your campus runs invisibly, or loudly.</p>
       </div>
-      <div class="grid grid-3">
-        <div class="card domain-card"><span class="num">01</span><h3 class="h3">Safety &amp; compliance</h3><p class="official">Proven Safety Protocol</p><p class="muted">Drills, incidents, documentation and compliance, mapped against your regulatory requirements.</p></div>
-        <div class="card domain-card"><span class="num">02</span><h3 class="h3">Technology &amp; devices</h3><p class="official">Invisible Tech System</p><p class="muted">Device uptime, ticket resolution and connectivity, so devices work before students arrive.</p></div>
-        <div class="card domain-card"><span class="num">03</span><h3 class="h3">Parent communication</h3><p class="official">Parent Trust System</p><p class="muted">Response times, escalation rates and satisfaction, before dissatisfaction becomes attrition.</p></div>
-        <div class="card domain-card"><span class="num">04</span><h3 class="h3">Vendors &amp; costs</h3><p class="official">Operational Cost Control Engine</p><p class="muted">Vendor performance, maintenance and budget, with every contract and renewal date visible.</p></div>
-        <div class="card domain-card"><span class="num">05</span><h3 class="h3">Staff onboarding &amp; retention</h3><p class="official">Staff Confidence &amp; Retention Framework</p><p class="muted">Time to get up to speed, procedures that are followed, and retention: staff who stay and do their best work.</p></div>
-        <div class="card domain-card"><span class="num">06</span><h3 class="h3">Reporting &amp; visibility</h3><p class="official">Campus Intelligence Dashboard</p><p class="muted">Data completeness, reporting and follow-through: a board-ready picture, reviewed in a minute.</p></div>
-      </div>
+      <ul class="domain-icons">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>Safety &amp; compliance</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>Technology &amp; devices</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 01-11.8 7L4 20l1.2-4.4A8 8 0 1121 12z"/></svg>Parent communication</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2V3z"/><path d="M9 8h6M9 12h6"/></svg>Vendors &amp; costs</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 4a3 3 0 010 6M21 20c0-2.8-1.8-5.1-4.3-5.8"/></svg>Staff onboarding &amp; retention</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Reporting &amp; visibility</li>
+      </ul>
     </div>
   </section>
 
-  <section class="section" aria-labelledby="diag-h">
-    <div class="wrap grid grid-2" style="gap: 32px; align-items: start">
-      <div class="stack-lg">
-        <div class="section-head" style="margin-bottom: 0">
+  <!-- 5. The Diagnostic -->
+  <section class="section" style="background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line)" aria-labelledby="diag-h">
+    <div class="narrow">
+      <div class="card card-lg diag">
+        <div class="stack">
           <p class="eyebrow">Step 4</p>
           <h2 id="diag-h" class="h2">The Campus Diagnostic</h2>
-          <p class="lead">The check shows what you assume. The Diagnostic checks it against evidence, and turns the gaps into a plan.</p>
+          <p class="muted">Your scores checked against evidence, turned into a 90-day roadmap.</p>
+          <a href="/audit">See what's included →</a>
         </div>
         <div class="price-box">
           <p class="eyebrow">Price</p>
           <p class="h3">$xx.xx</p>
-          <p class="small muted">Credited in full toward consulting or Campus Velocity Ops setup if you continue within 60 days.</p>
+          <p class="small muted">Credited in full if you continue within 60 days.</p>
         </div>
-        <p class="muted">The Diagnostic is offered after your results call, if we both think it's the right next step.</p>
       </div>
-      <div class="card card-lg">
-        <h3 class="h3" style="margin-bottom: 8px">What you get</h3>
-        <ul class="offer-list">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 8"/></svg><span><strong>Six-domain risk matrix.</strong> <span class="muted">Every domain scored on evidence, with what you assume set against what you can show.</span></span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 8"/></svg><span><strong>Vendor contract and auto-renew review.</strong> <span class="muted">Every contract, owner and renewal date in one place.</span></span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 8"/></svg><span><strong>Parent trust and escalation protocol.</strong> <span class="muted">Who handles what, in what order, and how fast.</span></span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L19 8"/></svg><span><strong>Your 90-day roadmap.</strong> <span class="muted">The fixes in order, each with an owner and a date, tracked in the Campus Velocity app.</span></span></li>
-        </ul>
-        <div style="margin-top: 16px"><a href="/audit">Read more about the Diagnostic</a></div>
-      </div>
+      <p class="small muted guarantee"><b>90-day guarantee:</b> your campus clears its baseline audit within 90 days of the Transition Protocol, or I keep working at no charge. Applies when your team completes the daily checklist at least 90% of the time.</p>
     </div>
   </section>
 
-  <section class="section" style="padding-top: 0" aria-labelledby="guarantee-h">
-    <div class="narrow">
-      <div class="card card-lg stack" style="border-color: var(--action); text-align: center; align-items: center">
-        <p id="guarantee-h" class="eyebrow" style="color: var(--confirmed-ink)">The 90-day outcome guarantee</p>
-        <p class="h3" style="max-width: 600px">Your campus clears its baseline operational audit within 90 days, or I keep working with your team remotely at no additional charge until it does.</p>
-        <p class="muted" style="max-width: 600px">Applies to the 90-Day Transition Protocol, where we put your roadmap in place together after the Diagnostic, as long as your team completes the daily checklist at least 90% of the time.</p>
-        <p class="muted">— Justin Peterson</p>
+  <!-- 6. About -->
+  <section id="about" class="section" aria-labelledby="about-h">
+    <div class="narrow stack-lg">
+      <div class="about">
+        <img src="/justin-peterson.png" alt="Justin Peterson" width="160" height="160">
+        <div class="about-copy">
+          <p class="eyebrow">Who you'll work with</p>
+          <h2 id="about-h" class="h2">I'm Justin Peterson.</h2>
+          <p class="muted">I work in campus operations at a private school, after four years running operations and technology for a large public school district. No sales reps: the results call is with me.</p>
+        </div>
       </div>
+      <figure class="media" data-media>
+        <video controls playsinline preload="none" poster="/media/justin-intro.jpg" aria-label="60 seconds with Justin">
+          <source src="/media/justin-intro.mp4" type="video/mp4">
+        </video>
+        <div class="media-ph" aria-hidden="true"><span class="media-ph-kind">Video</span><span>60 seconds with Justin, with sound</span><code>media/justin-intro.mp4 + .jpg</code></div>
+      </figure>
     </div>
   </section>
 
-  <section id="about" class="section" style="background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line)" aria-labelledby="about-h">
-    <div class="narrow about">
-      <img src="/justin-peterson.png" alt="Justin Peterson" width="160" height="160">
-      <div class="about-copy">
-        <p class="eyebrow">Who you'll work with</p>
-        <h2 id="about-h" class="h2">I'm Justin Peterson.</h2>
-        <p>I work in campus operations at a private school. Before that, I spent four years managing operations and technology for a large public school district. I hold an MBA and PSM I certification, and have lived and worked across the US and Europe.</p>
-        <p class="muted">Every framework, metric and system here comes from running real campus operations, not from a textbook. There are no sales reps: the results call is with me.</p>
-      </div>
-    </div>
-  </section>
-
+  <!-- 7. Call to action -->
   <section class="band section" aria-labelledby="cta-h">
     <div class="narrow stack-lg" style="text-align: center; align-items: center">
       <h2 id="cta-h" class="display">Find the gaps.</h2>
-      <p class="lead muted" style="max-width: 560px">Keep discovering operational gaps through parent complaints, or spend five minutes seeing the whole picture.</p>
       <a class="btn btn-on-dark btn-lg" href="/scorecard">Take the Risk &amp; Trust Check</a>
       <p class="small muted">Free · 12 questions · results instantly · answers stored securely in the EU</p>
     </div>
@@ -244,6 +186,22 @@
     </nav>
   </div>
 </footer>
+
+<script>
+  // Media slots: the placeholder shows until the real file loads, then it steps aside.
+  document.querySelectorAll('[data-media]').forEach(function (fig) {
+    var el = fig.querySelector('img, video');
+    if (!el) return;
+    function ready() { fig.classList.add('loaded'); }
+    if (el.tagName === 'IMG') {
+      if (el.complete && el.naturalWidth) ready(); else el.addEventListener('load', ready);
+    } else {
+      // The video itself or its poster counts; preload="none" videos rely on their poster.
+      el.addEventListener('loadeddata', ready);
+      if (el.poster) { var p = new Image(); p.onload = ready; p.src = el.poster; }
+    }
+  });
+</script>
 
 </body>
 </html>
