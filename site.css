@@ -213,7 +213,7 @@ h1, h2, h3, h4, p { margin: 0; }
 
 /* Media slots (homepage). A labelled placeholder until the file in /media loads. */
 .media { position: relative; margin: 0; display: flex; flex-direction: column; gap: 10px; }
-.media img, .media video { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; border-radius: var(--radius-lg); border: 1px solid var(--line); background: var(--sunken); box-shadow: 0 12px 32px -16px rgba(13, 17, 23, .25); }
+.media img, .media video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; border-radius: var(--radius-lg); border: 1px solid var(--line); background: var(--sunken); box-shadow: 0 12px 32px -16px rgba(13, 17, 23, .25); }
 .media:not(.loaded) img, .media:not(.loaded) video { visibility: hidden; position: absolute; inset: 0; }
 .media-ph { aspect-ratio: 16 / 10; border: 2px dashed var(--line-strong); border-radius: var(--radius-lg); background: var(--sunken); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 16px; text-align: center; color: var(--ink-muted); font-size: 14px; }
 .media-ph-kind { font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--action); }
@@ -242,3 +242,12 @@ h1, h2, h3, h4, p { margin: 0; }
 .diag .price-box { min-width: 220px; }
 @media (max-width: 600px) { .diag { grid-template-columns: 1fr; } }
 .guarantee { margin-top: 16px; text-align: center; }
+
+/* FAQ (Diagnostic page) */
+.faq { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 56px; padding: 12px 0; font-weight: 600; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-family: var(--font-mono); font-size: 20px; color: var(--action); flex: 0 0 auto; }
+.faq details[open] summary::after { content: "–"; }
+.faq details p { margin: 0 0 16px; }
