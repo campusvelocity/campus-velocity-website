@@ -11,7 +11,7 @@
 //   APP_URL                  optional, defaults to https://app.campusvelocity.com
 
 const CONSENT_TEXT =
-  'Send me Campus Velocity, the weekly campus operations newsletter. I can unsubscribe at any time.';
+  'Email me a breakdown of my 2 weakest areas over the next 2 weeks, plus the weekly newsletter. I can unsubscribe at any time.';
 
 const isEmail = (v) => typeof v === 'string' && v.length <= 254 && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v);
 const clean = (v, max) => (typeof v === 'string' ? v.trim().slice(0, max) : '');
