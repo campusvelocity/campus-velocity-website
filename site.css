@@ -231,6 +231,7 @@ h1, h2, h3, h4, p { margin: 0; }
 .steps-line b { font-size: 15px; }
 .steps-line .chip { grid-column: 3; grid-row: 1 / span 2; }
 .steps-line .small { grid-column: 2; }
+.steps-line .step-paid { border-color: var(--action); box-shadow: inset 0 0 0 1px var(--action); }
 
 /* Six domains as icons */
 .domain-icons { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
