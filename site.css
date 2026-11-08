@@ -219,6 +219,7 @@ h1, h2, h3, h4, p { margin: 0; }
 .media-ph-kind { font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--action); }
 .media-ph code { font-family: var(--font-mono); font-size: 12px; }
 .media.loaded .media-ph { display: none; }
+.media[data-optional]:not(.loaded) { display: none; }
 .media figcaption { font-weight: 600; text-align: center; }
 .media-lg { max-width: 960px; margin: 0 auto; }
 .media-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 960px; margin: 32px auto 0; }
