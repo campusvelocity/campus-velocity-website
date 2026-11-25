@@ -38,6 +38,15 @@
           <a class="btn btn-primary btn-lg" href="/scorecard">Take the Risk &amp; Trust Check</a>
         </div>
         <p class="facts"><span>12 questions</span><span>Results instantly</span><span>Free</span></p>
+        <form class="signup" data-signup novalidate>
+          <label for="signup-hero" class="signup-label">Not ready yet? Get one fix a week.</label>
+          <div class="signup-row">
+            <input id="signup-hero" name="email" type="email" required autocomplete="email" placeholder="you@yourschool.org">
+            <button class="btn btn-secondary" type="submit">Send me the fixes</button>
+          </div>
+          <input class="hp" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <p class="small muted" data-msg role="status">One short email a week from Justin. Unsubscribe any time. <a href="/privacy">Privacy</a></p>
+        </form>
       </div>
 
       <div class="hero-visual">
@@ -137,11 +146,12 @@
         <div class="price-box">
           <p class="eyebrow">Price</p>
           <p class="h3">$2,500</p>
-          <p class="small muted">Founding price for the first 3 schools. Usually $5,000. Credited in full toward monthly support if you continue within 60 days.</p>
+          <p><span class="chip chip-ok" data-founding>3 of 3 founding spots open</span></p>
+          <p class="small muted">Founding price for the first 3 schools. $5,000 after the founding spots are taken. Credited in full toward monthly support if you continue within 60 days.</p>
         </div>
       </div>
       <p class="small muted guarantee"><b>Guarantee:</b> if the Diagnostic doesn't surface at least three findings your team didn't already have written down, you get a full refund.</p>
-      <p class="small muted guarantee"><b>After the Diagnostic:</b> you can continue on monthly support. We fix the gaps together in the first 90 days, then keep your score there. <b>90-day guarantee:</b> if any area in your fix plan is still At risk on the 90-day re-score, I keep working at no charge until it isn't. Applies when your team completes the daily checklist at least 90% of the time.</p>
+      <p class="small muted guarantee"><b>After the Diagnostic:</b> you can continue on monthly support. We fix the gaps together in the first 90 days, then keep your score there. <b>90-day guarantee:</b> if any area in your fix plan is still At risk at 90 days, I keep working free.* <a href="/audit#after-h">See conditions</a></p>
     </div>
   </section>
 
@@ -178,6 +188,17 @@
 </main>
 
 <footer class="footer">
+  <div class="wrap footer-signup">
+    <form class="signup" data-signup novalidate>
+      <label for="signup-footer" class="signup-label">Get one fix a week for your campus.</label>
+      <div class="signup-row">
+        <input id="signup-footer" name="email" type="email" required autocomplete="email" placeholder="you@yourschool.org">
+        <button class="btn btn-secondary" type="submit">Send me the fixes</button>
+      </div>
+      <input class="hp" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <p class="small muted" data-msg role="status">One short email a week from Justin. Unsubscribe any time. <a href="/privacy">Privacy</a></p>
+    </form>
+  </div>
   <div class="wrap">
     <p class="footer-line">Campus Velocity · When operations are invisible, students thrive.</p>
     <nav aria-label="Footer">
@@ -188,6 +209,33 @@
     </nav>
   </div>
 </footer>
+
+<script>
+  // Newsletter signup: posts to /api/subscribe and says what happened.
+  document.querySelectorAll('[data-signup]').forEach(function (form) {
+    var msg = form.querySelector('[data-msg]');
+    var input = form.querySelector('input[type=email]');
+    var button = form.querySelector('button');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!input.value || !input.checkValidity()) {
+        msg.className = 'small err'; msg.textContent = 'Check the email address.'; input.focus(); return;
+      }
+      button.disabled = true;
+      fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: input.value.trim(), website: form.querySelector('.hp').value, source: form.querySelector('input[type=email]').id })
+      }).then(function (r) {
+        if (!r.ok) throw new Error();
+        msg.className = 'small ok'; msg.textContent = 'You\u2019re on the list. The first fix arrives with the next issue.';
+        input.value = '';
+      }).catch(function () {
+        msg.className = 'small err'; msg.textContent = 'That didn\u2019t go through. Try again, or email justin@campusvelocity.com.';
+      }).finally(function () { button.disabled = false; });
+    });
+  });
+</script>
 
 <script>
   // Media slots: the placeholder shows until the real file loads, then it steps aside.

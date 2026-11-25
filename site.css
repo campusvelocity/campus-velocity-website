@@ -252,3 +252,15 @@ h1, h2, h3, h4, p { margin: 0; }
 .faq summary::after { content: "+"; font-family: var(--font-mono); font-size: 20px; color: var(--action); flex: 0 0 auto; }
 .faq details[open] summary::after { content: "–"; }
 .faq details p { margin: 0 0 16px; }
+
+/* Newsletter signup (hero and footer) */
+.signup { display: flex; flex-direction: column; gap: 8px; max-width: 460px; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line); }
+.signup-label { font-size: 15px; font-weight: 600; }
+.signup-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.signup-row input { flex: 1 1 200px; min-width: 0; min-height: var(--control-height); padding: 0 12px; font: inherit; font-size: 15px; color: var(--ink); background: var(--card); border: 1px solid var(--line-strong); border-radius: var(--radius-md); }
+.signup-row .btn { flex: 0 0 auto; }
+.signup [data-msg].ok { color: var(--confirmed-ink); font-weight: 600; }
+.signup [data-msg].err { color: var(--overdue-ink); }
+.signup .hp { position: absolute; left: -10000px; width: 1px; height: 1px; opacity: 0; }
+.footer-signup { margin-bottom: 24px; }
+.footer-signup .signup { margin-top: 0; padding-top: 0; border-top: 0; }
