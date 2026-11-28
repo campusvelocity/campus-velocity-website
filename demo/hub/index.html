@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Click through a fictional school's Campus Velocity Ops hub, 90 days after its Diagnostic.">
+<title>Campus Velocity | Demo School's Ops hub at day 90</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: a click-through copy of the Campus Velocity app's Ops hub (its tokens, type and chips) for a fictional school
+   on day 90. Hash routes per view; one column on phones, main + side column from ~900px. */
+:root {
+  --bg: #F6F7F9; --card: #FFFFFF; --sunken: #EEF0F3; --ink: #0D1117; --muted: #4A5568; --line: #E3E6EB; --line-strong: #CDD2DA;
+  --brand: #00786F; --brand-ink: #00665E; --teal: #00B4A6; --bar: #0D1117; --on-brand: #FFFFFF;
+  --ok-bg: #E3F5F3; --ok-ink: #00665E; --warn-bg: #FEF3E2; --warn-ink: #8A5300; --bad-bg: #FDECEA; --bad-ink: #B42318; --bad: #D92D20;
+  --sans: Inter, "Segoe UI", Helvetica, Arial, sans-serif; --mono: "IBM Plex Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0B0F14; --card: #131920; --sunken: #1B232C; --ink: #E8ECF1; --muted: #9AA6B4; --line: #232C36; --line-strong: #33404D;
+  --brand: #14A397; --brand-ink: #5FD3C8; --teal: #2CC9BB; --bar: #070A0E; --on-brand: #04110F;
+  --ok-bg: #0E2E2B; --ok-ink: #6FDCD1; --warn-bg: #33260F; --warn-ink: #F2C46B; --bad-bg: #3A1614; --bad-ink: #FF9B90; --bad: #FF6B5E; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0B0F14; --card: #131920; --sunken: #1B232C; --ink: #E8ECF1; --muted: #9AA6B4; --line: #232C36; --line-strong: #33404D;
+  --brand: #14A397; --brand-ink: #5FD3C8; --teal: #2CC9BB; --bar: #070A0E; --on-brand: #04110F;
+  --ok-bg: #0E2E2B; --ok-ink: #6FDCD1; --warn-bg: #33260F; --warn-ink: #F2C46B; --bad-bg: #3A1614; --bad-ink: #FF9B90; --bad: #FF6B5E; color-scheme: dark }
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 15px/1.55 var(--sans); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 20px 48px; }
+.page { max-width: 1120px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+h1, h2, h3 { margin: 0; text-wrap: balance; }
+p { margin: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+a { color: var(--brand-ink); }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+.mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.label { font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.chip { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 6px; font: 600 11px/18px var(--mono); letter-spacing: .05em; text-transform: uppercase; white-space: nowrap; }
+.chip.ok { background: var(--ok-bg); color: var(--ok-ink); }
+.chip.warn { background: var(--warn-bg); color: var(--warn-ink); }
+.chip.bad { background: var(--bad-bg); color: var(--bad-ink); }
+.chip.quiet { background: var(--sunken); color: var(--muted); }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 16px; border-radius: 8px; font: 600 14px var(--sans); border: 1px solid var(--line-strong); background: var(--card); color: var(--ink); cursor: pointer; text-decoration: none; }
+.btn.primary { background: var(--brand); border-color: var(--brand); color: var(--on-brand); }
+.btn:disabled { cursor: default; opacity: .9; }
+
+/* Example banner above the app */
+.banner { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: baseline; justify-content: space-between; }
+.banner h1 { font-size: 22px; line-height: 28px; }
+.banner p { max-width: 64ch; font-size: 14px; }
+
+/* App frame */
+.app { border: 1px solid var(--line-strong); border-radius: 14px; overflow: hidden; background: var(--bg); }
+.topbar { background: var(--bar); color: #fff; display: flex; align-items: center; gap: 18px; padding: 12px 18px; overflow-x: auto; }
+.mark { font: 600 13px var(--mono); letter-spacing: .08em; white-space: nowrap; color: #fff; text-decoration: none; }
+.mark span { color: var(--teal); }
+.topbar nav { display: flex; gap: 16px; font-size: 13px; color: #8D97A3; white-space: nowrap; }
+.topbar nav a { color: #fff; text-decoration: none; border-bottom: 2px solid var(--teal); padding-bottom: 2px; }
+.topbar .who { margin-left: auto; font-size: 12px; color: #B8C1CC; white-space: nowrap; }
+.subnav { display: flex; gap: 4px; padding: 10px 18px 0; overflow-x: auto; border-bottom: 1px solid var(--line); background: var(--card); }
+.subnav a { padding: 8px 12px 10px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; border-bottom: 2px solid transparent; }
+.subnav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--brand); font-weight: 600; }
+.subnav a.em { color: var(--bad-ink); }
+.app-body { padding: 18px; display: flex; flex-direction: column; gap: 18px; min-height: 480px; }
+
+.crumbs { font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px; }
+.crumbs a { color: var(--muted); }
+.view-head { display: flex; flex-direction: column; gap: 6px; }
+.view-head h2 { font-size: 28px; line-height: 34px; letter-spacing: -.01em; }
+
+/* Home */
+.hello h2 { font-size: 30px; line-height: 36px; letter-spacing: -.01em; margin-top: 4px; }
+.search { display: flex; gap: 8px; }
+.search label { flex: 1; display: flex; align-items: center; gap: 10px; min-height: 48px; border: 1px solid var(--line-strong); border-radius: 10px; padding: 0 14px; color: var(--muted); background: var(--card); min-width: 0; }
+.search input { flex: 1; min-width: 0; border: 0; background: transparent; font: 15px var(--sans); color: var(--ink); outline: none; }
+.quick { display: flex; flex-wrap: wrap; gap: 8px; }
+.quick a { display: inline-flex; align-items: center; min-height: 40px; padding: 0 14px; border: 1px solid var(--line-strong); border-radius: 8px; font-size: 14px; font-weight: 600; color: var(--ink); text-decoration: none; background: var(--card); }
+.quick a:hover { background: var(--sunken); }
+.quick a.em { border: 2px solid var(--bad); color: var(--bad-ink); }
+
+.compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+.stat { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; }
+.stat .v { font: 600 26px/30px var(--mono); }
+.stat .v s { color: var(--muted); font-weight: 400; font-size: 16px; margin-right: 6px; }
+
+.stack-bar { display: flex; height: 10px; border-radius: 99px; overflow: hidden; background: var(--sunken); }
+.stack-bar i { display: block; height: 100%; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--muted); }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.areas { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px 28px; }
+.areas li { display: flex; flex-direction: column; gap: 6px; font-size: 14px; }
+.row { display: flex; justify-content: space-between; gap: 12px; }
+.row .mono { white-space: nowrap; }
+.mini { height: 6px; border-radius: 99px; background: var(--sunken); overflow: hidden; }
+.mini i { display: block; height: 100%; background: var(--brand); }
+
+.sections { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.sections a { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 2px; background: var(--card); color: var(--ink); text-decoration: none; }
+.sections a:hover { border-color: var(--brand); }
+.sections .n { font: 600 22px var(--mono); }
+
+.startbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; border: 1px solid var(--brand); background: var(--ok-bg); border-radius: 12px; padding: 14px 18px; text-decoration: none; color: var(--ok-ink); }
+.startbar b { display: block; color: var(--ink); }
+
+.cols { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }
+@media (min-width: 900px) { .cols { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); } }
+.col { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+
+.list li { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; gap: 2px 12px; align-items: baseline; padding: 10px 0; border-top: 1px solid var(--line); }
+.list li:first-child { border-top: 0; padding-top: 0; }
+.list .t { font: 600 13px var(--mono); color: var(--muted); }
+.list .meta { grid-column: 2; font-size: 13px; color: var(--muted); }
+.list a { color: var(--ink); font-weight: 500; }
+
+.check li { display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; gap: 10px; align-items: start; padding: 9px 0; border-top: 1px solid var(--line); font-size: 14px; }
+.check li:first-child { border-top: 0; padding-top: 0; }
+.box { width: 20px; height: 20px; border-radius: 5px; border: 1.5px solid var(--line-strong); background: var(--card); margin-top: 1px; display: grid; place-items: center; cursor: pointer; padding: 0; }
+.box[aria-checked="true"] { background: var(--brand); border-color: var(--brand); }
+.box[aria-checked="true"]::after { content: ""; width: 9px; height: 5px; border-left: 2px solid var(--on-brand); border-bottom: 2px solid var(--on-brand); transform: rotate(-45deg) translate(1px, -1px); }
+.check .done { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--line-strong); }
+
+/* Section list */
+.items { display: flex; flex-direction: column; }
+.items a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 12px; padding: 14px 0; border-top: 1px solid var(--line); color: var(--ink); text-decoration: none; }
+.items a:first-child { border-top: 0; padding-top: 0; }
+.items a:hover b { color: var(--brand-ink); text-decoration: underline; }
+.items .sub { grid-column: 1 / -1; font-size: 13px; color: var(--muted); }
+.group-label { margin-top: 6px; }
+
+/* Item view */
+.item-head { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; justify-content: space-between; }
+.item h3 { font-size: 26px; line-height: 32px; }
+.first { border: 2px solid var(--bad); border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; }
+.first b { font-size: 17px; }
+.steps { counter-reset: s; display: flex; flex-direction: column; gap: 8px; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 8px; }
+.steps li::before { content: counter(s); font: 600 13px/24px var(--mono); color: var(--muted); }
+.steps .tool { display: block; font-size: 13px; color: var(--muted); }
+.kv { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px 20px; }
+@media (min-width: 560px) { .kv { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.kv > div { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.bullets li { padding-left: 16px; position: relative; }
+.bullets li::before { content: ""; position: absolute; left: 2px; top: .7em; width: 5px; height: 5px; border-radius: 50%; background: var(--muted); }
+.trail { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; }
+.readbox { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; justify-content: space-between; background: var(--sunken); border-radius: 10px; padding: 12px 14px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { text-align: left; font: 600 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); padding: 0 10px 8px 0; }
+td { padding: 9px 10px 9px 0; border-top: 1px solid var(--line); vertical-align: top; }
+.scroll { overflow-x: auto; }
+.esc li { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; gap: 8px; padding: 9px 0; border-top: 1px solid var(--line); font-size: 14px; }
+.esc li:first-child { border-top: 0; }
+.esc .num { font: 600 13px/22px var(--mono); color: var(--muted); }
+.copy { user-select: all; }
+
+.footnote { font-size: 13px; color: var(--muted); max-width: 75ch; }
+@media (prefers-reduced-motion: no-preference) { .app-body > * { animation: in .18s ease-out; } @keyframes in { from { opacity: .4; transform: translateY(3px); } } }
+</style>
+</head>
+<body>
+
+
+<div class="page">
+  <header class="banner">
+    <div>
+      <p class="label">Example · fictional school · click around</p>
+      <h1>Demo School's Ops hub, 90 days in</h1>
+    </div>
+    <p class="muted"><a href="/audit/example/">← Demo School's Diagnostic</a> · <a href="/">campusvelocity.com</a><br>After the Diagnostic and three months of monthly support. The school, people and numbers are made up; the sections, fields and statuses are the app's real ones. Ticks and confirmations here reset when you reload.</p>
+  </header>
+
+  <div class="app">
+    <div class="topbar">
+      <a class="mark" href="#home">CAMPUS<span>VELOCITY</span></a>
+      <nav aria-label="App"><span>Dashboard</span><span>Roadmap</span><span>Updates</span><span>Calls</span><span>Diagnostic</span><a href="#home">Ops</a><span>Team</span></nav>
+      <span class="who">Demo School · Dana</span>
+    </div>
+    <nav class="subnav" id="subnav" aria-label="Ops"></nav>
+    <main class="app-body" id="view" tabindex="-1"></main>
+  </div>
+
+  <p class="footnote">Fictional example for illustration. Demo School, its staff, phone numbers and all figures are invented. In a real school the content comes from their own documents, routines and people. Only Ops is clickable; the other tabs are shown for context.</p>
+</div>
+
+<script>
+const AREAS = { safety: "Safety & compliance", tech: "Technology & devices", parent: "Parent communication", vendors: "Vendors & costs", staff: "Staff onboarding & retention", reporting: "Reporting & visibility" };
+const SECTIONS = [
+  { key: "emergencies", name: "Emergencies", intro: "What everyone does in the first minutes, until someone in charge takes over. Short enough to follow under stress." },
+  { key: "routines", name: "Routines", intro: "What happens when, who does it, and who steps in." },
+  { key: "contacts", name: "Who to call", intro: "Who to contact, for what, and how to reach them. The role matters more than the name." },
+  { key: "escalation", name: "Escalation paths", intro: "For a specific situation: who to go to first, how long to wait, and who's next." },
+  { key: "cover", name: "If someone's out", intro: "One standing plan per key role, written before anyone is out, so it works for a sick day too." },
+  { key: "tools", name: "Tools & forms", intro: "Every tool, form and system staff need, with what it's for and how to get access." },
+];
+const SEC = Object.fromEntries(SECTIONS.map((s) => [s.key, s]));
+
+// status: ok = confirmed, due = due for review, new = not yet confirmed
+const ITEMS = [
+  // Emergencies
+  { id: "lockdown", s: "emergencies", title: "Lockdown", areas: ["safety"], owner: "Head of School", status: "ok", reviewed: "3 Feb", next: "3 Aug", mustRead: true, reads: [34, 36], v: 3, start: true,
+    c: { first: "Get everyone near you into the nearest lockable room. Lock the door, lights off, away from windows.", signal: "\"Lockdown, lockdown\" on the PA, three times, plus the red alert in the staff app.",
+      steps: ["Take the register from the room. Note anyone missing or extra.", "Put the green card under the door if everyone is accounted for, red if not.", "Silence phones. Stay put until a named person unlocks the door.", "Front office calls 911, then locks the main entrance and both gates.", "Operations Manager sends the parent holding message from the template."],
+      inCharge: "Head of School. If out: Operations Manager.", allClear: "Head of School in person, room by room. Never by PA alone.", after: "Debrief with staff the same day. Log what happened and anything that didn't work, and update this page within a week.", drill: "Every term · last drilled 26 February" } },
+  { id: "evacuation", s: "emergencies", title: "Fire evacuation", areas: ["safety"], owner: "Operations Manager", status: "ok", reviewed: "10 Feb", next: "10 Aug", mustRead: true, reads: [36, 36], v: 4, start: true,
+    c: { first: "Leave by the nearest exit with your class. Don't stop for belongings.", signal: "Continuous fire alarm.",
+      steps: ["Close doors behind you, don't lock them.", "Line up at your assembly point on the field: Lower School by the north fence, Upper School by the south goal.", "Take the register. Report to your area marshal by hand signal: thumbs up or hand raised.", "Front office brings the visitor log and the day's sign-in sheet.", "Nobody goes back in until the fire service or the Head says so."],
+      inCharge: "Operations Manager as fire warden. If out: caretaker.", allClear: "Fire service, or the Head of School if it was a false alarm.", after: "Record the time to clear the building in the drill log.", drill: "Every term · last drilled 26 February (3 min 40 s)" } },
+  { id: "medical", s: "emergencies", title: "Medical emergency", areas: ["safety"], owner: "School nurse", status: "ok", reviewed: "12 Feb", next: "12 Aug", mustRead: true, reads: [35, 36], v: 2, start: true,
+    c: { first: "Stay with the person. Send someone else to the front office for the nurse and the first-aid bag.", signal: "Radio call \"Nurse to [room], urgent\".",
+      steps: ["If they're not breathing or unconscious, call 911 straight away.", "Nurse or a first-aider takes over. Everyone else keeps other students away.", "Front office meets the ambulance at the main gate.", "Front office calls the parent once the nurse says what to tell them."],
+      inCharge: "School nurse. If out: any trained first-aider (list in Who to call).", allClear: "Nurse, once the person is handed over or recovered.", after: "Incident form the same day. Nurse follows up with the parent the next morning.", drill: "Once a year" } },
+  { id: "missing", s: "emergencies", title: "Missing student", areas: ["safety", "parent"], owner: "Head of School", status: "ok", reviewed: "20 Feb", next: "20 Aug", mustRead: true, reads: [33, 36], v: 1,
+    c: { first: "Tell the front office straight away with the student's name, what they're wearing and where they were last seen.", signal: "Front office radios \"Code yellow\" with the name.",
+      steps: ["Available staff search their assigned zones (map in Tools & forms).", "Front office checks the sign-out log and CCTV for the gates.", "After 10 minutes without finding them, the Head calls the parent.", "After 15 minutes, the Head calls 911."],
+      inCharge: "Head of School. If out: Operations Manager.", allClear: "Front office on the radio: \"Code yellow clear\".", after: "Head writes up what happened and what changes.", drill: "Not drilled" } },
+  { id: "shelter", s: "emergencies", title: "Shelter in place (severe weather)", areas: ["safety"], owner: "Head of School", status: "new", reviewed: "—", next: "—", mustRead: true, reads: [0, 36], v: 1,
+    c: { first: "Move everyone to an inside room or corridor on the ground floor, away from windows.", signal: "Three short bells, then the PA message.",
+      steps: ["Take the register and report numbers to the front office.", "Keep students seated and calm until the all-clear."],
+      inCharge: "Head of School.", allClear: "Head of School on the PA once the warning is lifted.", after: "", drill: "Once a year" } },
+  { id: "intruder", s: "emergencies", title: "Unknown adult on site", areas: ["safety"], owner: "Operations Manager", status: "ok", reviewed: "5 Feb", next: "5 Aug", mustRead: true, reads: [36, 36], v: 2,
+    c: { first: "If someone without a visitor badge is on site, don't challenge them alone. Radio the front office.", signal: "Radio: \"Visitor check, [location]\".",
+      steps: ["Operations Manager or caretaker goes to them with a second adult.", "Ask politely who they're here to see and walk them to the front office.", "If they won't come or seem a threat, move to Lockdown."],
+      inCharge: "Operations Manager.", allClear: "Front office on the radio.", after: "Log it in the safety log.", drill: "Every term" } },
+
+  // Routines
+  { id: "opening", s: "routines", title: "Opening up", areas: ["safety"], owner: "Operations Manager", status: "ok", reviewed: "15 Jan", next: "15 Jul", v: 3, start: true,
+    c: { freq: "Daily", when: "7:10", doneBy: "Operations Manager", backup: "Caretaker", minutes: 20,
+      steps: [["Disarm the alarm and unlock the main entrance.", "Alarm code: held by Ops and caretaker"], ["Walk the site: gates, fire exits clear, no damage overnight."], ["Unlock gates A and B at 7:30."], ["Switch on the front-office phones and check the overnight voicemail."]],
+      done: "Both gates open by 7:30, fire exits clear, voicemail checked.", wrong: "If the alarm won't disarm, call the alarm company (Who to call) and keep the doors shut until 7:30." } },
+  { id: "devices", s: "routines", title: "Morning device check", areas: ["tech"], owner: "IT lead", status: "ok", reviewed: "22 Jan", next: "22 Jul", v: 2,
+    c: { freq: "Daily", when: "7:40", doneBy: "IT lead", backup: "Operations Manager", minutes: 15,
+      steps: [["Pick 10 student devices from the charging carts, different carts each day."], ["Check each one: charged, logs in, connects to the Wi-Fi."], ["Log the result in the device sheet.", "Device check sheet (Tools & forms)"], ["Anything not ready goes to the repair shelf with a tag."]],
+      done: "10 devices checked and logged before first lesson.", wrong: "More than 2 of 10 failing: tell the Operations Manager before 8:00 and check the whole cart." } },
+  { id: "arrival", s: "routines", title: "Arrival supervision", areas: ["safety", "parent"], owner: "Operations Manager", status: "ok", reviewed: "15 Jan", next: "15 Jul", v: 2,
+    c: { freq: "Daily", when: "7:45", doneBy: "Duty staff (rota)", backup: "Operations Manager", minutes: 30,
+      steps: [["One adult at gate A, one at gate B, from 7:45 to 8:15."], ["Late arrivals after 8:15 go through the front office to sign in."]],
+      done: "Gates staffed from 7:45. Late arrivals signed in.", wrong: "If duty staff are missing, the Operations Manager covers gate A and radios for cover for gate B." } },
+  { id: "lunch", s: "routines", title: "Lunch cover", areas: ["safety"], owner: "Operations Manager", status: "due", reviewed: "8 Sep", next: "8 Mar", v: 1,
+    c: { freq: "Daily", when: "12:00", doneBy: "Lunch duty staff (rota)", backup: "Operations Manager", minutes: 60,
+      steps: [["Three adults in the dining hall, one on the field."], ["Allergy table checked by the nurse before service."]],
+      done: "Four adults on duty for the full hour.", wrong: "Short of staff: Operations Manager covers the field." } },
+  { id: "dismissal", s: "routines", title: "Dismissal", areas: ["safety", "parent"], owner: "Operations Manager", status: "ok", reviewed: "29 Jan", next: "29 Jul", v: 4, start: true,
+    c: { freq: "Daily", when: "15:15", doneBy: "Operations Manager", backup: "Admissions coordinator", minutes: 45,
+      steps: [["Classes walk to their pickup zones at 15:15."], ["Parents show the pickup card at the car line. Staff radio the name to the zone."], ["Anyone not collected by 15:45 goes to the front office with the late-pickup log.", "Late-pickup log (Tools & forms)"], ["Front office calls the parent of anyone still waiting at 16:00."]],
+      done: "Every student handed to an adult on their pickup list, or signed into the late log.", wrong: "A student is collected by someone not on the list: don't release them. Front office calls the parent." } },
+  { id: "lockup", s: "routines", title: "Lock-up", areas: ["safety"], owner: "Caretaker", status: "ok", reviewed: "15 Jan", next: "15 Jul", v: 2,
+    c: { freq: "Daily", when: "17:30", doneBy: "Caretaker", backup: "Operations Manager", minutes: 20,
+      steps: [["Check every room is empty."], ["Lock gates, doors and windows."], ["Set the alarm."]],
+      done: "Alarm set by 18:00.", wrong: "Alarm won't set: call the alarm company and don't leave until it's set." } },
+  { id: "absences", s: "routines", title: "Absence calls to parents", areas: ["parent"], owner: "Front office manager", status: "ok", reviewed: "2 Feb", next: "2 Aug", v: 2,
+    c: { freq: "Daily", when: "by 9:30", doneBy: "Front office manager", backup: "Admissions coordinator", minutes: 30,
+      steps: [["Pull the unexplained-absence list from the attendance system at 9:00."], ["Call or message every parent. Note the reason in the system."]],
+      done: "Every unexplained absence followed up by 9:30.", wrong: "Can't reach a parent by 10:30: tell the Head." } },
+  { id: "weekly", s: "routines", title: "Monday numbers to the Head", areas: ["reporting"], owner: "Operations Manager", status: "ok", reviewed: "9 Feb", next: "9 Aug", v: 1,
+    c: { freq: "Weekly", when: "Monday 9:00", doneBy: "Operations Manager", backup: "Business manager", minutes: 15,
+      steps: [["Open safety issues, oldest first."], ["Parent messages unanswered for more than a day."], ["Staff absences last week."]],
+      done: "Three numbers in the Head's inbox by 9:00 Monday.", wrong: "" } },
+  { id: "vendors", s: "routines", title: "Vendor renewal check", areas: ["vendors"], owner: "Business manager", status: "ok", reviewed: "2 Mar", next: "2 Sep", v: 1,
+    c: { freq: "Monthly", when: "First Monday", doneBy: "Business manager", backup: "Operations Manager", minutes: 30,
+      steps: [["Open the contract register.", "Vendor contract register (Tools & forms)"], ["Flag every notice deadline in the next 60 days."], ["Decide renew, renegotiate or cancel, and note who decided."]],
+      done: "No notice deadline passes without a decision.", wrong: "" } },
+  { id: "newstaff", s: "routines", title: "New staff first day", areas: ["staff"], owner: "Operations Manager", status: "new", reviewed: "—", next: "—", v: 1,
+    c: { freq: "When needed", when: "Day 1, 8:00", doneBy: "Operations Manager", backup: "Head's assistant", minutes: 90,
+      steps: [["Badge, keys and accounts ready before they arrive."], ["Walk the site and the emergency routes."], ["Give them Start Here and ask them to confirm it by Friday."]],
+      done: "They can log in, find their room, and know what to do in a lockdown.", wrong: "" } },
+
+  // Contacts
+  { id: "c-ops", s: "contacts", title: "Operations Manager", areas: ["safety"], owner: "Head of School", status: "ok", reviewed: "6 Feb", next: "6 Aug", v: 2,
+    c: { kind: "Staff", name: "Sam Ortega", phone: "(305) 555-0142", email: "ops@demoschool.example", other: "Radio channel 1", for: ["Anything about the building, gates or alarm", "Emergencies when the Head is out", "Cover when someone's out"], hours: "7:00–17:30", ooh: "Mobile, emergencies only" } },
+  { id: "c-nurse", s: "contacts", title: "School nurse", areas: ["safety"], owner: "Operations Manager", status: "ok", reviewed: "6 Feb", next: "6 Aug", v: 1,
+    c: { kind: "Staff", name: "Priya Shah", phone: "(305) 555-0155", email: "nurse@demoschool.example", other: "Radio channel 2", for: ["Injuries and illness", "Allergies and medication", "First-aider list"], hours: "7:45–15:45", ooh: "" } },
+  { id: "c-it", s: "contacts", title: "IT lead", areas: ["tech"], owner: "Operations Manager", status: "ok", reviewed: "6 Feb", next: "6 Aug", v: 1,
+    c: { kind: "Staff", name: "Leo Brandt", phone: "(305) 555-0167", email: "it@demoschool.example", other: "IT request form", for: ["Accounts and passwords", "Device repairs", "Wi-Fi and projectors"], hours: "7:30–16:00", ooh: "IT support company, below" } },
+  { id: "c-itco", s: "contacts", title: "IT support company", areas: ["tech", "vendors"], owner: "IT lead", status: "ok", reviewed: "6 Feb", next: "6 Aug", v: 1,
+    c: { kind: "Outside company", org: "Brightline IT", phone: "(305) 555-0190", email: "help@brightline.example", for: ["Network or server outage", "Anything the IT lead can't fix in a day"], hours: "24/7 for outages", ooh: "Same number", ref: "Contract BL-2291" } },
+  { id: "c-alarm", s: "contacts", title: "Alarm and CCTV company", areas: ["safety", "vendors"], owner: "Operations Manager", status: "due", reviewed: "4 Sep", next: "4 Mar", v: 1,
+    c: { kind: "Outside company", org: "Coastline Security", phone: "(305) 555-0112", for: ["Alarm won't set or disarm", "CCTV footage requests"], hours: "24/7", ooh: "Same number", ref: "Account 77-410" } },
+  { id: "c-police", s: "contacts", title: "Police, non-emergency", areas: ["safety"], owner: "Operations Manager", status: "ok", reviewed: "6 Feb", next: "6 Aug", v: 1,
+    c: { kind: "Public service", phone: "(305) 555-0100", for: ["Reporting something after the fact", "Traffic at the car line"], hours: "24/7", ooh: "Emergencies: 911" } },
+  { id: "c-dsl", s: "contacts", title: "Designated safeguarding lead", areas: ["safety", "parent"], owner: "Head of School", status: "ok", reviewed: "6 Feb", next: "6 Aug", v: 1,
+    c: { kind: "Staff", name: "Maria Chen", phone: "(305) 555-0133", email: "safeguarding@demoschool.example", for: ["Any concern about a student's welfare", "Anything a parent raises about safety"], hours: "School hours", ooh: "Head of School" } },
+  { id: "c-catering", s: "contacts", title: "Catering company", areas: ["vendors"], owner: "Business manager", status: "new", reviewed: "—", next: "—", v: 1,
+    c: { kind: "Outside company", org: "Greenleaf Catering", phone: "(305) 555-0178", for: ["Menu and allergy questions", "Late or missing deliveries"], hours: "6:00–14:00", ooh: "", ref: "Contract owner not yet named" } },
+
+  // Escalation
+  { id: "e-safety", s: "escalation", title: "A parent raises a safety concern", areas: ["parent", "safety"], owner: "Head of School", status: "ok", reviewed: "11 Feb", next: "11 Aug", v: 2, start: true,
+    c: { steps: [["Class teacher or front office logs it", "same day"], ["Operations Manager owns it and replies to the parent", "1 school day"], ["Head of School", "if not closed in 3 days"]], tell: ["Designated safeguarding lead"], notes: "Every reply comes from a person, the same school day. \"We're on it, I'll come back to you by Thursday\" counts." } },
+  { id: "e-complaint", s: "escalation", title: "A parent complaint about a teacher", areas: ["parent", "staff"], owner: "Head of School", status: "ok", reviewed: "11 Feb", next: "11 Aug", v: 1,
+    c: { steps: [["Head of section", "reply in 1 school day"], ["Deputy Head", "if not resolved in 5 days"], ["Head of School", "if still open"]], tell: ["Head of School (FYI only at step 1)"], notes: "Never discuss a complaint in front of other parents at pickup." } },
+  { id: "e-it", s: "escalation", title: "Wi-Fi or systems down", areas: ["tech"], owner: "IT lead", status: "ok", reviewed: "14 Feb", next: "14 Aug", v: 1,
+    c: { steps: [["IT lead", "15 minutes"], ["IT support company", "1 hour"], ["Operations Manager decides on paper-based lessons", ""]], tell: ["Head of School if it lasts past first break"], notes: "" } },
+  { id: "e-injury", s: "escalation", title: "A student injury on site", areas: ["safety", "parent"], owner: "School nurse", status: "ok", reviewed: "12 Feb", next: "12 Aug", v: 1,
+    c: { steps: [["School nurse", "straight away"], ["Parent call by the nurse", "within 1 hour"], ["Head of School", "if a hospital visit"]], tell: ["Operations Manager", "Designated safeguarding lead if anything's unclear about how it happened"], notes: "Incident form the same day, every time." } },
+
+  // Cover plans
+  { id: "cv-front", s: "cover", title: "If the front office manager is out", areas: ["staff", "parent"], owner: "Operations Manager", status: "ok", reviewed: "18 Feb", next: "18 Aug", v: 2,
+    c: { held: "Front office manager", first: "Admissions coordinator", second: "Operations Manager",
+      duties: [["Open the front office, check voicemail", "7:30", "Admissions coordinator"], ["Late arrivals and sign-in", "8:00–9:30", "Admissions coordinator"], ["Absence calls to parents", "by 9:30", "Operations Manager"], ["Early pick-ups and visitor badges", "All day", "Admissions coordinator"]],
+      where: [["Visitor badges", "Top drawer, front desk"], ["Spare keys", "Key box, code with Operations"]], access: [["Attendance system", "Front-office role, IT lead grants it"], ["Shared parent inbox", "Already set up for both backups"]], used: "Used twice since: 4 Feb, 27 Feb" } },
+  { id: "cv-ops", s: "cover", title: "If the Operations Manager is out", areas: ["safety", "staff"], owner: "Head of School", status: "ok", reviewed: "18 Feb", next: "18 Aug", v: 1,
+    c: { held: "Operations Manager", first: "Caretaker (building)", second: "Admissions coordinator (dismissal)",
+      duties: [["Opening up", "7:10", "Caretaker"], ["Dismissal lead", "15:15", "Admissions coordinator"], ["Fire warden", "All day", "Caretaker"], ["Monday numbers", "Monday", "Business manager"]],
+      where: [["Alarm code", "Sealed envelope in the Head's safe"], ["Radio charger", "Ops office, shelf by the door"]], access: [["Alarm panel", "Code from the Head"]], used: "" } },
+  { id: "cv-nurse", s: "cover", title: "If the school nurse is out", areas: ["safety"], owner: "Operations Manager", status: "ok", reviewed: "18 Feb", next: "18 Aug", v: 1,
+    c: { held: "School nurse", first: "First-aider on duty (rota)", second: "Operations Manager",
+      duties: [["Allergy check at lunch", "11:50", "First-aider on duty"], ["Daily medication", "As scheduled", "First-aider on duty"], ["Parent calls after an injury", "Within 1 hour", "Operations Manager"]],
+      where: [["Medication box", "Nurse's office, locked cabinet, key at front office"], ["First-aid bags", "Front office and gym"]], access: [], used: "" } },
+  { id: "cv-it", s: "cover", title: "If the IT lead is out", areas: ["tech"], owner: "Operations Manager", status: "due", reviewed: "1 Sep", next: "1 Mar", v: 1,
+    c: { held: "IT lead", first: "IT support company", second: "Operations Manager",
+      duties: [["Morning device check", "7:40", "Operations Manager"], ["Password resets", "As needed", "IT support company"]],
+      where: [["Spare chargers", "IT room, cabinet 2"]], access: [["Admin console", "IT support company has its own login"]], used: "" } },
+
+  // Tools
+  { id: "t-sheet", s: "tools", title: "Device check sheet", areas: ["tech"], owner: "IT lead", status: "ok", reviewed: "22 Jan", next: "22 Jul", v: 1, c: { url: "https://drive.demoschool.example/device-check", purpose: "Log the 10 devices checked each morning.", cat: "Daily tools", who: "IT lead, Operations Manager" } },
+  { id: "t-late", s: "tools", title: "Late-pickup log", areas: ["safety", "parent"], owner: "Operations Manager", status: "ok", reviewed: "29 Jan", next: "29 Jul", v: 1, c: { url: "https://drive.demoschool.example/late-pickup", purpose: "Sign in every student not collected by 15:45.", cat: "Daily tools", who: "Front office, duty staff" } },
+  { id: "t-contracts", s: "tools", title: "Vendor contract register", areas: ["vendors"], owner: "Business manager", status: "ok", reviewed: "2 Mar", next: "2 Sep", v: 2, c: { url: "https://drive.demoschool.example/contracts", purpose: "Every contract with renewal date, notice period and owner.", cat: "Reporting", who: "Business manager, Head of School" } },
+  { id: "t-incident", s: "tools", title: "Incident form", areas: ["safety"], owner: "School nurse", status: "ok", reviewed: "12 Feb", next: "12 Aug", v: 1, c: { url: "https://forms.demoschool.example/incident", purpose: "Record any injury or safety incident the same day.", cat: "Forms & requests", who: "All staff" } },
+  { id: "t-rota", s: "tools", title: "Duty rota", areas: ["safety", "staff"], owner: "Operations Manager", status: "ok", reviewed: "15 Jan", next: "15 Jul", v: 3, c: { url: "https://drive.demoschool.example/rota", purpose: "Who's on gate, lunch and dismissal duty each day.", cat: "Calendars", who: "All staff" } },
+];
+const BY_ID = Object.fromEntries(ITEMS.map((i) => [i.id, i]));
+const reads = new Set(ITEMS.filter((i) => i.start && i.id !== "dismissal").map((i) => i.id)); // Dana's confirmations
+const checklist = [
+  { t: "Fire evacuation drill, logged", d: "26 Feb", done: true, link: "evacuation" },
+  { t: "Lockdown drill, logged", d: "26 Feb", done: true, link: "lockdown" },
+  { t: "Vendor renewals checked for the next 90 days", d: "2 Mar", done: true, link: "vendors" },
+  { t: "Review cover plans with each backup", d: "13 Mar", done: false, due: true, link: "cv-front" },
+  { t: "Re-check visitor sign-in against policy", d: "20 Mar", done: false },
+  { t: "Board summary for the quarter", d: "27 Mar", done: false },
+];
+
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+const STATUS = { ok: ["ok", "Confirmed"], due: ["warn", "Due for review"], new: ["quiet", "Not yet confirmed"] };
+const chip = (st) => `<span class="chip ${STATUS[st][0]}">${STATUS[st][1]}</span>`;
+const L = (t) => `<span class="label">${esc(t)}</span>`;
+let query = "";
+
+function subnav(active) {
+  const links = [["home", "Overview"], ...SECTIONS.map((s) => [s.key, s.name]), ["start", "Start here"]];
+  document.getElementById("subnav").innerHTML = links.map(([k, n]) =>
+    `<a href="#${k}"${k === active ? ' aria-current="page"' : ""}${k === "emergencies" ? ' class="em"' : ""}>${esc(n)}</a>`).join("");
+}
+
+function home() {
+  const total = ITEMS.length, ok = ITEMS.filter((i) => i.status === "ok").length, due = ITEMS.filter((i) => i.status === "due").length, nw = total - ok - due;
+  const areas = Object.entries(AREAS).map(([k, n]) => { const inA = ITEMS.filter((i) => i.areas.includes(k)); const c = inA.filter((i) => i.status === "ok").length; return { n, c, t: inA.length }; });
+  const daily = ITEMS.filter((i) => i.s === "routines" && i.c.freq === "Daily");
+  const startItems = ITEMS.filter((i) => i.start), startRead = startItems.filter((i) => reads.has(i.id)).length;
+  const done = checklist.filter((x) => x.done).length;
+  return `
+  <section class="compare" aria-label="Day 0 compared with day 90">
+    <div class="stat">${L("Campus Intelligence Score")}<span class="v"><s>47</s>71</span><span class="small muted">Diagnostic re-score, day 90</span></div>
+    <div class="stat">${L("Areas At risk")}<span class="v"><s>3</s>0</span><span class="small muted">Guarantee met</span></div>
+    <div class="stat">${L("Items in the hub")}<span class="v"><s>9</s>${total}</span><span class="small muted">${ok} confirmed</span></div>
+    <div class="stat">${L("Gaps still open")}<span class="v"><s>31</s>6</span><span class="small muted">All owned and dated</span></div>
+  </section>
+
+  <section class="card hello">
+    <div>${L("Tuesday 10 March · Demo School")}<h2>Good morning, Dana</h2><p class="muted">How the campus runs, confirmed and current. Search anything, or jump straight in.</p></div>
+    <form class="search" role="search" id="searchform">
+      <label for="q"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <span class="sr-only" hidden>Search Ops</span><input id="q" name="q" type="search" placeholder="Search procedures, e.g. lockdown, dismissal, who to call" value="${esc(query)}"></label>
+      <button class="btn primary" type="submit">Search</button>
+    </form>
+    <div class="quick"><a class="em" href="#emergencies">Emergencies</a><a href="#contacts">Who to call</a><a href="#tools">Tools &amp; forms</a><a href="#cover">If someone's out</a></div>
+  </section>
+
+  <section class="card">
+    <div class="row">${L("Completeness · whole school")}<span class="mono small muted">${ok} of ${total} confirmed</span></div>
+    <div class="stack-bar" aria-hidden="true"><i style="width:${ok / total * 100}%;background:var(--brand)"></i><i style="width:${due / total * 100}%;background:var(--warn-ink)"></i><i style="width:${nw / total * 100}%;background:var(--line-strong)"></i></div>
+    <div class="legend"><span><i style="background:var(--brand)"></i>Confirmed ${ok}</span><span><i style="background:var(--warn-ink)"></i>Due for review ${due}</span><span><i style="background:var(--line-strong)"></i>Not yet confirmed ${nw}</span></div>
+    <ul class="areas">${areas.map((a) => `<li><span class="row"><span>${esc(a.n)}</span><span class="mono muted">${a.c} of ${a.t}</span></span><span class="mini"><i style="width:${a.c / a.t * 100}%"></i></span></li>`).join("")}</ul>
+  </section>
+
+  <ul class="sections" aria-label="Sections">${SECTIONS.map((s) => { const n = ITEMS.filter((i) => i.s === s.key); const note = { emergencies: `${n.filter(i=>i.status==="ok").length} confirmed`, routines: `${n.filter(i=>i.c.freq==="Daily").length} daily`, contacts: "staff, vendors, services", escalation: "parent, safety, IT", cover: "key roles covered", tools: "with access notes" }[s.key];
+    return `<li><a href="#${s.key}">${L(s.name)}<span class="n">${n.length}</span><span class="small muted">${note}</span></a></li>`; }).join("")}</ul>
+
+  <a class="startbar" href="#start"><span>${L("Start here")}<b>First-week reading: ${startRead} of ${startItems.length} confirmed</b></span><span style="font-weight:600">Continue</span></a>
+
+  <div class="cols">
+    <div class="col">
+      <section class="card">
+        <div class="row">${L("Spring term checklist")}<span class="mono small muted">${done} of ${checklist.length} done</span></div>
+        <ul class="check">${checklist.map((x, n) => `<li><button class="box" role="checkbox" aria-checked="${x.done}" aria-label="${esc(x.t)}" data-tick="${n}"></button>
+          <span class="${x.done ? "done" : ""}">${x.link ? `<a href="#item-${x.link}" style="color:inherit">${esc(x.t)}</a>` : esc(x.t)}</span>
+          ${x.due && !x.done ? `<span class="chip warn">Due ${esc(x.d)}</span>` : `<span class="small muted">${esc(x.d)}</span>`}</li>`).join("")}</ul>
+      </section>
+      <section class="card">
+        <div class="row">${L("Still open from the fix plan")}<span class="mono small muted">6</span></div>
+        <ul class="list">
+          <li><span class="t">13 Mar</span><a href="#item-shelter">Shelter-in-place procedure</a><span class="chip warn">Draft</span><span class="meta">Head of School</span></li>
+          <li><span class="t">20 Mar</span><a href="#item-newstaff">New staff first day: confirm with staff</a><span class="chip quiet">Open</span><span class="meta">Operations Manager</span></li>
+          <li><span class="t">27 Mar</span><a href="#item-c-catering">Catering contract owner named</a><span class="chip quiet">Open</span><span class="meta">Business manager</span></li>
+        </ul>
+        <p class="small muted">+3 more on the roadmap, each with an owner and a date.</p>
+      </section>
+    </div>
+    <div class="col">
+      <section class="card">
+        <div class="row">${L("Today's routines")}<span class="small muted">${daily.length} daily</span></div>
+        <ul class="list">${daily.map((i) => `<li><span class="t">${esc(i.c.when)}</span><a href="#item-${i.id}">${esc(i.title)}</a><span class="chip quiet">${esc(i.c.doneBy.split(" (")[0])}</span><span class="meta">Backup: ${esc(i.c.backup)}</span></li>`).join("")}</ul>
+      </section>
+      <section class="card">
+        ${L("This week")}
+        <ul class="list">
+          <li><span class="t">11 Mar</span><a href="#item-lunch">Lunch cover review</a><span class="chip warn">Due</span><span class="meta">Review date · Operations Manager</span></li>
+          <li><span class="t">12 Mar</span><a href="#item-c-alarm">Alarm and CCTV company review</a><span class="chip warn">Due</span><span class="meta">Review date · Operations Manager</span></li>
+          <li><span class="t">13 Mar</span><a href="#item-cv-front">Review cover plans with each backup</a><span class="chip quiet">Checklist</span><span class="meta">Operations Manager</span></li>
+        </ul>
+      </section>
+    </div>
+  </div>`;
+}
+
+function sectionView(key) {
+  const s = SEC[key]; const list = ITEMS.filter((i) => i.s === key);
+  const SUB = { emergencies: (c) => c.first, routines: (c) => `${c.freq} · ${c.when} · ${c.doneBy}`, contacts: (c) => `${c.kind}${c.org ? " · " + c.org : ""} · ${c.phone}`, escalation: (c) => c.steps.map((x) => x[0]).join(" → "), cover: (c) => `First backup: ${c.first}`, tools: (c) => c.purpose };
+  const sub = (i) => SUB[key](i.c);
+  const row = (i) => `<a href="#item-${i.id}"><b>${esc(i.title)}</b>${chip(i.status)}<span class="sub">${esc(sub(i))}</span><span class="sub">Owner: ${esc(i.owner)} · reviewed ${esc(i.reviewed)}</span></a>`;
+  let body;
+  if (key === "routines") {
+    const groups = ["Daily", "Weekly", "Monthly", "When needed"].map((f) => [f, list.filter((i) => i.c.freq === f)]).filter((g) => g[1].length);
+    body = groups.map(([f, g]) => `<p class="label group-label">${f}</p><div class="items">${g.map(row).join("")}</div>`).join("");
+  } else body = `<div class="items">${list.map(row).join("")}</div>`;
+  return `<div class="crumbs"><a href="#home">Ops</a><span>/</span><span>${esc(s.name)}</span></div>
+    <div class="view-head"><h2>${esc(s.name)}</h2><p class="muted">${esc(s.intro)}</p></div>
+    <section class="card">${body}</section>`;
+}
+
+function itemBody(i) {
+  const c = i.c;
+  if (i.s === "emergencies") return `
+    <div class="first">${L("First step").replace('class="label"', 'class="label" style="color:var(--bad-ink)"')}<b>${esc(c.first)}</b></div>
+    <div class="kv"><div>${L("How it's announced")}<span>${esc(c.signal)}</span></div><div>${L("Who takes charge")}<span>${esc(c.inCharge)}</span></div></div>
+    <div>${L("Then")}<ol class="steps" style="margin-top:8px">${c.steps.map((x) => `<li><span>${esc(x)}</span></li>`).join("")}</ol></div>
+    <div class="kv"><div>${L("All-clear")}<span>${esc(c.allClear)}</span></div><div>${L("Drills")}<span>${esc(c.drill)}</span></div>${c.after ? `<div style="grid-column:1/-1">${L("Afterwards")}<span>${esc(c.after)}</span></div>` : ""}</div>`;
+  if (i.s === "routines") return `
+    <div class="kv"><div>${L("How often")}<span>${esc(c.freq)} · ${esc(c.when)}</span></div><div>${L("Takes about")}<span class="mono">${c.minutes} min</span></div>
+      <div>${L("Responsible role")}<span>${esc(c.doneBy)}</span></div><div>${L("Backup role")}<span>${esc(c.backup)}</span></div></div>
+    <div>${L("Steps")}<ol class="steps" style="margin-top:8px">${c.steps.map(([t, tool]) => `<li><span>${esc(t)}${tool ? `<span class="tool">${esc(tool)}</span>` : ""}</span></li>`).join("")}</ol></div>
+    <div class="kv"><div>${L("Done looks like")}<span>${esc(c.done)}</span></div>${c.wrong ? `<div>${L("If it goes wrong")}<span>${esc(c.wrong)}</span></div>` : ""}</div>`;
+  if (i.s === "contacts") return `
+    <div class="kv"><div>${L("Kind")}<span>${esc(c.kind)}</span></div>${c.org ? `<div>${L("Organisation")}<span>${esc(c.org)}</span></div>` : ""}${c.name ? `<div>${L("Name")}<span>${esc(c.name)}</span></div>` : ""}
+      <div>${L("Work phone")}<span class="mono copy">${esc(c.phone)}</span></div>${c.email ? `<div>${L("Work email")}<span class="copy">${esc(c.email)}</span></div>` : ""}${c.other ? `<div>${L("Other channel")}<span>${esc(c.other)}</span></div>` : ""}
+      <div>${L("Hours")}<span>${esc(c.hours)}</span></div>${c.ooh ? `<div>${L("Out of hours")}<span>${esc(c.ooh)}</span></div>` : ""}${c.ref ? `<div>${L("Customer or contract reference")}<span>${esc(c.ref)}</span></div>` : ""}</div>
+    <div>${L("Contact them for")}<ul class="bullets" style="margin-top:6px">${c.for.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>`;
+  if (i.s === "escalation") return `
+    <div>${L("Who to go to, in order")}<ol class="esc" style="margin-top:8px">${c.steps.map(([r, w], n) => `<li><span class="num">${n + 1}</span><span>${esc(r)}</span><span class="small muted">${esc(w)}</span></li>`).join("")}</ol></div>
+    <div class="kv"><div>${L("Always tell")}<ul class="bullets">${c.tell.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>${c.notes ? `<div>${L("Notes")}<span>${esc(c.notes)}</span></div>` : ""}</div>`;
+  if (i.s === "cover") return `
+    <div class="kv"><div>${L("Role covered")}<span>${esc(c.held)}</span></div><div>${L("First backup")}<span>${esc(c.first)}</span></div><div>${L("Second backup")}<span>${esc(c.second)}</span></div></div>
+    <div>${L("Duties")}<div class="scroll" style="margin-top:8px"><table><thead><tr><th>Duty</th><th>When</th><th>Covered by</th></tr></thead><tbody>${c.duties.map(([d, w, b]) => `<tr><td>${esc(d)}</td><td class="mono">${esc(w)}</td><td>${esc(b)}</td></tr>`).join("")}</tbody></table></div></div>
+    <div class="kv"><div>${L("Where things are")}<ul class="bullets">${c.where.map(([a, b]) => `<li><b>${esc(a)}:</b> ${esc(b)}</li>`).join("")}</ul></div>
+      ${c.access.length ? `<div>${L("Access the backup needs")}<ul class="bullets">${c.access.map(([a, b]) => `<li><b>${esc(a)}:</b> ${esc(b)}</li>`).join("")}</ul></div>` : ""}</div>`;
+  if (i.s === "tools") return `
+    <div class="kv"><div>${L("Link")}<span class="copy" style="overflow-wrap:anywhere">${esc(c.url)}</span></div><div>${L("Category")}<span>${esc(c.cat)}</span></div>
+      <div>${L("What it's for")}<span>${esc(c.purpose)}</span></div><div>${L("Who uses it")}<span>${esc(c.who)}</span></div></div>`;
+}
+
+function itemView(id) {
+  const i = BY_ID[id]; if (!i) return notFound();
+  const s = SEC[i.s]; const read = reads.has(i.id);
+  return `<div class="crumbs"><a href="#home">Ops</a><span>/</span><a href="#${s.key}">${esc(s.name)}</a><span>/</span><span>${esc(i.title)}</span></div>
+    <article class="card item">
+      <div class="item-head">${L(s.name)}${chip(i.status)}</div>
+      <h3>${esc(i.title)}</h3>
+      ${itemBody(i)}
+      ${i.mustRead || i.start ? `<div class="readbox"><span>${read ? "You confirmed you've read this." : "Must-read for all staff. Confirm once you've read it."}</span>
+        <button class="btn ${read ? "" : "primary"}" data-read="${i.id}" ${read ? "disabled" : ""}>${read ? "Confirmed" : "I've read this"}</button></div>` : ""}
+      <div class="trail"><span>Owner: ${esc(i.owner)}</span><span>Reviewed ${esc(i.reviewed)}${i.next !== "—" ? ` · next by ${esc(i.next)}` : ""}</span>
+        ${i.reads ? `<span>Confirmed by ${i.reads[0] + (read && i._dana ? 1 : 0)} of ${i.reads[1]} staff</span>` : ""}<span>${i.areas.map((a) => AREAS[a]).join(", ")}</span><span>Version ${i.v}</span>${i.c.used ? `<span>${esc(i.c.used)}</span>` : ""}</div>
+    </article>`;
+}
+
+function startView() {
+  const list = ITEMS.filter((i) => i.start); const n = list.filter((i) => reads.has(i.id)).length;
+  return `<div class="crumbs"><a href="#home">Ops</a><span>/</span><span>Start here</span></div>
+    <div class="view-head"><h2>Start here</h2><p class="muted">Your first-week reading. Open each one and confirm you've read it. ${n} of ${list.length} confirmed.</p></div>
+    <section class="card"><ul class="check">${list.map((i) => `<li><span class="box" role="img" aria-label="${reads.has(i.id) ? "Confirmed" : "Not yet confirmed"}" aria-checked="${reads.has(i.id)}" style="cursor:default"></span>
+      <a href="#item-${i.id}" style="color:var(--ink)">${esc(i.title)}</a><span class="small muted">${esc(SEC[i.s].name)}</span></li>`).join("")}</ul></section>`;
+}
+
+function searchView() {
+  const q = query.trim().toLowerCase();
+  const hits = q ? ITEMS.filter((i) => (i.title + " " + JSON.stringify(i.c)).toLowerCase().includes(q)) : [];
+  return `<div class="crumbs"><a href="#home">Ops</a><span>/</span><span>Search</span></div>
+    <form class="search" role="search" id="searchform"><label for="q"><input id="q" type="search" value="${esc(query)}" aria-label="Search Ops"></label><button class="btn primary" type="submit">Search</button></form>
+    <section class="card"><p class="label">${hits.length} result${hits.length === 1 ? "" : "s"} for “${esc(query)}”</p>
+      <div class="items">${hits.map((i) => `<a href="#item-${i.id}"><b>${esc(i.title)}</b>${chip(i.status)}<span class="sub">${esc(SEC[i.s].name)} · Owner: ${esc(i.owner)}</span></a>`).join("") || '<p class="muted">Nothing matches. Try “gate”, “alarm” or “parent”.</p>'}</div></section>`;
+}
+const notFound = () => `<section class="card"><h3>That page isn't here</h3><p><a href="#home">Back to Ops</a></p></section>`;
+
+function render() {
+  const h = location.hash.slice(1) || "home";
+  let html, active = h;
+  if (h === "home") html = home();
+  else if (SEC[h]) html = sectionView(h);
+  else if (h.startsWith("item-")) { const i = BY_ID[h.slice(5)]; active = i ? i.s : ""; html = itemView(h.slice(5)); }
+  else if (h === "start") html = startView();
+  else if (h === "search") { active = ""; html = searchView(); }
+  else html = notFound();
+  subnav(active);
+  const v = document.getElementById("view"); v.innerHTML = html;
+  if (h !== "home") { v.focus({ preventScroll: true }); v.closest(".app").scrollIntoView({ block: "start" }); }
+}
+
+document.addEventListener("submit", (e) => {
+  if (e.target.id !== "searchform") return;
+  e.preventDefault(); query = e.target.querySelector("input").value;
+  if (location.hash === "#search") render(); else location.hash = "search";
+});
+document.addEventListener("click", (e) => {
+  const t = e.target.closest("[data-tick]");
+  if (t) { const x = checklist[+t.dataset.tick]; x.done = !x.done; render(); return; }
+  const r = e.target.closest("[data-read]");
+  if (r) { const i = BY_ID[r.dataset.read]; reads.add(i.id); i._dana = true; render(); }
+});
+addEventListener("hashchange", render);
+render();
+</script>
+
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

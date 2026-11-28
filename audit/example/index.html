@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campus Velocity | Example Diagnostic results</title>
+<meta name="description" content="What a Campus Diagnostic produces, shown for a fictional school: scores, findings checked against evidence, a fix plan with owners and dates, and the Ops hub on day one.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
+<style>
+  .ex-banner { background: var(--attention-bg); color: var(--attention-ink); font-size: 14px; padding: 10px 0; }
+  .ex-banner .wrap { display: flex; flex-wrap: wrap; gap: 4px 12px; }
+  .score-big { font-family: var(--font-mono); font-size: 64px; line-height: 1; font-weight: 600; }
+  .gaps { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+  .gap { background: var(--sunken); border-radius: var(--radius-md); padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; }
+  .gap b { font-family: var(--font-mono); font-size: 24px; }
+  .bar { height: 6px; border-radius: 99px; background: var(--line); overflow: hidden; }
+  .bar i { display: block; height: 100%; }
+  .finding { display: flex; flex-direction: column; gap: 12px; }
+  .finding-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+  .said-found { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+  .said-found > div { border: 1px solid var(--line); border-radius: var(--radius-md); padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .said-found .found { border-color: var(--line-strong); background: var(--sunken); }
+  .fix { font-size: 14px; border-top: 1px solid var(--line); padding-top: 10px; }
+  .plan-wrap { overflow-x: auto; }
+  .plan { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 560px; }
+  .plan th { text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-muted); padding: 0 12px 8px 0; font-weight: 600; }
+  .plan td { padding: 10px 12px 10px 0; border-top: 1px solid var(--line); vertical-align: top; }
+  .plan .phase td { font-family: var(--font-mono); font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-muted); padding-top: 18px; border-top: 0; }
+  .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .hub-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+  .hub-stats div { border: 1px solid var(--line); border-radius: var(--radius-md); padding: 14px 16px; background: var(--card); }
+  .hub-stats b { display: block; font-family: var(--font-mono); font-size: 26px; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="mark" href="/">CAMPUS<span>VELOCITY</span></a>
+    <nav class="topnav" aria-label="Main">
+      <a href="/#how">How it works</a>
+      <a href="/audit">The Diagnostic</a>
+      <a href="/#about">About</a>
+    </nav>
+    <a class="btn btn-on-dark" href="/scorecard">Take the check</a>
+  </div>
+</header>
+
+<div class="ex-banner" role="note">
+  <div class="wrap"><b>Example.</b><span>Demo School is fictional. Its people, documents and numbers are made up to show what a Diagnostic produces.</span></div>
+</div>
+
+<main>
+
+  <section class="hero" aria-labelledby="h1">
+    <div class="narrow stack-lg">
+      <p class="eyebrow">Example results · Campus Diagnostic · day 0</p>
+      <h1 id="h1" class="display">Demo School</h1>
+      <p class="lead">An international school of about 400 students. Five people answered 62 questions by role over two weeks and shared 14 documents. The key answers were checked against those documents. This is what came back.</p>
+    </div>
+  </section>
+
+  <!-- Scores -->
+  <section class="section" style="background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line)" aria-labelledby="score-h">
+    <div class="narrow stack-lg">
+      <div class="stack">
+        <p class="eyebrow">The scores</p>
+        <h2 id="score-h" class="h2">47 out of 100. Three areas At risk.</h2>
+      </div>
+
+      <div class="grid grid-2" style="align-items: start">
+        <div class="stack">
+          <p class="score-big">47</p>
+          <p class="small muted">Campus Intelligence Score, out of 100 · <b style="color: var(--ink)">Significant gaps present</b></p>
+          <p class="small muted">The free check put Demo School at 61. Checking answers against evidence brought it down by 14 points. That gap between what a team believes and what it can show is what the Diagnostic is for.</p>
+        </div>
+        <div>
+          <div class="domain-row"><span class="domain-name">Safety &amp; compliance</span><span class="row"><span class="domain-score">58</span><span class="chip chip-warn">Needs work</span></span></div>
+          <div class="domain-row"><span class="domain-name">Technology &amp; devices</span><span class="row"><span class="domain-score">63</span><span class="chip chip-warn">Needs work</span></span></div>
+          <div class="domain-row"><span class="domain-name">Parent communication</span><span class="row"><span class="domain-score">33</span><span class="chip chip-risk">At risk</span></span></div>
+          <div class="domain-row"><span class="domain-name">Vendors &amp; costs</span><span class="row"><span class="domain-score">38</span><span class="chip chip-risk">At risk</span></span></div>
+          <div class="domain-row"><span class="domain-name">Staff onboarding &amp; retention</span><span class="row"><span class="domain-score">40</span><span class="chip chip-risk">At risk</span></span></div>
+          <div class="domain-row"><span class="domain-name">Reporting &amp; visibility</span><span class="row"><span class="domain-score">50</span><span class="chip chip-warn">Needs work</span></span></div>
+        </div>
+      </div>
+
+      <div class="stack">
+        <p class="eyebrow">What kind of gaps</p>
+        <div class="gaps">
+          <div class="gap"><span class="small">Assumed vs. verified</span><b>44</b><span class="bar"><i style="width:44%;background:var(--overdue-ink)"></i></span><span class="small muted">What the team believes is in place, compared with what it could show.</span></div>
+          <div class="gap"><span class="small">Open loops</span><b>57</b><span class="bar"><i style="width:57%;background:var(--attention-ink)"></i></span><span class="small muted">Things that get reported or started, then never closed.</span></div>
+          <div class="gap"><span class="small">Single points of failure</span><b>40</b><span class="bar"><i style="width:40%;background:var(--overdue-ink)"></i></span><span class="small muted">Things only one person knows how to do.</span></div>
+        </div>
+        <p class="small muted">Biggest pattern: <b style="color: var(--ink)">single points of failure</b>. A few capable people are holding the campus together, and very little of it is written down.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Findings -->
+  <section class="section" aria-labelledby="find-h">
+    <div class="narrow stack-lg">
+      <div class="stack">
+        <p class="eyebrow">Findings</p>
+        <h2 id="find-h" class="h2">Six findings. Four the team didn't have written down.</h2>
+        <p class="muted">Each one shows what the team said, what the evidence showed, and the fix that went into the plan. "New to the team" marks findings nobody had on paper, which is what the Diagnostic guarantee counts.</p>
+      </div>
+
+      <article class="card finding">
+        <div class="finding-head"><span class="eyebrow">1 · Safety &amp; compliance</span><span class="chip chip-risk">New to the team</span></div>
+        <h3 class="h3">The evacuation plan sends people to an assembly point that is now a car park.</h3>
+        <div class="said-found">
+          <div><span class="eyebrow">What the team said</span><span>"Evacuation procedure written and practised every term."</span></div>
+          <div class="found"><span class="eyebrow">What the evidence showed</span><span>The plan is dated 2022. The north assembly point became staff parking last year. The drill log's last entry is 14 months old.</span></div>
+        </div>
+        <p class="fix"><b>Fix:</b> new assembly points walked and marked, plan rewritten and confirmed by all staff, a drill before half-term. <span class="muted">Operations lead · by week 3</span></p>
+      </article>
+
+      <article class="card finding">
+        <div class="finding-head"><span class="eyebrow">2 · Parent communication</span><span class="chip chip-risk">New to the team</span></div>
+        <h3 class="h3">After 3pm, nobody owns the shared parent inbox.</h3>
+        <div class="said-found">
+          <div><span class="eyebrow">What the team said</span><span>"Parents get a reply the same day."</span></div>
+          <div class="found"><span class="eyebrow">What the evidence showed</span><span>In a two-week sample of the inbox, 11 of 40 messages waited more than a day. Nine of those arrived after 3pm.</span></div>
+        </div>
+        <p class="fix"><b>Fix:</b> a named owner for the inbox each afternoon, and a same-day holding reply. <span class="muted">Front office lead · by week 1</span></p>
+      </article>
+
+      <article class="card finding">
+        <div class="finding-head"><span class="eyebrow">3 · Vendors &amp; costs</span><span class="chip chip-risk">New to the team</span></div>
+        <h3 class="h3">Three contracts renew on their own within 90 days. One notice deadline is in three weeks.</h3>
+        <div class="said-found">
+          <div><span class="eyebrow">What the team said</span><span>"We track our contracts."</span></div>
+          <div class="found"><span class="eyebrow">What the evidence showed</span><span>The register covers 5 of 14 vendors. The cleaning contract's notice period ends in three weeks, and nobody had it in a calendar.</span></div>
+        </div>
+        <p class="fix"><b>Fix:</b> decide on the cleaning contract now; all 14 vendors in one register with notice dates in the compliance calendar. <span class="muted">Business manager · by week 2</span></p>
+      </article>
+
+      <article class="card finding">
+        <div class="finding-head"><span class="eyebrow">4 · Staff onboarding &amp; retention</span><span class="chip chip-warn">Known, not written down</span></div>
+        <h3 class="h3">Only the front office manager can run attendance and dismissal changes.</h3>
+        <div class="said-found">
+          <div><span class="eyebrow">What the team said</span><span>"If she's out, someone covers."</span></div>
+          <div class="found"><span class="eyebrow">What the evidence showed</span><span>No cover plan. Nobody else has the attendance system role. The last time she was off sick, three early pick-ups weren't recorded.</span></div>
+        </div>
+        <p class="fix"><b>Fix:</b> a written cover plan with two trained backups and system access set up ahead of time. <span class="muted">Operations lead · by week 4</span></p>
+      </article>
+
+      <article class="card finding">
+        <div class="finding-head"><span class="eyebrow">5 · Technology &amp; devices</span><span class="chip chip-warn">Known, not written down</span></div>
+        <h3 class="h3">Nobody knows how many devices fail at the start of a lesson.</h3>
+        <div class="said-found">
+          <div><span class="eyebrow">What the team said</span><span>"Devices are mostly fine. Teachers tell IT when they're not."</span></div>
+          <div class="found"><span class="eyebrow">What the evidence showed</span><span>No log. Over two spot checks, 4 of 20 devices weren't ready for first lesson, all from the same charging cart.</span></div>
+        </div>
+        <p class="fix"><b>Fix:</b> a daily 10-device morning check, logged; repair the cart. <span class="muted">IT lead · by week 2</span></p>
+      </article>
+
+      <article class="card finding">
+        <div class="finding-head"><span class="eyebrow">6 · Reporting &amp; visibility</span><span class="chip chip-risk">New to the team</span></div>
+        <h3 class="h3">The Head hears about problems from parents first.</h3>
+        <div class="said-found">
+          <div><span class="eyebrow">What the team said</span><span>"Leadership has a clear view of operations."</span></div>
+          <div class="found"><span class="eyebrow">What the evidence showed</span><span>No regular numbers reach the Head. Two of the last three escalations reached the Head through a parent before staff raised them.</span></div>
+        </div>
+        <p class="fix"><b>Fix:</b> three numbers in the Head's inbox every Monday: open safety issues, unanswered parent messages, staff absences. <span class="muted">Operations lead · from week 2</span></p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Fix plan -->
+  <section class="section" style="background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line)" aria-labelledby="plan-h">
+    <div class="narrow stack-lg">
+      <div class="stack">
+        <p class="eyebrow">Fix plan</p>
+        <h2 id="plan-h" class="h2">Every gap with an owner and a date.</h2>
+        <p class="muted">The plan goes straight into the school's roadmap in the Campus Velocity app, so progress is tracked rather than filed. Here is an excerpt; the full plan had 31 items.</p>
+      </div>
+      <div class="plan-wrap">
+        <table class="plan">
+          <thead><tr><th>Fix</th><th>Owner</th><th>Due</th></tr></thead>
+          <tbody>
+            <tr class="phase"><td colspan="3">Weeks 1–2 · urgent and quick</td></tr>
+            <tr><td>Decide on the cleaning contract before its notice deadline</td><td>Business manager</td><td class="num">Week 1</td></tr>
+            <tr><td>Afternoon owner for the parent inbox, and a same-day holding reply</td><td>Front office lead</td><td class="num">Week 1</td></tr>
+            <tr><td>Daily morning device check, logged</td><td>IT lead</td><td class="num">Week 2</td></tr>
+            <tr><td>Monday numbers to the Head</td><td>Operations lead</td><td class="num">Week 2</td></tr>
+            <tr class="phase"><td colspan="3">Weeks 3–6 · emergencies and people</td></tr>
+            <tr><td>Evacuation plan rewritten, staff confirm it, drill</td><td>Operations lead</td><td class="num">Week 3</td></tr>
+            <tr><td>Lockdown and missing-student procedures written</td><td>Head of School</td><td class="num">Week 5</td></tr>
+            <tr><td>Cover plans for the four key roles</td><td>Operations lead</td><td class="num">Week 4–6</td></tr>
+            <tr class="phase"><td colspan="3">Weeks 7–12 · make it stick</td></tr>
+            <tr><td>All vendors in the register, notice dates in the compliance calendar</td><td>Business manager</td><td class="num">Week 8</td></tr>
+            <tr><td>First-week reading for new staff (Start here)</td><td>Operations lead</td><td class="num">Week 10</td></tr>
+            <tr><td>90-day re-score</td><td>Campus Velocity</td><td class="num">Week 12</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hub on day one -->
+  <section class="section" aria-labelledby="hub-h">
+    <div class="narrow stack-lg">
+      <div class="stack">
+        <p class="eyebrow">The Ops hub on day one</p>
+        <h2 id="hub-h" class="h2">Everything they already had, in one place, with the gaps marked.</h2>
+        <p class="muted">The documents the team shared for the Diagnostic went straight into their Ops hub. On the day of the readout, they could already search it and find what they had. Everything missing was marked and linked to the fix plan.</p>
+      </div>
+      <div class="hub-stats">
+        <div><b>9</b><span class="small muted">procedures and contact lists filed</span></div>
+        <div><b>31</b><span class="small muted">gaps marked, each in the fix plan</span></div>
+        <div><b>14</b><span class="small muted">documents shared by the team, 6 of them out of date</span></div>
+      </div>
+      <div class="card stack">
+        <h3 class="h3">Ninety days later</h3>
+        <p class="muted">With monthly support, Demo School's hub had 37 items, 31 of them confirmed, and no area At risk on the re-score. You can click through it yourself.</p>
+        <div class="row">
+          <a class="btn btn-primary" href="/demo/hub/">See Demo School's hub at day 90</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band section" aria-labelledby="cta-h">
+    <div class="narrow stack-lg" style="text-align: center; align-items: center">
+      <h2 id="cta-h" class="h2">See where your campus stands.</h2>
+      <p class="muted" style="max-width: 520px">The free 5-minute check is where it starts. If a Diagnostic is the right next step, we'll agree that on the results call.</p>
+      <div class="row" style="justify-content: center">
+        <a class="btn btn-on-dark btn-lg" href="/scorecard">Take the check</a>
+        <a href="/audit" style="color: var(--brand)">Back to the Diagnostic</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p class="footer-line">Campus Velocity · When operations are invisible, students thrive.</p>
+    <nav aria-label="Footer">
+      <a href="/scorecard">Risk &amp; Trust Check</a>
+      <a href="/audit">The Diagnostic</a>
+      <a href="/privacy">Privacy</a>
+      <a href="https://app.campusvelocity.com">Client sign-in</a>
+    </nav>
+  </div>
+</footer>
+
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
